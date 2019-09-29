@@ -8,7 +8,19 @@ namespace Exam_1_Alien_Invading
 {
     public class Gamer
     {
-        static int Lives = 100;
-        static int sizeOfAtack = 10;
+        public int Lives = 100;
+        public int sizeOfAttack = 10;
+        public void RemoveGamersLives(int damage)
+        {
+            if (Lives <= 0)
+            {
+                return;
+            }
+            else
+            {
+                Lives -= damage;
+                return;
+            }
+        }
     }
 }

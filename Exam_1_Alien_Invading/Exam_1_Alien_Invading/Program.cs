@@ -8,7 +8,7 @@ namespace Exam_1_Alien_Invading
 {
     class Program
     {
-        public static int CrateSwarm()
+        public static Alien[] CrateSwarm()
         {
             var rand = new Random();
             int numberAliens = rand.Next(1, 10);
@@ -18,26 +18,56 @@ namespace Exam_1_Alien_Invading
                 swarm[i] = new Alien();
             }
             Console.WriteLine(numberAliens);
-            int quantity = swarm.Length;
-            return quantity;
+            return swarm;
         }
-        static void ListOfAliens(int x)
+        static void ListOfAliens(Alien[] swarm)
         {
-            for ( int i = 0; i < x; i++)
+            for ( int i = 0; i < swarm.Length; i++)
             {
-
+                Console.WriteLine($"Alien {i} {swarm[i]}");
             }
         }
-        static void AtackEnemy ()
+        static int ChooseEnemy (Alien[] swarm)
         {
-
+            Console.WriteLine($"Enter number from 0 to {swarm.Length - 1}");
+            var input = Console.ReadLine();
+            int item = int.Parse(input);
+            return item;
+        }
+        static void AttackEnemy (int chosenAlien, Alien[] swarm, Gamer peter)
+        {
+            swarm[chosenAlien].RemoveLives(peter.sizeOfAttack);
+        }
+        static void AttackGamer (Alien[] swarm, Gamer peter)
+        {
+            foreach (Alien alien in swarm)
+            {
+                peter.RemoveGamersLives(alien.sizeOfAttack);
+            }
+            Console.WriteLine($"Peter's lives after current attack is {peter.Lives}");
+        }
+        static void BattleStep(Alien[] swarm, Gamer peter)
+        {
+            var chosenAlien = ChooseEnemy(swarm);
+            AttackEnemy(chosenAlien, swarm, peter);
+            ListOfAliens(swarm);
+            AttackGamer(swarm, peter);
+        }
+        static Alien[] EnemyDies (Alien[] swarm)
+        {
+            Alien[] survivors;
+            survivors = swarm.Where(alien => alien.Lives > 0).ToArray();
+            return survivors;
         }
         static void Main(string[] args)
         {
-            Gamer Peter = new Gamer();
-            int create = CrateSwarm();
-            ListOfAliens(create);
+            Gamer peter = new Gamer();
+            var swarm = CrateSwarm();
+            ListOfAliens(swarm);
+            BattleStep(swarm, peter);
+            BattleStep(swarm, peter);
             Console.ReadKey();
+
         }
     }
 }
