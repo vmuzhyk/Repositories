@@ -95,7 +95,6 @@ namespace Exam_1_Alien_Invading
 
         static void StillWar (Alien [] swarm,Gamer peter)
         {
-            //Alien[] mimic;
             while (IsGamerAlive(peter) && IsSwarmAlive(swarm))
             {
                 swarm = BattleStep(swarm, peter);
@@ -109,7 +108,6 @@ namespace Exam_1_Alien_Invading
             ListOfAliens(swarm);
             StillWar(swarm, peter);
             Console.ReadKey();
-
         }
     }
 }
