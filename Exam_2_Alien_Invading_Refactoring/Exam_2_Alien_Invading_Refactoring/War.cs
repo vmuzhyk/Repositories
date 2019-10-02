@@ -41,11 +41,14 @@ namespace Exam_2_Alien_Invading_Refactoring
             {
                 Peter.RemoveLives(alien.SizeOfAttack);
             }
+            Console.WriteLine($"Peter's lives after current attack is {Peter.Lives}");
         }
 
         private int ChooseEnemy()
         {
-            Console.WriteLine($"Enter number from 0 to {Swarm.Aliens.Count}");
+            Console.Write("Enter number");
+            Swarm.Aliens.ForEach(alien => Console.Write($" {alien.Id}"));
+            Console.WriteLine();
             var input = Console.ReadLine();
             int item = int.Parse(input);
             return item;

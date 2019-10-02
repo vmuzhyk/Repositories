@@ -26,7 +26,7 @@ namespace Exam_2_Alien_Invading_Refactoring
             }
         }
 
-        public bool IsAlive()
+        public virtual bool IsAlive()
         {
             return Lives > 0;
         }

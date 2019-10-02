@@ -12,5 +12,17 @@ namespace Exam_2_Alien_Invading_Refactoring
         {
 
         }
+
+        public override bool IsAlive()
+        {
+            if (base.IsAlive())
+            {
+                return true;
+            } else
+            {
+                Console.WriteLine("Game over!!! You are LOOSER!!! Ha Ha!!!");
+                return false;
+            }
+        }
     }
 }

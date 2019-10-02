@@ -30,14 +30,20 @@ namespace Exam_2_Alien_Invading_Refactoring
 
         public bool IsAlive()
         {
-            return Aliens.Count > 0;
+            if (Aliens.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Congratulations!!! You are WINNER!!! Yeh!!!");
+                return false;
+            }
         }
+
 
         public void ReceiveDamage(int chosenAlien, int sizeOfAttack)
         {
-            //var alien = Aliens.Where(x => x.Id == chosenAlien).First();
-            
-            Alien alien = null;
             foreach (Alien item in Aliens)
             {
                 if (item.Id == chosenAlien)
@@ -46,14 +52,7 @@ namespace Exam_2_Alien_Invading_Refactoring
                     
                 }
             }
-            if (alien != null)
-            {
-                bool isAlive = alien.IsAlive();
-                if (!isAlive)
-                {
-                    Aliens.Remove(alien);
-                }
-            }
+            Aliens.RemoveAll(x => !x.IsAlive());
         }
     }
 }
