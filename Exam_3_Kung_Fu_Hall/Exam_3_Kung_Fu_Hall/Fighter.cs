@@ -19,16 +19,17 @@ namespace Exam_3_Kung_Fu_Hall
 
         public void RemoveLives(int damage)
         {
-            if (Lives > 0)
-            {
-                Lives -= damage;
-            }
+            if (Lives <= 0)
+                return;
+
+            Lives -= damage;
         }
 
-        public void HitOpponent()
+        public bool IsAlive()
         {
-
+            return Lives > 0;
         }
+
 
         public void AvoidBeingHit()
         {

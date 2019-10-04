@@ -8,32 +8,41 @@ namespace Exam_3_Kung_Fu_Hall
 {
     class Battle
     {
-        private Fighter Strong { get; set; }
-        private Fighter Healthy { get; set; }
+        private Fighter Strong { get; }
+        private Fighter Healthy { get; }
+        private bool IsStrongTurn { get; set; }
 
         public Battle()
         {
             Strong = new Fighter(50, 10);
             Healthy = new Fighter(100, 5);
-            //Console.WriteLine($"Strong's lives {Strong.Lives} and size of attack {Strong.SizeOfAttack}");
-            //Console.WriteLine($"Healthy's lives {Healthy.Lives} and size of attack {Healthy.SizeOfAttack}");
         }
 
         public void Begin()
         {
-            FirstHit();
-        } 
-
-        public void FirstHit()
-        {
-            Random rand = new Random();
-            if (rand.Next(0, 2) == 0)
-                Strong.HitOpponent();
-            else
-                Healthy.HitOpponent();
+            ChooseFirstTurn();
+            while (Strong.IsAlive() && Healthy.IsAlive())
+            {
+                HitStepByStep();
+                Console.WriteLine($"Strong's lives {Strong.Lives} : Healthy's lives {Healthy.Lives}");
+            }
         }
 
-        
+        public void ChooseFirstTurn()
+        {
+            Random rand = new Random();
+            int index = rand.Next(0, 2);
+            IsStrongTurn = index == 0 ? true : false;
+        }
 
+        public void HitStepByStep()
+        {
+            if (IsStrongTurn)
+                Healthy.RemoveLives(Strong.SizeOfAttack);
+            else
+                Strong.RemoveLives(Healthy.SizeOfAttack);
+            
+            IsStrongTurn = !IsStrongTurn;
+        }
     }
 }
