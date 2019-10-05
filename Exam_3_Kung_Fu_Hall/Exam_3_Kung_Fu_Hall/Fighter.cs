@@ -21,12 +21,9 @@ namespace Exam_3_Kung_Fu_Hall
         {
             if (Lives <= 0)
                 return;
-            //if (AvoidBeingHit())
-            //{
-                //Console.WriteLine("MISS!!!!");
-              //  return;
-           // }
-
+            if (AvoidBeingHit())
+                return;
+           
             Lives -= damage;
         }
 
@@ -36,7 +33,7 @@ namespace Exam_3_Kung_Fu_Hall
         }
 
 
-        public bool AvoidBeingHit()
+        private bool AvoidBeingHit()
         {
             Random rnd = new Random();
             int result = rnd.Next(1, 4);

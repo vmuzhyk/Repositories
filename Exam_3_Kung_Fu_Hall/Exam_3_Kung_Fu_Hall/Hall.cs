@@ -13,22 +13,24 @@ namespace Exam_3_Kung_Fu_Hall
         public Hall()
         {
             RangeOfFights = ChooseRangeOfFights();
+            var tasks = new List<Task>();
             for (int i = 1; i <= RangeOfFights; i++)
             {
                Battle battle = new Battle();
-               Task.Run(() => battle.Begin());
+               tasks.Add(battle.Begin());
             }
-            
+            Task.WaitAll(tasks.ToArray());
+            Console.WriteLine("Done");
         }
 
-        public int ChooseRangeOfFights()
+        private int ChooseRangeOfFights()
         {
             try
             {
-                Console.WriteLine("Enter number from 1 to 5");
+                Console.WriteLine("Enter number from 1 to 100");
                 var input = Console.ReadLine();
                 int range = int.Parse(input);
-                if (range < 1 || range > 101)
+                if (range < 1 || range > 1000)
                 {
                     throw new ArgumentException();
                 }

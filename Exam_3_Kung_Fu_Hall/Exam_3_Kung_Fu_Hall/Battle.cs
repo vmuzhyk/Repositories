@@ -20,29 +20,29 @@ namespace Exam_3_Kung_Fu_Hall
             ChooseFirstTurn();
         }
 
-        public void Begin()
+        public async Task Begin()
         {
             while (Strong.IsAlive() && Healthy.IsAlive())
             {
-                HitStepByStep();
+                await HitStepByStep();
             }
             Console.WriteLine($"Strong's lives {Strong.Lives} : Healthy's lives {Healthy.Lives}");
         }
 
-        public void ChooseFirstTurn()
+        private void ChooseFirstTurn()
         {
             Random rand = new Random();
             int index = rand.Next(0, 2);
             IsStrongTurn = index == 0 ? true : false;
         }
 
-        public void HitStepByStep()
+        private async Task HitStepByStep()
         {
             if (IsStrongTurn)
                 Healthy.RemoveLives(Strong.SizeOfAttack);
             else
                 Strong.RemoveLives(Healthy.SizeOfAttack);
-            Thread.Sleep(500);
+            await Task.Delay(500);
             IsStrongTurn = !IsStrongTurn;
         }
     }
