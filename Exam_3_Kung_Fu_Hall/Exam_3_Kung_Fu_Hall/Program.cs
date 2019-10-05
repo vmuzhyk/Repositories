@@ -10,8 +10,7 @@ namespace Exam_3_Kung_Fu_Hall
     {
         static void Main(string[] args)
         {
-            Battle battle = new Battle();
-            battle.Begin();
+            Hall hall = new Hall();
             Console.ReadKey();
         }
     }

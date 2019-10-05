@@ -8,7 +8,7 @@ namespace Exam_3_Kung_Fu_Hall
 {
     class Fighter
     {
-        public int SizeOfAttack { get; private set; }
+        public int SizeOfAttack { get; }
         public int Lives { get; private set; }
 
         public Fighter (int lives, int sizeOfAttack)
@@ -21,6 +21,11 @@ namespace Exam_3_Kung_Fu_Hall
         {
             if (Lives <= 0)
                 return;
+            //if (AvoidBeingHit())
+            //{
+                //Console.WriteLine("MISS!!!!");
+              //  return;
+           // }
 
             Lives -= damage;
         }
@@ -31,9 +36,14 @@ namespace Exam_3_Kung_Fu_Hall
         }
 
 
-        public void AvoidBeingHit()
+        public bool AvoidBeingHit()
         {
-
+            Random rnd = new Random();
+            int result = rnd.Next(1, 4);
+            if (result == 1)
+                return true;
+            else
+                return false;
         }
     }
 }
