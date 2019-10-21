@@ -8,11 +8,13 @@ namespace Exam_4_Chu_Va_Chi
 {
     class Player
     {
-        public int Wins { get; set; }
+        public Elements Choice { get; set; }
+        public int WinsCount { get; set; }
 
         public Player(int wins)
         {
-            Wins = wins;
+            WinsCount = wins;
         }
+
     }
 }
