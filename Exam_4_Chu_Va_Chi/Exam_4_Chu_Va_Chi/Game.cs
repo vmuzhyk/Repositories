@@ -10,10 +10,8 @@ namespace Exam_4_Chu_Va_Chi
     {
         public Game()
         {   Round round = new Round();
-            do
-            {
-              round.BeginRound();
-            } while (!round.BeginRound());
+
+            while (!round.BeginRound()) { }
             Console.WriteLine("Game over");
            
         }
