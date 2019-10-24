@@ -54,20 +54,36 @@ namespace Exam_4_Chu_Va_Chi
         {
             Console.WriteLine("Enter number from 0 to 2");
             var input = Console.ReadLine();
-            if ((input == "Exit") || (input == "exit")) {
+            if ((input == "Exit") || (input == "exit"))
+            {
                 return true;
             }
+            while (!IsStringValid(input))
+            {
+                input = Console.ReadLine();
+                // TODO ParseString(input);   
+            }            
+            return false;
+        }
+        public bool IsStringValid(String input)
+        {
             try
             {
-                ParseString(input);
+                int index = int.Parse(input);
+                if (System.Enum.IsDefined(typeof(Elements), index))
+                {
+                    return true;
+                } else
+                {
+                    Console.WriteLine("You did not enter a right number. Enter number from 0 to 2 one more time");
+                    return false;
+                }
             }
-            catch (Exception ex) when (ex is ArgumentException || ex is FormatException)
+            catch (FormatException)
             {
                 Console.WriteLine("You did not enter a number. Enter number from 0 to 2 one more time");
-                ParseString(input);
+                return false;
             }
-            
-            return false;
         }
 
         public void ParseString(string input)
@@ -75,6 +91,7 @@ namespace Exam_4_Chu_Va_Chi
             int index = int.Parse(input);
             Human.Choice = ChosenElement(index);
         }
+        
         public void ComputerChooseElement()
         {
             Random rand = new Random();
