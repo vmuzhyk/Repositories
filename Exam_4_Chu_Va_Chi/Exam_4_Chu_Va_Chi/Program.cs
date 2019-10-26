@@ -10,7 +10,7 @@ namespace Exam_4_Chu_Va_Chi
     {
         static void Main(string[] args)
         {
-            Game chuVaChi = new Game();
+            new Game().Begin();
             Console.ReadKey();
         }
     }
