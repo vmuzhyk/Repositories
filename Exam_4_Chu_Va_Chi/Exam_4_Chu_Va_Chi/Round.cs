@@ -26,10 +26,14 @@ namespace Exam_4_Chu_Va_Chi
 
             SelectWinner(number);
 
+            DisplayScore();
+        }
+
+        public void DisplayScore()
+        {
             Console.WriteLine($"Your score is {Human}");
             Console.WriteLine($"Machine score is {Machine}");
         }
-
         private bool IsInputValid(bool isInteger, int number)
         {
             if (!isInteger)
