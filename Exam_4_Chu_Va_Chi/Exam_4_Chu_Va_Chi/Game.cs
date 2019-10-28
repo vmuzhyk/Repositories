@@ -21,6 +21,8 @@ namespace Exam_4_Chu_Va_Chi
         private const string CommandLoad = "LOAD";
         private const string CommandSave = "SAVE";
         private const string CommandDisplay = "DISPLAY";
+        private const string CommandYes = "YES";
+        private const string CommandNo = "NO";
         private const string src = @"D:\Downloads\WriteMatyuk.txt";
 
         public Game()
@@ -30,10 +32,22 @@ namespace Exam_4_Chu_Va_Chi
             Round = new Round(Human, Machine);
             DisplayWelcomeMessage();
         }
-
+        private void DisplayWelcomeMessage()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Welcome to our Chu Va Chi game");
+            PrintAvailableCommands();
+            Console.WriteLine();
+        }
         public void Begin()
         {
-            StartGame();
+            CheckFile();
+            ValidateNewRound();
+            SaveDialog();
+        }
+
+        private void ValidateNewRound()
+        {
             while (true)
             {
                 var input = ProcessInput();
@@ -50,7 +64,6 @@ namespace Exam_4_Chu_Va_Chi
                 Round.Begin(input);
             }
         }
-
         private string ProcessInput()
         {
             Console.WriteLine();
@@ -66,16 +79,36 @@ namespace Exam_4_Chu_Va_Chi
             Machine.WinsCount = 0;
             Human.DrawCount = 0;
             Machine.DrawCount = 0;
+        }
+
+        private void ResetProgressWithMessage()
+        {
+            ResetProgress();
             Console.WriteLine("Progress is cleared");
         }
-        
-        private void DisplayWelcomeMessage()
+ 
+        private void CheckFile() 
         {
-            Console.WriteLine();
-            Console.WriteLine("Welcome to our Chu Va Chi game");
-            PrintAvailableCommands();
-            Console.WriteLine();
+            string[] lines = System.IO.File.ReadAllLines(src);
+            if (IsAnyScoreSaved(lines))
+            {
+                StartGame();
+            }
         }
+
+        private bool IsAnyScoreSaved(string[] lines)
+        {
+            foreach (string item in lines)
+            {
+                var member = Int32.Parse(item);
+                if (member != 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
          private void StartGame()
          {
             while (true)
@@ -84,7 +117,7 @@ namespace Exam_4_Chu_Va_Chi
                 switch (Console.ReadLine().ToUpper())
                 {
                     case CommandReset:
-                        ResetProgress();
+                        ResetProgressWithMessage();
                         return;
                     case CommandLoad:
                         LoadScore();
@@ -99,6 +132,10 @@ namespace Exam_4_Chu_Va_Chi
         {
             string[] lines = { Human.WinsCount.ToString(), Machine.WinsCount.ToString(), Human.DrawCount.ToString() };
             System.IO.File.WriteAllLines(src, lines);
+        }
+        private void SaveScoreWithMessage()
+        {
+            SaveScore();
             Console.WriteLine("Score is saved");
         }
         private void LoadScore()
@@ -111,18 +148,37 @@ namespace Exam_4_Chu_Va_Chi
             Console.WriteLine("Score is loaded");
         }
 
+        private void SaveDialog () 
+        {
+            while (true)
+            {
+                Console.WriteLine("Do you want to save the game? [Yes/No]:");
+                switch (Console.ReadLine().ToUpper())
+                {
+                    case CommandYes:
+                        SaveScoreWithMessage();
+                        return;
+                    case CommandNo:
+                        ResetProgress();
+                        SaveScore();
+                        return;
+                    default:
+                        continue;
+                }
+            }
+        }
+
         private void ExecuteCommand(string command)
         {
             switch (command.ToUpper())
             {
                 case CommandExit:
                     IsOver = true;
-                    SaveScore();
                     Console.WriteLine("The game is finished");
                     break;
                 case CommandReset:
                     IsCommandExecuted = true;
-                    ResetProgress();
+                    ResetProgressWithMessage();
                     break;
                 case CommandHelp:
                     IsCommandExecuted = true;
@@ -134,7 +190,7 @@ namespace Exam_4_Chu_Va_Chi
                     break;
                 case CommandSave:
                     IsCommandExecuted = true;
-                    SaveScore();
+                    SaveScoreWithMessage();
                     break;
                 case CommandLoad:
                     IsCommandExecuted = true;

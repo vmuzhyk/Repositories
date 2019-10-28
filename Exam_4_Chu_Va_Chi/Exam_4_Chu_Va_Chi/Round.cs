@@ -53,13 +53,25 @@ namespace Exam_4_Chu_Va_Chi
 
         private void SelectWinner(int number)
         {
-            Human.Choice = (Elements)number;
-            Console.WriteLine($"Your choice is {Human.Choice}");
+            HumanMadeChoice(number);
+            ComputerMadeChoice();
+            CompareChoice();
+        }
+
+        private void ComputerMadeChoice()
+        {
             Random rand = new Random();
             int index = rand.Next(0, 3);
             Machine.Choice = (Elements)index; ;
             Console.WriteLine($"Machine's choice {Machine.Choice}");
-
+        }
+        private void HumanMadeChoice(int number)
+        {
+            Human.Choice = (Elements)number;
+            Console.WriteLine($"Your choice is {Human.Choice}");
+        }
+        private void CompareChoice()
+        {
             if (((Human.Choice == Elements.Stone) && (Machine.Choice == Elements.Paper))
                 || ((Human.Choice == Elements.Paper) && (Machine.Choice == Elements.Scissors))
                 || ((Human.Choice == Elements.Scissors) && (Machine.Choice == Elements.Stone)))
