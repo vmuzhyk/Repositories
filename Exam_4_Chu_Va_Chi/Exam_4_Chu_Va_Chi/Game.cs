@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace Exam_4_Chu_Va_Chi
         private const string CommandDisplay = "DISPLAY";
         private const string CommandYes = "YES";
         private const string CommandNo = "NO";
-        private const string src = @"D:\Downloads\WriteMatyuk.txt";
+        private const string src = @"WriteMatyuk.txt";
 
         public Game()
         {
@@ -89,6 +90,7 @@ namespace Exam_4_Chu_Va_Chi
  
         private void CheckFile() 
         {
+            ValidateSaves();
             string[] lines = System.IO.File.ReadAllLines(src);
             if (IsAnyScoreSaved(lines))
             {
@@ -138,6 +140,15 @@ namespace Exam_4_Chu_Va_Chi
             SaveScore();
             Console.WriteLine("Score is saved");
         }
+
+        private void ValidateSaves()
+        {
+            if (!File.Exists(src))
+            {
+                File.Create(src).Dispose();
+            }
+        }
+
         private void LoadScore()
         {
             string[] lines = System.IO.File.ReadAllLines(src);
