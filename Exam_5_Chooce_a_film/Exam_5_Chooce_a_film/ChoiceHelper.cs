@@ -58,13 +58,19 @@ namespace Exam_5_Chooce_a_film
         private void FindLineNumber()
         {
             LineNumber = ChosenFilm / 6;
+            if (LineNumber == 0)
+                LineNumber = 1;
+
             Console.WriteLine($"Your chosen film is located in line {LineNumber}");
         }
 
         private void FindLinePosition() 
-        {
-            LinePosition = ChosenFilm - (LineNumber * 6);
-            Console.WriteLine($"Your chosen film position is {LinePosition} in this line");
+        {   
+            LinePosition = ChosenFilm % 6;
+            if (LinePosition == 0)
+                LinePosition = 6;
+                
+                Console.WriteLine($"Your chosen film position is {LinePosition} in this line");
         }
     }
 }
