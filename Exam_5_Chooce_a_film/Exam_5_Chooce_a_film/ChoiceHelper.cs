@@ -11,11 +11,13 @@ namespace Exam_5_Chooce_a_film
         private int MinValue { get; }
         private int MaxValue { get; set; }
         private int ChosenFilm { get; set; }
+        private int FilmsInLine { get; }
         private int LineNumber { get; set; }
         private int LinePosition { get; set; }
         public ChoiceHelper ()
         {
             MinValue = 1;
+            FilmsInLine = 6;
         }
 
         public void Begin()
@@ -57,18 +59,18 @@ namespace Exam_5_Chooce_a_film
 
         private void FindLineNumber()
         {
-            LineNumber = ChosenFilm / 6;
-            if (LineNumber == 0)
-                LineNumber = 1;
+            LineNumber = ChosenFilm / FilmsInLine;
+            if (ChosenFilm % FilmsInLine != 0)
+                LineNumber++;
 
             Console.WriteLine($"Your chosen film is located in line {LineNumber}");
         }
 
         private void FindLinePosition() 
         {   
-            LinePosition = ChosenFilm % 6;
+            LinePosition = ChosenFilm % FilmsInLine;
             if (LinePosition == 0)
-                LinePosition = 6;
+                LinePosition = FilmsInLine;
                 
                 Console.WriteLine($"Your chosen film position is {LinePosition} in this line");
         }
