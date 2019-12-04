@@ -12,7 +12,8 @@ namespace Exam_6_Heroes_And_Magic.Services
 
         internal void Begin()
         {
-            throw new NotImplementedException();
+            RoundService round = new RoundService();
+            round.Begin();
         }
     }
 }

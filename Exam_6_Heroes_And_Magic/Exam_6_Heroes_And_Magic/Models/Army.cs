@@ -7,14 +7,21 @@ using System.Threading.Tasks;
 
 namespace Exam_6_Heroes_And_Magic.Models
 {
-    class Army
+    class Army 
     {
-        List<IUnit> AllUnits { get; set; }
+        public List<IMortable> AllUnits { get; set; }
+        private string Name { get; set; }
+        public IMortable RundomAliveUnit { get => AliveUnits[new Random().Next(AliveUnits.Count)];}
+        public List<IMortable> AliveUnits => AllUnits.Where(unit => unit.IsAlive).ToList();
+        public bool IsAllUnitsAlive { get => AllUnits.Any(unit => unit.IsAlive); }
 
-        private void Generate(String colour)
+        public Army (String name)
         {
-            List<IUnit> readTeam = new List<IUnit>();
-            List<IUnit> blueTeam = new List<IUnit>();
+            AllUnits = new List<IMortable>()
+            {
+                new Crusader(300, 30),
+            };
+            Name = name;
         }
 
     }

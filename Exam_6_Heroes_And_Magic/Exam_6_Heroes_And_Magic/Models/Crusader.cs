@@ -17,7 +17,9 @@ namespace Exam_6_Heroes_And_Magic.Models
         public Crusader (int maxHealth, int damage)
         {
             MaxHealth = maxHealth;
+            CurrentHealth = maxHealth;
             Damage = damage;
+
         }
 
         public void RemoveHealth (int damage)
