@@ -24,8 +24,8 @@ namespace Exam_6_Heroes_And_Magic.Models
 
         public void RemoveHealth (int damage)
         {
-            if (!IsAlive)
-                return;
+            //if (!IsAlive)
+               //return;
 
             CurrentHealth -= damage;
         }

@@ -11,9 +11,9 @@ namespace Exam_6_Heroes_And_Magic.Models
     {
         public List<IMortable> AllUnits { get; set; }
         private string Name { get; set; }
-        public IMortable RundomAliveUnit { get => AliveUnits[new Random().Next(AliveUnits.Count)];}
         public List<IMortable> AliveUnits => AllUnits.Where(unit => unit.IsAlive).ToList();
-        public bool IsAllUnitsAlive { get => AllUnits.Any(unit => unit.IsAlive); }
+        public IMortable RundomAliveUnit { get => AliveUnits[new Random().Next(AliveUnits.Count)];}
+        public bool IsAllUnitsAlive { get => AliveUnits.Count > 0; }
 
         public Army (String name)
         {
@@ -24,6 +24,11 @@ namespace Exam_6_Heroes_And_Magic.Models
             Name = name;
         }
 
+        public override string ToString()
+        {
+            var fightInfo = $"ArmyName: {Name}  AliveUnits: {AliveUnits.Count}";
+            return fightInfo;
+        }
     }
 
 }

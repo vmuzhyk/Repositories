@@ -32,17 +32,25 @@ namespace Exam_6_Heroes_And_Magic.Services
             while (TeamB.IsAllUnitsAlive && TeamA.IsAllUnitsAlive)
             {
                 HitStepByStep();
-                Console.WriteLine($"violetCrusader's lives {TeamB.CurrentHealth} : yellowCrusader's lives {TeamA.CurrentHealth}");
+                //Console.WriteLine($"violetCrusader's lives {TeamB.CurrentHealth} : yellowCrusader's lives {TeamA.CurrentHealth}");
             }
-            Console.WriteLine($"violetCrusader's lives {TeamB.CurrentHealth} : yellowCrusader's lives {TeamA.CurrentHealth}");
+            Console.WriteLine(TeamA);
+            Console.WriteLine(TeamB);
+
         }
 
         private void HitStepByStep()
         {
             if (IsTeamBTurn)
-                TeamA.RemoveHealth(TeamB.Damage);
+            {
+                var enemyUnit = (Crusader)TeamB.RundomAliveUnit; //змінити приведення типів 
+                TeamA.RundomAliveUnit.RemoveHealth(enemyUnit.Damage);
+            }
             else
-                TeamB.RemoveHealth(TeamA.Damage);
+            {
+                var enemyUnit = (Crusader)TeamA.RundomAliveUnit; //змінити приведення типів
+                TeamB.RundomAliveUnit.RemoveHealth(enemyUnit.Damage);
+            }
 
             IsTeamBTurn = !IsTeamBTurn;
         }
