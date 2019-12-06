@@ -46,8 +46,11 @@
     <Compile Include="Models\Abstract\IAttack.cs" />
     <Compile Include="Models\Abstract\IMortable.cs" />
     <Compile Include="Models\Abstract\IUnit.cs" />
+    <Compile Include="Models\Abstract\MeeleUnit.cs" />
     <Compile Include="Models\Army.cs" />
+    <Compile Include="Models\Assassin.cs" />
     <Compile Include="Models\Crusader.cs" />
+    <Compile Include="Services\ArmyGeneratorService.cs" />
     <Compile Include="Services\GameService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,5 @@
 ﻿using Exam_6_Heroes_And_Magic.Models;
+using Exam_6_Heroes_And_Magic.Models.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,9 @@ namespace Exam_6_Heroes_And_Magic.Services
 
         public RoundService ()
         {
-            TeamA = new Army("Yellow");
-            TeamB = new Army("Violet");
+            ArmyGeneratorService armyGenerator = new ArmyGeneratorService();
+            TeamA = armyGenerator.GenerateTeamA();
+            TeamB = armyGenerator.GenerateTeamB();
             ChooseFirstTurn();
         }
 
@@ -34,8 +36,8 @@ namespace Exam_6_Heroes_And_Magic.Services
                 HitStepByStep();
                 //Console.WriteLine($"violetCrusader's lives {TeamB.CurrentHealth} : yellowCrusader's lives {TeamA.CurrentHealth}");
             }
-            Console.WriteLine(TeamA);
-            Console.WriteLine(TeamB);
+            Console.WriteLine(TeamA); // Змінити вивід
+            Console.WriteLine(TeamB); // Змінити вивід
 
         }
 
@@ -43,12 +45,12 @@ namespace Exam_6_Heroes_And_Magic.Services
         {
             if (IsTeamBTurn)
             {
-                var enemyUnit = (Crusader)TeamB.RundomAliveUnit; //змінити приведення типів 
+                var enemyUnit = (MeeleUnit)TeamB.RundomAliveUnit;
                 TeamA.RundomAliveUnit.RemoveHealth(enemyUnit.Damage);
             }
             else
             {
-                var enemyUnit = (Crusader)TeamA.RundomAliveUnit; //змінити приведення типів
+                var enemyUnit = (MeeleUnit)TeamA.RundomAliveUnit;
                 TeamB.RundomAliveUnit.RemoveHealth(enemyUnit.Damage);
             }
 

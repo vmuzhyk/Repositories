@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace Exam_6_Heroes_And_Magic.Models
 {
-    class Crusader : MeeleUnit
+    public class Assassin : MeeleUnit
     {
-        public Crusader (int maxHealth, int damage, string name) : base(maxHealth, damage, name)
+       public Assassin (int maxHealth, int damage, string name) : base(maxHealth, damage, name)
         {
 
         }
-
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exam_6_Heroes_And_Magic.Models.Abstract
 {
-    interface IMortable
+    public interface IMortable
     {
         int CurrentHealth { get; set; }
         int MaxHealth { get; set; }
