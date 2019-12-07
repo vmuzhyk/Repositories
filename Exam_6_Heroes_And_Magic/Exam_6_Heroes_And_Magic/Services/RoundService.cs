@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Exam_6_Heroes_And_Magic.Services
@@ -34,27 +35,33 @@ namespace Exam_6_Heroes_And_Magic.Services
             while (TeamB.IsAllUnitsAlive && TeamA.IsAllUnitsAlive)
             {
                 HitStepByStep();
-                //Console.WriteLine($"violetCrusader's lives {TeamB.CurrentHealth} : yellowCrusader's lives {TeamA.CurrentHealth}");
+                
             }
-            Console.WriteLine(TeamA); // Змінити вивід
-            Console.WriteLine(TeamB); // Змінити вивід
-
+            if (TeamA.IsAllUnitsAlive)
+                TeamA.PrintAliveUnits();
+            else if (TeamB.IsAllUnitsAlive)
+                TeamB.PrintAliveUnits();
         }
 
         private void HitStepByStep()
         {
             if (IsTeamBTurn)
-            {
-                var enemyUnit = (MeeleUnit)TeamB.RundomAliveUnit;
-                TeamA.RundomAliveUnit.RemoveHealth(enemyUnit.Damage);
+            {   
+                PerformAttack((MeeleUnit)TeamB.RundomAliveUnit, (MeeleUnit)TeamA.RundomAliveUnit, TeamA.Name);
             }
             else
             {
-                var enemyUnit = (MeeleUnit)TeamA.RundomAliveUnit;
-                TeamB.RundomAliveUnit.RemoveHealth(enemyUnit.Damage);
+                PerformAttack((MeeleUnit)TeamA.RundomAliveUnit, (MeeleUnit)TeamB.RundomAliveUnit, TeamB.Name);
             }
 
             IsTeamBTurn = !IsTeamBTurn;
+        }
+
+        private void PerformAttack(MeeleUnit attacker, MeeleUnit defender, string defenderTeamName)
+        {   
+            defender.RemoveHealth(attacker.Damage);
+            Thread.Sleep(400);
+            Console.WriteLine($" {defenderTeamName}: Current healt of {defender.Name} is {defender.CurrentHealth} after attack from {attacker.Name}");
         }
     }
 }

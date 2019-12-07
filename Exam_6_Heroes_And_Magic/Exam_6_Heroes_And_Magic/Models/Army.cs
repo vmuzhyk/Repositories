@@ -10,7 +10,7 @@ namespace Exam_6_Heroes_And_Magic.Models
     public class Army 
     {
         public List<IMortable> AllUnits { get; }
-        private string Name { get; set; }
+        public string Name { get; }
         public List<IMortable> AliveUnits => AllUnits.Where(unit => unit.IsAlive).ToList();
         public IMortable RundomAliveUnit { get => AliveUnits[new Random().Next(AliveUnits.Count)];}
         public bool IsAllUnitsAlive { get => AliveUnits.Count > 0; }
@@ -21,11 +21,15 @@ namespace Exam_6_Heroes_And_Magic.Models
             Name = name;
         }
 
-        public override string ToString()
+        public void PrintAliveUnits()
         {
-            var fightInfo = $"ArmyName: {Name}  AliveUnits: {AliveUnits.Count}";
-            return fightInfo;
+            Console.WriteLine($" Army Name: {Name} win. Alive Units: { AliveUnits.Count}");
+            AliveUnits.ForEach(unit => {
+                IUnit unitWithName = (IUnit)unit;
+                Console.WriteLine($" {unitWithName.Name}, current health {unit.CurrentHealth}");
+                }); 
         }
+
     }
 
 }

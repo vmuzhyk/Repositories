@@ -49,6 +49,7 @@
     <Compile Include="Models\Abstract\MeeleUnit.cs" />
     <Compile Include="Models\Army.cs" />
     <Compile Include="Models\Assassin.cs" />
+    <Compile Include="Models\Cerberus.cs" />
     <Compile Include="Models\Crusader.cs" />
     <Compile Include="Services\ArmyGeneratorService.cs" />
     <Compile Include="Services\GameService.cs" />
