@@ -33,35 +33,31 @@ namespace Exam_6_Heroes_And_Magic.Services
         public void Begin()
         {
             while (TeamB.IsAllUnitsAlive && TeamA.IsAllUnitsAlive)
-            {
                 HitStepByStep();
-                
-            }
+
+            DisplayWinner();
+        }
+
+        private void DisplayWinner()
+        {
             if (TeamA.IsAllUnitsAlive)
                 TeamA.PrintAliveUnits();
             else if (TeamB.IsAllUnitsAlive)
                 TeamB.PrintAliveUnits();
         }
-
         private void HitStepByStep()
         {
             if (IsTeamBTurn)
-            {   
-                PerformAttack((MeeleUnit)TeamB.RundomAliveUnit, (MeeleUnit)TeamA.RundomAliveUnit, TeamA.Name);
-            }
+                PerformAttack((MeleeUnitBase)TeamB.RundomAliveUnit, (MeleeUnitBase)TeamA.RundomAliveUnit, TeamA.Name, TeamB.Name);
             else
-            {
-                PerformAttack((MeeleUnit)TeamA.RundomAliveUnit, (MeeleUnit)TeamB.RundomAliveUnit, TeamB.Name);
-            }
+                PerformAttack((MeleeUnitBase)TeamA.RundomAliveUnit, (MeleeUnitBase)TeamB.RundomAliveUnit, TeamB.Name, TeamA.Name);
 
             IsTeamBTurn = !IsTeamBTurn;
         }
 
-        private void PerformAttack(MeeleUnit attacker, MeeleUnit defender, string defenderTeamName)
+        private void PerformAttack(MeleeUnitBase attacker, MeleeUnitBase defender, string defenderTeamName, string attackerTeamName)
         {   
-            defender.RemoveHealth(attacker.Damage);
-            Thread.Sleep(400);
-            Console.WriteLine($" {defenderTeamName}: Current healt of {defender.Name} is {defender.CurrentHealth} after attack from {attacker.Name}");
+            defender.RemoveHealth(attacker, defenderTeamName, attackerTeamName);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Exam_6_Heroes_And_Magic.Models
             Console.WriteLine($" Army Name: {Name} win. Alive Units: { AliveUnits.Count}");
             AliveUnits.ForEach(unit => {
                 IUnit unitWithName = (IUnit)unit;
-                Console.WriteLine($" {unitWithName.Name}, current health {unit.CurrentHealth}");
+                Console.WriteLine($" {unitWithName.GetType().Name} {unitWithName.Name}, current health {unit.CurrentHealth}");
                 }); 
         }
 

@@ -44,9 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Abstract\IAttack.cs" />
+    <Compile Include="Models\Abstract\IMeleeUnit.cs" />
     <Compile Include="Models\Abstract\IMortable.cs" />
     <Compile Include="Models\Abstract\IUnit.cs" />
-    <Compile Include="Models\Abstract\MeeleUnit.cs" />
+    <Compile Include="Models\Abstract\MeleeUnitBase.cs" />
     <Compile Include="Models\Army.cs" />
     <Compile Include="Models\Assassin.cs" />
     <Compile Include="Models\Cerberus.cs" />

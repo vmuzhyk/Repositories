@@ -18,7 +18,7 @@ namespace Exam_6_Heroes_And_Magic.Services
                 new Assassin(150, 50, "Menny"),
                 new Cerberus (70, 25, "Robert")
             };
-            Army yellowArmy = new Army("Great Britain", allUnits);
+            Army yellowArmy = new Army("GB", allUnits);
             return yellowArmy;
         }
 
@@ -30,7 +30,7 @@ namespace Exam_6_Heroes_And_Magic.Services
                 new Assassin(150, 50, "Kevin"),
                 new Cerberus (70, 25, "Henry")
             };
-            Army violetArmy = new Army("United States", allUnits);
+            Army violetArmy = new Army("US", allUnits);
             return violetArmy;
         }
     }

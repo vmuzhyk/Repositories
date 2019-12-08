@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Exam_6_Heroes_And_Magic.Models
 {
-    class Cerberus : MeeleUnit
+    class Cerberus : MeleeUnitBase
     {
         public Cerberus (int maxHealth, int damage, string name) : base(maxHealth, damage, name)
         {
