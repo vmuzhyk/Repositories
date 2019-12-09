@@ -14,9 +14,11 @@ namespace Exam_6_Heroes_And_Magic.Services
         private Army TeamA { get; set; }
         private Army TeamB { get; set; }
         private bool IsTeamBTurn { get; set; }
+        private Random _random;
 
         public RoundService ()
         {
+            _random = new Random();
             ArmyGeneratorService armyGenerator = new ArmyGeneratorService();
             TeamA = armyGenerator.GenerateTeamA();
             TeamB = armyGenerator.GenerateTeamB();
@@ -45,12 +47,36 @@ namespace Exam_6_Heroes_And_Magic.Services
             else if (TeamB.IsAllUnitsAlive)
                 TeamB.PrintAliveUnits();
         }
+
+        public int GetRandomNumber (int maxCount)
+        {
+            var item = _random.Next(maxCount);
+            Console.WriteLine($"Item is {item}");
+            return item;
+        }
+
+        /*public IMortable GetRundomAliveUnitTeamA()
+        {
+            var item = _random.Next(TeamA.AliveUnits.Count);
+            Console.WriteLine($"AliveUnits.Count {TeamA.AliveUnits.Count}");
+            Console.WriteLine($"Item is {item}");
+            return TeamA.AliveUnits[item];
+        }
+
+        public IMortable GetRundomAliveUnitTeamB()
+        {
+            var item = _random.Next(TeamB.AliveUnits.Count);
+            Console.WriteLine($"AliveUnits.Count {TeamB.AliveUnits.Count}");
+            Console.WriteLine($"Item is {item}");
+            return TeamB.AliveUnits[item];
+        }*/
+
         private void HitStepByStep()
         {
             if (IsTeamBTurn)
-                PerformAttack((MeleeUnitBase)TeamB.RundomAliveUnit, (MeleeUnitBase)TeamA.RundomAliveUnit, TeamA.Name, TeamB.Name);
+                PerformAttack((MeleeUnitBase)TeamB.GetRundomAliveUnit(GetRandomNumber(TeamB.AliveUnits.Count)), (MeleeUnitBase)TeamA.GetRundomAliveUnit(GetRandomNumber(TeamA.AliveUnits.Count)), TeamA.Name, TeamB.Name);
             else
-                PerformAttack((MeleeUnitBase)TeamA.RundomAliveUnit, (MeleeUnitBase)TeamB.RundomAliveUnit, TeamB.Name, TeamA.Name);
+                PerformAttack((MeleeUnitBase)TeamA.GetRundomAliveUnit(GetRandomNumber(TeamA.AliveUnits.Count)), (MeleeUnitBase)TeamB.GetRundomAliveUnit(GetRandomNumber(TeamB.AliveUnits.Count)), TeamB.Name, TeamA.Name);
 
             IsTeamBTurn = !IsTeamBTurn;
         }
