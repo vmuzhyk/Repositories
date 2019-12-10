@@ -17,9 +17,9 @@ namespace Exam_6_Heroes_And_Magic.Services
                 new Crusader(300, 30, "Bernard"),
                 new Assassin(150, 50, "Menny"),
                 new Cerberus (70, 25, "Robert"),
-                new Cerberus (70, 25, "Lili"),
+                /*new Cerberus (70, 25, "Lili"),
                 new Assassin(150, 50, "Pall"),
-                new Crusader(300, 30, "Andrew"),
+                new Crusader(300, 30, "Andrew"),*/
 
             };
             Army yellowArmy = new Army("GB", allUnits);
@@ -33,9 +33,9 @@ namespace Exam_6_Heroes_And_Magic.Services
                 new Crusader(300, 30, "Jeremy"),
                 new Assassin(150, 50, "Kevin"),
                 new Cerberus (70, 25, "Henry"),
-                new Cerberus (70, 25, "Juliya"),
+                /*new Cerberus (70, 25, "Juliya"),
                 new Assassin(150, 50, "Danny"),
-                new Crusader(300, 30, "Lex"),
+                new Crusader(300, 30, "Lex"),*/
             };
             Army violetArmy = new Army("US", allUnits);
             return violetArmy;
