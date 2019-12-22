@@ -12,33 +12,28 @@ namespace Exam_6_Heroes_And_Magic.Services
     {
         public Army GenerateTeamA()
         {
+            string teamName = "GB";
             List<IMortable> allUnits = new List<IMortable>
             {
-                new Crusader(300, 30, "Bernard"),
-                new Assassin(150, 50, "Menny"),
-                new Cerberus (70, 25, "Robert"),
-                /*new Cerberus (70, 25, "Lili"),
-                new Assassin(150, 50, "Pall"),
-                new Crusader(300, 30, "Andrew"),*/
-
+                new Crusader(300, 30, "Bernard", teamName),
+                new Assassin(150, 50, "Menny", teamName),
+                new Cerberus (70, 25, "Robert", teamName),
             };
-            Army yellowArmy = new Army("GB", allUnits);
-            return yellowArmy;
+            Army team = new Army(teamName, allUnits);
+            return team;
         }
 
         public Army GenerateTeamB()
         {
+            string teamName = "US";
             List<IMortable> allUnits = new List<IMortable>
             {
-                new Crusader(300, 30, "Jeremy"),
-                new Assassin(150, 50, "Kevin"),
-                new Cerberus (70, 25, "Henry"),
-                /*new Cerberus (70, 25, "Juliya"),
-                new Assassin(150, 50, "Danny"),
-                new Crusader(300, 30, "Lex"),*/
+                new Crusader(300, 30, "Jeremy", teamName),
+                new Assassin(150, 50, "Kevin", teamName),
+                new Cerberus (70, 25, "Henry", teamName),
             };
-            Army violetArmy = new Army("US", allUnits);
-            return violetArmy;
+            Army team = new Army(teamName, allUnits);
+            return team;
         }
     }
 }

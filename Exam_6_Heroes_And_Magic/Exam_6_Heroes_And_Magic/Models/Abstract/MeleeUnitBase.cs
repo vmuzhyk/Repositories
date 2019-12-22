@@ -18,13 +18,15 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
 
         public string Name { get; }
 
-        public MeleeUnitBase (int maxHealth, int damage, string name)
+        public string TeamName { get; }
+
+        public MeleeUnitBase (int maxHealth, int damage, string name, string teamName)
         {
             MaxHealth = maxHealth;
             CurrentHealth = maxHealth;
             Damage = damage;
             Name = name;
-
+            TeamName = teamName;
         }
 
         public void RemoveHealth(int damage)
@@ -33,15 +35,31 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
             Thread.Sleep(800);
         }
 
-        public void RemoveHealth(MeleeUnitBase attacker, string defenderTeamName, string attackerTeamName)
+
+        public void RemoveHealth(MeleeUnitBase attacker)
         {
             RemoveHealth(attacker.Damage);
-            Console.WriteLine($" {defenderTeamName}: {this.GetType().Name} {this.Name} ({this.CurrentHealth}) after attack from {attacker.GetType().Name} {attacker.Name}");
+            Console.WriteLine($" {this.TeamName}: {this.GetType().Name} {this.Name} ({this.CurrentHealth}) after attack from {attacker.GetType().Name} {attacker.Name}");
             if (!IsAlive)
                 return;
 
-            attacker.RemoveHealth(this.Damage);
-            Console.WriteLine($" {attackerTeamName}: {attacker.GetType().Name} {attacker.Name} ({attacker.CurrentHealth}) after hit back from {this.GetType().Name} {this.Name}");
+            HitBack(attacker);
+        }
+
+        public virtual void Attack(MeleeUnitBase defender)
+        {
+            defender.RemoveHealth(this);
+        }
+
+        public void HitBack(MeleeUnitBase attacker)
+        {
+            attacker.ReceiveHitBack(this.Damage);
+            Console.WriteLine($" {attacker.TeamName}: {attacker.GetType().Name} {attacker.Name} ({attacker.CurrentHealth}) after hit back from {this.GetType().Name} {this.Name}");
+        }
+
+        public virtual void ReceiveHitBack(int damage)
+        {
+            RemoveHealth(damage);
         }
     }
 }

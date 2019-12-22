@@ -9,9 +9,8 @@ namespace Exam_6_Heroes_And_Magic.Models
 {
     public class Assassin : MeleeUnitBase
     {
-       public Assassin (int maxHealth, int damage, string name) : base(maxHealth, damage, name)
+        public Assassin(int maxHealth, int damage, string name, string teamName) : base(maxHealth, damage, name, teamName)
         {
-
         }
     }
 }

@@ -9,5 +9,6 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
     public interface IUnit
     {
         string Name { get; }
+        string TeamName { get; }
     }
 }

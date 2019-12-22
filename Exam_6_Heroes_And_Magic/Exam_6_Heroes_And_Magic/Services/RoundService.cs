@@ -53,16 +53,16 @@ namespace Exam_6_Heroes_And_Magic.Services
         private void HitStepByStep()
         {
             if (IsTeamBTurn)
-                PerformAttack((MeleeUnitBase)_randomService.GetAliveUnit(TeamB), (MeleeUnitBase)_randomService.GetAliveUnit(TeamA), TeamA.Name, TeamB.Name);
+                PerformAttack((MeleeUnitBase)_randomService.GetAliveUnit(TeamB), (MeleeUnitBase)_randomService.GetAliveUnit(TeamA));
             else
-                PerformAttack((MeleeUnitBase)_randomService.GetAliveUnit(TeamA), (MeleeUnitBase)_randomService.GetAliveUnit(TeamB), TeamB.Name, TeamA.Name);
+                PerformAttack((MeleeUnitBase)_randomService.GetAliveUnit(TeamA), (MeleeUnitBase)_randomService.GetAliveUnit(TeamB));
 
             IsTeamBTurn = !IsTeamBTurn;
         }
 
-        private void PerformAttack(MeleeUnitBase attacker, MeleeUnitBase defender, string defenderTeamName, string attackerTeamName)
+        private void PerformAttack(MeleeUnitBase attacker, MeleeUnitBase defender)
         {   
-            defender.RemoveHealth(attacker, defenderTeamName, attackerTeamName);
+            attacker.Attack(defender);
         }
     }
 }

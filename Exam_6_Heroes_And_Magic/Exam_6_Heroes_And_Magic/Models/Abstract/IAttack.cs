@@ -9,6 +9,8 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
     public interface IAttack
     {
         int Damage { get; set; }
-
+        void Attack(MeleeUnitBase defender);
+        void HitBack(MeleeUnitBase attacker);
     }
+
 }
