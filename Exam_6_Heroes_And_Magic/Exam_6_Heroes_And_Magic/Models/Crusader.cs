@@ -20,7 +20,7 @@ namespace Exam_6_Heroes_And_Magic.Models
                 return;
 
             defender.RemoveHealth(this.Damage);
-            Console.WriteLine($" {defender.TeamName}: {defender.GetType().Name} {defender.Name} ({defender.CurrentHealth}) after second attack from {this.GetType().Name} {this.Name}");
+            Console.WriteLine($" {defender.GetInfoExtended()} after second attack from {GetInfoBasic()}");
 
         }
     }

@@ -39,7 +39,7 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
         public void RemoveHealth(MeleeUnitBase attacker)
         {
             RemoveHealth(attacker.Damage);
-            Console.WriteLine($" {this.TeamName}: {this.GetType().Name} {this.Name} ({this.CurrentHealth}) after attack from {attacker.GetType().Name} {attacker.Name}");
+            Console.WriteLine($" {GetInfoExtended()} after attack from {attacker.GetInfoBasic()}");
             if (!IsAlive)
                 return;
 
@@ -53,13 +53,23 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
 
         public void HitBack(MeleeUnitBase attacker)
         {
-            attacker.ReceiveHitBack(this.Damage);
-            Console.WriteLine($" {attacker.TeamName}: {attacker.GetType().Name} {attacker.Name} ({attacker.CurrentHealth}) after hit back from {this.GetType().Name} {this.Name}");
+            attacker.ReceiveHitBack(this);
         }
 
-        public virtual void ReceiveHitBack(int damage)
+        public virtual void ReceiveHitBack(MeleeUnitBase defender)
         {
-            RemoveHealth(damage);
+            RemoveHealth(defender.Damage);
+            Console.WriteLine($" {GetInfoExtended()} after hit back from {defender.GetInfoBasic()}");
+        }
+
+        public string GetInfoExtended()
+        {
+            return $"{this.TeamName}: {this.GetType().Name} {this.Name} ({this.CurrentHealth})";
+        }
+
+        public string GetInfoBasic()
+        {
+            return $"{this.GetType().Name} {this.Name}";
         }
     }
 }

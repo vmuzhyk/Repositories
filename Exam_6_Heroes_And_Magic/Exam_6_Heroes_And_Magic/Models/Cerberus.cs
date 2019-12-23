@@ -13,9 +13,10 @@ namespace Exam_6_Heroes_And_Magic.Models
         {
         }
 
-        public override void ReceiveHitBack(int damage)
+        public override void ReceiveHitBack(MeleeUnitBase defender)
         {
-            //return; Change
+            Console.WriteLine($" {GetInfoExtended()} avoided hit back from {defender.GetInfoBasic()}");
+            return;
         }
     }
 }

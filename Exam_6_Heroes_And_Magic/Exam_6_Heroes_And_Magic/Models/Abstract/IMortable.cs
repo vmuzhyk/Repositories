@@ -14,6 +14,6 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
 
         void RemoveHealth(int damage);
         void RemoveHealth(MeleeUnitBase attacker);
-        void ReceiveHitBack(int damage);
+        void ReceiveHitBack(MeleeUnitBase defender);
     }
 }
