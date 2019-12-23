@@ -14,12 +14,9 @@ namespace Exam_6_Heroes_And_Magic.Services
         private Army TeamA { get; set; }
         private Army TeamB { get; set; }
         private bool IsTeamBTurn { get; set; }
-        private RandomService _randomService;
-        
 
         public RoundService ()
         {
-            _randomService = new RandomService();
             ArmyGeneratorService armyGenerator = new ArmyGeneratorService();
             TeamA = armyGenerator.GenerateTeamA();
             TeamB = armyGenerator.GenerateTeamB();
@@ -53,16 +50,12 @@ namespace Exam_6_Heroes_And_Magic.Services
         private void HitStepByStep()
         {
             if (IsTeamBTurn)
-                PerformAttack((MeleeUnitBase)_randomService.GetAliveUnit(TeamB), (MeleeUnitBase)_randomService.GetAliveUnit(TeamA));
+                TeamB.GetRandomAliveUnit().Attack(TeamA);
             else
-                PerformAttack((MeleeUnitBase)_randomService.GetAliveUnit(TeamA), (MeleeUnitBase)_randomService.GetAliveUnit(TeamB));
+                TeamA.GetRandomAliveUnit().Attack(TeamB);
 
             IsTeamBTurn = !IsTeamBTurn;
-        }
-
-        private void PerformAttack(MeleeUnitBase attacker, MeleeUnitBase defender)
-        {   
-            attacker.Attack(defender);
+            Console.WriteLine();
         }
     }
 }

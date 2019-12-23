@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Exam_6_Heroes_And_Magic.Services;
 
 namespace Exam_6_Heroes_And_Magic.Models.Abstract
 {
@@ -70,6 +71,11 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
         public string GetInfoBasic()
         {
             return $"{this.GetType().Name} {this.Name}";
+        }
+
+        public virtual void Attack(Army defenderArmy)
+        {
+            this.Attack(defenderArmy.GetRandomAliveUnit());
         }
     }
 }

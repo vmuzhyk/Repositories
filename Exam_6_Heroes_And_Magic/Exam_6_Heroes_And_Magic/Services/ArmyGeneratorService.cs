@@ -13,11 +13,16 @@ namespace Exam_6_Heroes_And_Magic.Services
         public Army GenerateTeamA()
         {
             string teamName = "GB";
-            List<IMortable> allUnits = new List<IMortable>
+            List<MeleeUnitBase> allUnits = new List<MeleeUnitBase>
             {
                 new Crusader(300, 30, "Bernard", teamName),
                 new Assassin(150, 50, "Menny", teamName),
                 new Cerberus (70, 25, "Robert", teamName),
+                new Crusader(300, 30, "Andrew", teamName),
+                new Assassin(150, 50, "Pall", teamName),
+                new Cerberus (70, 25, "Lili", teamName),
+                
+                
             };
             Army team = new Army(teamName, allUnits);
             return team;
@@ -26,11 +31,14 @@ namespace Exam_6_Heroes_And_Magic.Services
         public Army GenerateTeamB()
         {
             string teamName = "US";
-            List<IMortable> allUnits = new List<IMortable>
+            List<MeleeUnitBase> allUnits = new List<MeleeUnitBase>
             {
                 new Crusader(300, 30, "Jeremy", teamName),
                 new Assassin(150, 50, "Kevin", teamName),
                 new Cerberus (70, 25, "Henry", teamName),
+                new Crusader(300, 30, "Lex", teamName),
+                new Assassin(150, 50, "Danny", teamName),
+                new Cerberus (70, 25, "Juliya", teamName),
             };
             Army team = new Army(teamName, allUnits);
             return team;

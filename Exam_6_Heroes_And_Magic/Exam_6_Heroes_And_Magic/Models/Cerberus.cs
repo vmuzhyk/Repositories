@@ -1,4 +1,5 @@
 ﻿using Exam_6_Heroes_And_Magic.Models.Abstract;
+using Exam_6_Heroes_And_Magic.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,13 @@ namespace Exam_6_Heroes_And_Magic.Models
         {
             Console.WriteLine($" {GetInfoExtended()} avoided hit back from {defender.GetInfoBasic()}");
             return;
+        }
+
+        public override void Attack(Army defenderArmy)
+        {
+            var randomUnits = defenderArmy.GetRandomAliveUnit(3);
+            foreach(var unit in randomUnits)
+                this.Attack(unit);
         }
     }
 }
