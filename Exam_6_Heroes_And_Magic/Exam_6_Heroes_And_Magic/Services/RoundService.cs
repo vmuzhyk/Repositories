@@ -1,4 +1,5 @@
-﻿using Exam_6_Heroes_And_Magic.Models;
+﻿using Exam_6_Heroes_And_Magic.Extentions;
+using Exam_6_Heroes_And_Magic.Models;
 using Exam_6_Heroes_And_Magic.Models.Abstract;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,8 @@ namespace Exam_6_Heroes_And_Magic.Services
                 TeamA.GetRandomAliveUnit().Attack(TeamB);
 
             IsTeamBTurn = !IsTeamBTurn;
+            TeamA.ActEachTurn();
+            TeamB.ActEachTurn();
             Console.WriteLine();
         }
     }

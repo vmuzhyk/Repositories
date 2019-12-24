@@ -10,5 +10,7 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
     {
         string Name { get; }
         string TeamName { get; }
+
+        void ActEachTurn();
     }
 }

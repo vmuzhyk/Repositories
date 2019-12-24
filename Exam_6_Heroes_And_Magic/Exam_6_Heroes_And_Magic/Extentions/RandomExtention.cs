@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exam_6_Heroes_And_Magic.Services
+namespace Exam_6_Heroes_And_Magic.Extentions
 {
-    public static class RandomServiceExtention
+    public static class RandomExtention
     {
         private static Random _random;
-        static RandomServiceExtention()
+        static RandomExtention()
         {
             _random = new Random();
         }
@@ -30,5 +30,7 @@ namespace Exam_6_Heroes_And_Magic.Services
             
             return randomUnits;
         }
+
+
     }
 }
