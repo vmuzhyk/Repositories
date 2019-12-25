@@ -13,7 +13,7 @@ namespace Exam_6_Heroes_And_Magic.Services
         public Army GenerateTeamA()
         {
             string teamName = "GB";
-            List<MeleeUnitBase> allUnits = new List<MeleeUnitBase>
+            List<UnitBase> allUnits = new List<UnitBase>
             {
                 new Crusader(300, 30, "Bernard", teamName),
                 new Assassin(150, 50, "Menny", teamName),
@@ -21,8 +21,9 @@ namespace Exam_6_Heroes_And_Magic.Services
                 new Crusader(300, 30, "Andrew", teamName),
                 new Assassin(150, 50, "Pall", teamName),
                 new Cerberus (70, 25, "Lili", teamName),
-                
-                
+                new WizardWarrior (120, 25, 100, 25, "Richard", teamName),
+
+
             };
             Army team = new Army(teamName, allUnits);
             return team;
@@ -31,7 +32,7 @@ namespace Exam_6_Heroes_And_Magic.Services
         public Army GenerateTeamB()
         {
             string teamName = "US";
-            List<MeleeUnitBase> allUnits = new List<MeleeUnitBase>
+            List<UnitBase> allUnits = new List<UnitBase>
             {
                 new Crusader(300, 30, "Jeremy", teamName),
                 new Assassin(150, 50, "Kevin", teamName),
@@ -39,6 +40,7 @@ namespace Exam_6_Heroes_And_Magic.Services
                 new Crusader(300, 30, "Lex", teamName),
                 new Assassin(150, 50, "Danny", teamName),
                 new Cerberus (70, 25, "Juliya", teamName),
+                new WizardWarrior (120, 25, 100, 25, "David", teamName),
             };
             Army team = new Army(teamName, allUnits);
             return team;

@@ -13,7 +13,7 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
         bool IsAlive { get; }
 
         void RemoveHealth(int damage);
-        void RemoveHealth(MeleeUnitBase attacker);
-        void ReceiveHitBack(MeleeUnitBase defender);
+        void RemoveHealth(UnitBase attacker);
+        void ReceiveHitBack(UnitBase defender);
     }
 }

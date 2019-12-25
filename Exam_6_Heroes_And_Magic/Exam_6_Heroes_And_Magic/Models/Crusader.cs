@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Exam_6_Heroes_And_Magic.Models
 {
-    class Crusader : MeleeUnitBase
+    class Crusader : UnitBase
     {
         public Crusader(int maxHealth, int damage, string name, string teamName) : base(maxHealth, damage, name, teamName)
         {
         }
 
-        public override void Attack(MeleeUnitBase defender)
+        public override void Attack(UnitBase defender)
         {
             base.Attack(defender);
             if ((!IsAlive) || (!defender.IsAlive))

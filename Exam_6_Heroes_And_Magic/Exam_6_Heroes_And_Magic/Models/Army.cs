@@ -10,14 +10,14 @@ namespace Exam_6_Heroes_And_Magic.Models
 {
     public class Army 
     {
-        public List<MeleeUnitBase> AllUnits { get; }
+        public List<UnitBase> AllUnits { get; }
         public string Name { get; }
-        public List<MeleeUnitBase> AliveUnits => AllUnits.Where(unit => unit.IsAlive).ToList();
+        public List<UnitBase> AliveUnits => AllUnits.Where(unit => unit.IsAlive).ToList();
        
                 
         public bool IsAllUnitsAlive { get => AliveUnits.Count > 0; }
 
-        public Army(string name, List<MeleeUnitBase> allUnits)
+        public Army(string name, List<UnitBase> allUnits)
         {
             AllUnits = allUnits;
             Name = name;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Exam_6_Heroes_And_Magic.Models
 {
-    public class Assassin : MeleeUnitBase
+    public class Assassin : UnitBase
     {
         private bool IsAttackImproved { get; set; }
         private int CriticalDamage { get; }
@@ -17,10 +17,9 @@ namespace Exam_6_Heroes_And_Magic.Models
         {
             CriticalDamage = 2;
             CriticalChance = 20;
-
         }
 
-        public override void Attack(MeleeUnitBase defender)
+        public override void Attack(UnitBase defender)
         {
             base.Attack(defender);
             if (!IsAttackImproved)

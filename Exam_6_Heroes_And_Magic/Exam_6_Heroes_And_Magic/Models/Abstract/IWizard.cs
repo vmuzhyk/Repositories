@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Exam_6_Heroes_And_Magic.Models.Abstract
 {
-    abstract class WizardUnitBase
+    interface IWizard
     {
+        int CurrentMana { get; set; }
+        int MaxMana { get; }
 
+        int ImproveMana { get; }
     }
 }

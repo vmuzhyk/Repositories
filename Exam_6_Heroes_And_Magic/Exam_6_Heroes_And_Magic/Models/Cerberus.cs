@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Exam_6_Heroes_And_Magic.Models
 {
-    class Cerberus : MeleeUnitBase
+    class Cerberus : UnitBase
     {
         private int _numberOfTargets;
         public Cerberus(int maxHealth, int damage, string name, string teamName) : base(maxHealth, damage, name, teamName)
@@ -16,7 +16,7 @@ namespace Exam_6_Heroes_And_Magic.Models
             _numberOfTargets = 3;
         }
 
-        public override void ReceiveHitBack(MeleeUnitBase defender)
+        public override void ReceiveHitBack(UnitBase defender)
         {
             //Console.WriteLine($" {GetInfoExtended()} avoided hit back from {defender.GetInfoBasic()}");
             return;
