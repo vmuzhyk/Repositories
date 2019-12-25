@@ -24,7 +24,7 @@ namespace Exam_6_Heroes_And_Magic.Models
 
         public override void Attack(Army defenderArmy)
         {
-            var randomUnits = defenderArmy.GetRandomAliveUnit(_numberOfTargets);
+            var randomUnits = defenderArmy.GetRandomAliveUnits(_numberOfTargets);
             foreach(var unit in randomUnits)
                 this.Attack(unit);
         }

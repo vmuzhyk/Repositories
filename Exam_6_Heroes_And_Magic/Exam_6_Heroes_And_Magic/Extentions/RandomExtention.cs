@@ -22,7 +22,7 @@ namespace Exam_6_Heroes_And_Magic.Extentions
             //Console.WriteLine(" " + random);
             return army.AliveUnits[random];
         }
-        public static List<MeleeUnitBase> GetRandomAliveUnit(this Army army, int count)
+        public static List<MeleeUnitBase> GetRandomAliveUnits(this Army army, int count)
         {
             var randomUnits = army.AliveUnits.OrderBy(x => _random.Next()).Take(count).ToList();
             //foreach (var unit in randomUnits)
@@ -31,6 +31,10 @@ namespace Exam_6_Heroes_And_Magic.Extentions
             return randomUnits;
         }
 
+        public static int GenerateChance()
+        {
+            return _random.Next(1, 101);
+        }
 
     }
 }
