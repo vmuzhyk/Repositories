@@ -10,16 +10,15 @@ namespace Exam_6_Heroes_And_Magic.Models
 {
     public class Army 
     {
-        public List<UnitBase> AllUnits { get; }
+        public List<UnitBase> AllUnits { get; set; }
         public string Name { get; }
         public List<UnitBase> AliveUnits => AllUnits.Where(unit => unit.IsAlive).ToList();
-       
                 
         public bool IsAllUnitsAlive { get => AliveUnits.Count > 0; }
+        public UnitBase WeakUnit => AliveUnits.OrderBy(x => x.CurrentHealth).First();
 
-        public Army(string name, List<UnitBase> allUnits)
-        {
-            AllUnits = allUnits;
+        public Army(string name)
+        {   
             Name = name;
         }
 

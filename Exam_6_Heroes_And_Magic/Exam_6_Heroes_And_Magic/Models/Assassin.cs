@@ -13,7 +13,7 @@ namespace Exam_6_Heroes_And_Magic.Models
         private bool IsAttackImproved { get; set; }
         private int CriticalDamage { get; }
         private int CriticalChance { get; }
-        public Assassin(int maxHealth, int damage, string name, string teamName) : base(maxHealth, damage, name, teamName)
+        public Assassin(int maxHealth, int damage, string name, Army team) : base(maxHealth, damage, name, team)
         {
             CriticalDamage = 2;
             CriticalChance = 20;

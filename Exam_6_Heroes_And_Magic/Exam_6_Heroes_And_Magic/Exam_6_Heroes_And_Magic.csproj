@@ -49,10 +49,12 @@
     <Compile Include="Models\Abstract\IWizard.cs" />
     <Compile Include="Models\Abstract\IUnit.cs" />
     <Compile Include="Models\Abstract\UnitBase.cs" />
+    <Compile Include="Models\Abstract\WizardBase.cs" />
     <Compile Include="Models\Army.cs" />
     <Compile Include="Models\Assassin.cs" />
     <Compile Include="Models\Cerberus.cs" />
     <Compile Include="Models\Crusader.cs" />
+    <Compile Include="Models\WizardHealer.cs" />
     <Compile Include="Models\WizardWarrior.cs" />
     <Compile Include="Services\ArmyGeneratorService.cs" />
     <Compile Include="Services\GameService.cs" />

@@ -11,7 +11,7 @@ namespace Exam_6_Heroes_And_Magic.Models
     class Cerberus : UnitBase
     {
         private int _numberOfTargets;
-        public Cerberus(int maxHealth, int damage, string name, string teamName) : base(maxHealth, damage, name, teamName)
+        public Cerberus(int maxHealth, int damage, string name, Army team) : base(maxHealth, damage, name, team)
         {
             _numberOfTargets = 3;
         }

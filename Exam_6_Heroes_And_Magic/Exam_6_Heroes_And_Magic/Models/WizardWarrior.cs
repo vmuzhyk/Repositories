@@ -3,32 +3,31 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Exam_6_Heroes_And_Magic.Models
 {
-    public class WizardWarrior : UnitBase, IWizard
+    public class WizardWarrior : WizardBase
     {
-        public int CurrentMana { get; set; }
-        public int MaxMana { get; }
-        public int ImproveMana { get; }
-        public WizardWarrior(int maxHealth, int damage, int maxMana, int improveMana, string name, string teamName) : base(maxHealth, damage, name, teamName)
+        private int FireballDamage { get; }
+        public WizardWarrior(int maxHealth, int damage, string name, Army team, int maxMana, int improveMana, int fireballDamage) : base(maxHealth, damage, name, team, maxMana, improveMana)
         {
-            CurrentMana = maxMana;
-            MaxMana = maxMana;
-            ImproveMana = improveMana;
+            FireballDamage = fireballDamage;
         }
 
-        public override void ActEachTurn()
+        public void SpellFireball(UnitBase defender)
         {
-            if (CurrentMana == MaxMana)
-                return;
-
-            int difference = MaxMana - CurrentMana;
-            int incrementMana = difference < ImproveMana ? difference : ImproveMana;
-                       
-            CurrentMana = CurrentMana + incrementMana;
-            Console.WriteLine($" {GetInfoExtended()} improved his mana to {CurrentMana}");
+            defender.RemoveHealth(FireballDamage);
+            CurrentMana = 0;
+            Console.WriteLine($" {defender.GetInfoExtended()} after fireball from {this.GetInfoBasic()}");
+        }
+        public override void Attack(UnitBase defender)
+        {
+            if (IsManaFull)
+                SpellFireball(defender);
+            else
+                base.Attack(defender);
         }
     }
 }

@@ -12,5 +12,7 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
         int MaxMana { get; }
 
         int ImproveMana { get; }
+        
+        bool IsManaFull { get; }
     }
 }

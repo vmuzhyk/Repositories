@@ -13,21 +13,21 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
         public int CurrentHealth { get; set; }
         public int MaxHealth { get; set; }
 
-        public bool IsAlive  => CurrentHealth > 0; 
+        public bool IsAlive => CurrentHealth > 0;
 
         public int Damage { get; set; }
 
         public string Name { get; }
 
-        public string TeamName { get; }
+        public Army Team { get; }
 
-        public UnitBase (int maxHealth, int damage, string name, string teamName)
+    public UnitBase (int maxHealth, int damage, string name, Army team)
         {
             MaxHealth = maxHealth;
             CurrentHealth = maxHealth;
             Damage = damage;
             Name = name;
-            TeamName = teamName;
+            Team = team;
         }
 
         public void RemoveHealth(int damage)
@@ -52,7 +52,7 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
             defender.RemoveHealth(this);
         }
 
-        public void HitBack(UnitBase attacker)
+        public virtual void HitBack(UnitBase attacker)
         {
             attacker.ReceiveHitBack(this);
         }
@@ -65,7 +65,7 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
 
         public string GetInfoExtended()
         {
-            return $"{this.TeamName}: {this.GetType().Name} {this.Name} ({this.CurrentHealth})";
+            return $"{this.Team.Name}: {this.GetType().Name} {this.Name} ({this.CurrentHealth})";
         }
 
         public string GetInfoBasic()

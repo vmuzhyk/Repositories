@@ -12,37 +12,37 @@ namespace Exam_6_Heroes_And_Magic.Services
     {
         public Army GenerateTeamA()
         {
-            string teamName = "GB";
+            Army team = new Army("GB");
             List<UnitBase> allUnits = new List<UnitBase>
             {
-                new Crusader(300, 30, "Bernard", teamName),
-                new Assassin(150, 50, "Menny", teamName),
-                new Cerberus (70, 25, "Robert", teamName),
-                new Crusader(300, 30, "Andrew", teamName),
-                new Assassin(150, 50, "Pall", teamName),
-                new Cerberus (70, 25, "Lili", teamName),
-                new WizardWarrior (120, 25, 100, 25, "Richard", teamName),
-
-
+                new Crusader(300, 30, "Bernard", team),
+                new Assassin(150, 50, "Menny", team),
+                new Cerberus (70, 25, "Robert", team),
+                /*new Crusader(300, 30, "Andrew", team),
+                new Assassin(150, 50, "Pall", team),
+                new Cerberus (70, 25, "Lili", team),*/
+                new WizardWarrior (120, 25, "Richard", team, 100, 35, 150),
+                new WizardHealer (150, 0, "Gektor", team, 100, 35),
             };
-            Army team = new Army(teamName, allUnits);
+            team.AllUnits = allUnits;
             return team;
         }
 
         public Army GenerateTeamB()
         {
-            string teamName = "US";
+            Army team = new Army("US");
             List<UnitBase> allUnits = new List<UnitBase>
             {
-                new Crusader(300, 30, "Jeremy", teamName),
-                new Assassin(150, 50, "Kevin", teamName),
-                new Cerberus (70, 25, "Henry", teamName),
-                new Crusader(300, 30, "Lex", teamName),
-                new Assassin(150, 50, "Danny", teamName),
-                new Cerberus (70, 25, "Juliya", teamName),
-                new WizardWarrior (120, 25, 100, 25, "David", teamName),
+                new Crusader(300, 30, "Jeremy", team),
+                new Assassin(150, 50, "Kevin", team),
+                new Cerberus (70, 25, "Henry", team),
+                /*new Crusader(300, 30, "Lex", team),
+                new Assassin(150, 50, "Danny", team),
+                new Cerberus (70, 25, "Juliya", team),*/
+                new WizardWarrior (120, 25, "David", team, 100, 35, 150),
+                new WizardHealer (150, 0, "Gordon", team, 100, 35),
             };
-            Army team = new Army(teamName, allUnits);
+            team.AllUnits = allUnits;
             return team;
         }
     }
