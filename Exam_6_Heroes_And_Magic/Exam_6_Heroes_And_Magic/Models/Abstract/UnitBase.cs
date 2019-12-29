@@ -13,7 +13,10 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
         public int CurrentHealth { get; set; }
         public int MaxHealth { get; set; }
 
-        public bool IsAlive => CurrentHealth > 0;
+        public virtual bool GetIsAlive()
+        {
+            return CurrentHealth > 0;
+        }
 
         public int Damage { get; set; }
 
@@ -41,7 +44,7 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
         {
             RemoveHealth(attacker.Damage);
             Console.WriteLine($" {GetInfoExtended()} after attack from {attacker.GetInfoBasic()}");
-            if (!IsAlive)
+            if (!GetIsAlive())
                 return;
 
             HitBack(attacker);

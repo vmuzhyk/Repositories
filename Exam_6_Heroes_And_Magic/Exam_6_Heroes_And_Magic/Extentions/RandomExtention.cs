@@ -18,13 +18,13 @@ namespace Exam_6_Heroes_And_Magic.Extentions
 
         public static UnitBase GetRandomAliveUnit(this Army army)
         {
-            var random = _random.Next(army.AliveUnits.Count);
+            var random = _random.Next(army.AllFightAliveUnits.Count);
             //Console.WriteLine(" " + random);
-            return army.AliveUnits[random];
+            return army.AllFightAliveUnits[random];
         }
         public static List<UnitBase> GetRandomAliveUnits(this Army army, int count)
         {
-            var randomUnits = army.AliveUnits.OrderBy(x => _random.Next()).Take(count).ToList();
+            var randomUnits = army.AllFightAliveUnits.OrderBy(x => _random.Next()).Take(count).ToList();
             //foreach (var unit in randomUnits)
             //Console.WriteLine($" Random Unit is {unit.GetInfoExtended()}");
             

@@ -10,8 +10,8 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
     {
         int CurrentHealth { get; set; }
         int MaxHealth { get; set; }
-        bool IsAlive { get; }
 
+        bool GetIsAlive();
         void RemoveHealth(int damage);
         void RemoveHealth(UnitBase attacker);
         void ReceiveHitBack(UnitBase defender);

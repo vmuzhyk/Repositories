@@ -16,7 +16,7 @@ namespace Exam_6_Heroes_And_Magic.Models
         public override void Attack(UnitBase defender)
         {
             base.Attack(defender);
-            if ((!IsAlive) || (!defender.IsAlive))
+            if ((!GetIsAlive()) || (!defender.GetIsAlive()))
                 return;
 
             defender.RemoveHealth(this.Damage);

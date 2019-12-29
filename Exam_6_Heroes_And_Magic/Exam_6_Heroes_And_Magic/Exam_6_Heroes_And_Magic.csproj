@@ -54,6 +54,8 @@
     <Compile Include="Models\Assassin.cs" />
     <Compile Include="Models\Cerberus.cs" />
     <Compile Include="Models\Crusader.cs" />
+    <Compile Include="Models\Elf.cs" />
+    <Compile Include="Models\Tree.cs" />
     <Compile Include="Models\WizardHealer.cs" />
     <Compile Include="Models\WizardWarrior.cs" />
     <Compile Include="Services\ArmyGeneratorService.cs" />
