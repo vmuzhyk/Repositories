@@ -36,7 +36,7 @@ namespace Exam_6_Heroes_And_Magic.Models.Abstract
         public void RemoveHealth(int damage)
         {
             CurrentHealth -= damage;
-            Thread.Sleep(200);
+            //Thread.Sleep(200);
         }
 
 

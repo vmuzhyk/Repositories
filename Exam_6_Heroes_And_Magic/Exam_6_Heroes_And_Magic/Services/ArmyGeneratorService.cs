@@ -38,7 +38,7 @@ namespace Exam_6_Heroes_And_Magic.Services
                 new Crusader(300, 30, "Jeremy", team),
                 new Assassin(150, 50, "Kevin", team),
                 new Cerberus (70, 25, "Henry", team),
-                /*new Crusader(300, 30, "Lex", team),
+               /* new Crusader(300, 30, "Lex", team),
                 new Assassin(150, 50, "Danny", team),
                 new Cerberus (70, 25, "Juliya", team),*/
                 new WizardWarrior (120, 25, "David", team, 100, 35, 150),
