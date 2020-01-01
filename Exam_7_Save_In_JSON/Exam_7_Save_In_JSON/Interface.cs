@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Exam_7_Save_In_JSON
 {
@@ -21,7 +22,7 @@ namespace Exam_7_Save_In_JSON
         private const string CommandDisplay = "DISPLAY";
         private const string CommandYes = "YES";
         private const string CommandNo = "NO";
-        private const string src = @"Saves.txt";
+        private const string src = @"saves.json";
 
         public Interface()
         {
@@ -84,23 +85,21 @@ namespace Exam_7_Save_In_JSON
         private void CheckFile()
         {
             ValidateSaves();
-            string[] lines = System.IO.File.ReadAllLines(src);
-            if (IsAnyScoreSaved(lines))
+            var save = LoadJson();
+            
+            if (IsAnyScoreSaved(save))
             {
                 StartGame();
             }
         }
 
-        private bool IsAnyScoreSaved(string[] lines)
+        private bool IsAnyScoreSaved(Save save)
         {
-            foreach (string item in lines)
+            if (save.Sum != 0 && save.Step != 0)
             {
-                var member = Int32.Parse(item);
-                if (member != 0)
-                {
-                    return true;
-                }
+                return true;
             }
+            
             return false;
         }
 
@@ -125,8 +124,10 @@ namespace Exam_7_Save_In_JSON
 
         private void SaveScore()
         {
-            string[] lines = { Calculation.Sum.ToString(), Calculation.Step.ToString()};
-            File.WriteAllLines(src, lines);
+
+            Save save = new Save(Calculation.Sum, Calculation.Step);
+            string json = JsonConvert.SerializeObject(save);
+            File.WriteAllText(src, json);
         }
         private void SaveScoreWithMessage()
         {
@@ -144,10 +145,20 @@ namespace Exam_7_Save_In_JSON
 
         private void LoadScore()
         {
-            string[] lines = System.IO.File.ReadAllLines(src);
-            Calculation.Sum = Int32.Parse(lines[0]);
-            Calculation.Step = Int32.Parse(lines[1]);
-            Console.WriteLine("Score is loaded");
+            var save = LoadJson();
+            Calculation.Sum = save.Sum;
+            Calculation.Step = save.Step;
+        }
+
+        private Save LoadJson()
+        {
+            using (StreamReader r = new StreamReader(src))
+            {
+                string json = r.ReadToEnd();
+                var save = JsonConvert.DeserializeObject<Save>(json);
+                return save;
+            }
+
         }
 
         private void SaveDialog()
