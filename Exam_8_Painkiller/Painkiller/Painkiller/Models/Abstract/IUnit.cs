@@ -12,10 +12,15 @@ namespace Painkiller.Models.Abstract
         int CurrentHealth { get; set; }
         int MaxHealth { get; set; }
         int Damage { get; set; }
+
+        Team Team { get; }
+
         /*void Attack(UnitBase defender);
         void Attack(Army defenderArmy);
         void HitBack(UnitBase attacker);*/
 
         bool IsAlive { get; }
+
+        string GetInfoBasic();
     }
 }

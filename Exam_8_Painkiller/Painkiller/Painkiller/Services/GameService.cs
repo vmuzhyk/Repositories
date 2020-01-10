@@ -35,18 +35,18 @@ namespace Painkiller.Services
         private void DisplayWelcomeMessage()
         {
             Console.WriteLine();
-            Console.WriteLine("Welcome to sum example");
+            Console.WriteLine("Welcome to Painkiller");
             PrintAvailableCommands();
             Console.WriteLine();
         }
         public void Begin()
         {
             CheckFile();
-            ValidateNewCalculation();
+            ValidateNewGame();
             SaveDialog();
         }
 
-        private void ValidateNewCalculation()
+        private void ValidateNewGame()
         {
             while (true)
             {
@@ -61,7 +61,7 @@ namespace Painkiller.Services
                     continue;
                 }
 
-                //_roundService.Begin(input);
+                _roundService.Begin(input);
             }
         }
         private string ProcessInput()

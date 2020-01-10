@@ -17,18 +17,11 @@ namespace Painkiller.Models
         {
             Name = name;
         }
-
-        public List<IUnit> GetAllFightUnits()
+                
+        public void PrintAliveUnits()
         {
-            var castedUnits = new List<IUnit>();
-            foreach (var unit in AllUnits)
-            {
-                if (unit is IUnit)
-                {
-                    castedUnits.Add((IUnit)unit);
-                }
-            }
-            return castedUnits;
+            Console.WriteLine($" Team Name: {Name} win. Alive Units: { AliveUnits.Count}");
+            AliveUnits.ForEach(unit => Console.WriteLine($" {unit.GetInfoBasic()}, current health {unit.CurrentHealth}"));
         }
 
     }

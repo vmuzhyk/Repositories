@@ -12,26 +12,69 @@ namespace Painkiller.Services
     {
         private Team TeamA { get; set; }
         private Team TeamB { get; set; }
-        private bool IsTeamBTurn { get; set; }
+        private bool IsTeamATurn { get; set; }
 
         public RoundService()
         {
             TeamGeneratorService armyGenerator = new TeamGeneratorService();
             TeamA = armyGenerator.GenerateTeamA();
             TeamB = armyGenerator.GenerateTeamB();
-            ChooseFirstTurn();
+            ChooseOpponentForAttack();
         }
 
-        private void ChooseFirstTurn()
+        private void ChooseOpponentForAttack()
         {   
-            IsTeamBTurn = new Random().Next(0, 2) == 0 ? true : false;
+            IsTeamATurn = new Random().Next(0, 2) == 0 ? true : false;
         }
-        public void Begin()
+        public void Begin(string input)
         {
-            while (TeamB.IsAllUnitsAlive && TeamA.IsAllUnitsAlive) { }
+            while (TeamB.IsAllUnitsAlive && TeamA.IsAllUnitsAlive)
+            {
+                var isInteger = Int32.TryParse(input, out var number);
+
+                if (!IsInputValid(isInteger, number))
+                    return;
+            }
+
                 //HitStepByStep();
 
-            //DisplayWinner();
+            DisplayWinner();
+        }
+
+        private bool IsInputValid(bool isInteger, int number)
+        {
+            if (!isInteger)
+            {
+                Console.WriteLine("Number should be an integer value");
+                return false;
+            }
+
+            if (number < 0 || number > TeamB.AliveUnits.Count )
+            {
+                Console.WriteLine($"Number should be between 0 and {TeamB.AliveUnits.Count}");
+                return false;
+            }
+
+            return true;
+        }
+
+        private void DisplayWinner()
+        {
+            if (TeamA.IsAllUnitsAlive)
+                TeamA.PrintAliveUnits();
+            else if (TeamB.IsAllUnitsAlive)
+                TeamB.PrintAliveUnits();
+        }
+
+        private void HitStepByStep()
+        {
+            /*if (IsTeamBTurn)
+                TeamB.GetRandomAliveUnit().Attack(TeamA);
+            else
+                TeamA.GetRandomAliveUnit().Attack(TeamB);
+
+            IsTeamBTurn = !IsTeamBTurn;*/
+            Console.WriteLine();
         }
     }
 }
