@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Painkiller.Models.Abstract
 {
     public abstract class Unit : IUnit
@@ -14,7 +15,7 @@ namespace Painkiller.Models.Abstract
         public int MaxHealth { get; set; }
         public int Damage { get; set; }
 
-        public bool IsAlive { get; }
+        public bool IsAlive => CurrentHealth > 0; 
 
         public Team Team { get; }
         public Unit(int maxHealth, int damage, string name, Team team)

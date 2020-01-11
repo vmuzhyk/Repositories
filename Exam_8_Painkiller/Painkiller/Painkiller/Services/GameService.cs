@@ -18,12 +18,12 @@ namespace Painkiller.Services
         }
 
         public bool IsOver { get; set; }
-        public bool IsCommandExecuted { get; set; }
         
 
         private const string CommandExit = "EXIT";
         private const string CommandReset = "RESET";
         private const string CommandHelp = "HELP";
+        private const string CommandStart = "START";
         private const string CommandLoad = "LOAD";
         private const string CommandSave = "SAVE";
         private const string CommandDisplay = "DISPLAY";
@@ -51,25 +51,16 @@ namespace Painkiller.Services
             while (true)
             {
                 var input = ProcessInput();
-
+                ExecuteCommand(input);
                 if (IsOver)
                     return;
-
-                if (IsCommandExecuted)
-                {
-                    IsCommandExecuted = false;
-                    continue;
-                }
-
-                _roundService.Begin(input);
             }
         }
         private string ProcessInput()
         {
             Console.WriteLine();
-            Console.Write("Enter a command, or number between 0 and 100: ");
+            Console.Write("Enter one of available command: ");
             var input = Console.ReadLine();
-            ExecuteCommand(input);
             return input;
         }
 
@@ -193,24 +184,23 @@ namespace Painkiller.Services
                     Console.WriteLine("The game is finished");
                     break;
                 case CommandReset:
-                    IsCommandExecuted = true;
                     ResetProgressWithMessage();
                     break;
                 case CommandHelp:
-                    IsCommandExecuted = true;
                     PrintAvailableCommands();
                     break;
                 case CommandDisplay:
-                    IsCommandExecuted = true;
                     //_roundService.DisplayScore();
                     break;
                 case CommandSave:
-                    IsCommandExecuted = true;
                     SaveScoreWithMessage();
                     break;
                 case CommandLoad:
-                    IsCommandExecuted = true;
                     LoadScore();
+                    break;
+                case CommandStart:
+                    Console.WriteLine("Your game was started!");
+                    _roundService.Begin();
                     break;
             }
         }
@@ -220,6 +210,7 @@ namespace Painkiller.Services
             Console.WriteLine($"{CommandExit.ToLower()} - finish the game");
             Console.WriteLine($"{CommandReset.ToLower()} - reset the progress");
             Console.WriteLine($"{CommandHelp.ToLower()} - display abailable commands");
+            Console.WriteLine($"{CommandStart.ToLower()} - start game");
             Console.WriteLine($"{CommandLoad.ToLower()} - load saved game");
             Console.WriteLine($"{CommandSave.ToLower()} - save game");
             Console.WriteLine($"{CommandDisplay.ToLower()} - display game score");

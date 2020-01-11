@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="Models\Abstract\IUnit.cs" />
     <Compile Include="Models\Abstract\Unit.cs" />
+    <Compile Include="Models\Monk.cs" />
+    <Compile Include="Models\Necromant.cs" />
     <Compile Include="Models\Skeleton.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Program.cs" />

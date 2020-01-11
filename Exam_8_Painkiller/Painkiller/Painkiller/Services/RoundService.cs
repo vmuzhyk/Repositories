@@ -13,32 +13,25 @@ namespace Painkiller.Services
         private Team TeamA { get; set; }
         private Team TeamB { get; set; }
         private bool IsTeamATurn { get; set; }
-
+        private int ChosenOpponent { get; set; }
         public RoundService()
         {
-            TeamGeneratorService armyGenerator = new TeamGeneratorService();
-            TeamA = armyGenerator.GenerateTeamA();
-            TeamB = armyGenerator.GenerateTeamB();
-            ChooseOpponentForAttack();
+            TeamGeneratorService teamGenerator = new TeamGeneratorService();
+            TeamA = teamGenerator.GenerateTeamA();
+            TeamB = teamGenerator.GenerateTeamB();
+            IsTeamATurn = true;
         }
 
-        private void ChooseOpponentForAttack()
-        {   
-            IsTeamATurn = new Random().Next(0, 2) == 0 ? true : false;
-        }
-        public void Begin(string input)
+        public void Begin()
         {
-            while (TeamB.IsAllUnitsAlive && TeamA.IsAllUnitsAlive)
+            while (true)
             {
-                var isInteger = Int32.TryParse(input, out var number);
+                
+                //while (TeamB.IsAllUnitsAlive && TeamA.IsAllUnitsAlive)
+                HitStepByStep();
 
-                if (!IsInputValid(isInteger, number))
-                    return;
+                //DisplayWinner();
             }
-
-                //HitStepByStep();
-
-            DisplayWinner();
         }
 
         private bool IsInputValid(bool isInteger, int number)
@@ -49,9 +42,9 @@ namespace Painkiller.Services
                 return false;
             }
 
-            if (number < 0 || number > TeamB.AliveUnits.Count )
+            if (number < 0 || number > TeamB.AliveUnits.Count - 1 )
             {
-                Console.WriteLine($"Number should be between 0 and {TeamB.AliveUnits.Count}");
+                Console.WriteLine($"Number should be between 0 and {TeamB.AliveUnits.Count - 1 }");
                 return false;
             }
 
@@ -68,13 +61,33 @@ namespace Painkiller.Services
 
         private void HitStepByStep()
         {
-            /*if (IsTeamBTurn)
-                TeamB.GetRandomAliveUnit().Attack(TeamA);
+            if (IsTeamATurn)
+            {
+                DisplayFightDialog();
+                Console.WriteLine($"Your opponent is {ChosenOpponent}");
+                //TeamB.GetRandomAliveUnit().Attack(TeamA);
+            }
             else
-                TeamA.GetRandomAliveUnit().Attack(TeamB);
+                //TeamA.GetRandomAliveUnit().Attack(TeamB);
 
-            IsTeamBTurn = !IsTeamBTurn;*/
+            IsTeamATurn = !IsTeamATurn;
             Console.WriteLine();
         }
+
+        public void DisplayFightDialog()
+        {
+            while (true)
+            {
+                Console.WriteLine($"Enter number beetwen 0 and {TeamB.AliveUnits.Count - 1}");
+                var input = Console.ReadLine();
+                var isInteger = Int32.TryParse(input, out var number);
+
+                if (IsInputValid(isInteger, number))
+                {
+                    ChosenOpponent = number;
+                    return;
+                }
+            }
+        }   
     }
 }

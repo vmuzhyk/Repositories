@@ -22,8 +22,9 @@ namespace Painkiller.Services
             Team team = new Team("Characters");
             List<IUnit> allUnits = new List<IUnit>
             {
-                new Skeleton (150, 30, "Moomba", team),
-                
+                new Skeleton (80, 30, "Moomba", team),
+                new Monk (60, 25, "Joomba", team),
+                new Necromant (90, 15, "Matoomba", team),
             };
             team.AllUnits = allUnits;
             return team;
