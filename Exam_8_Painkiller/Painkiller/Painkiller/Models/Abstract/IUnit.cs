@@ -15,12 +15,12 @@ namespace Painkiller.Models.Abstract
 
         Team Team { get; }
 
-        /*void Attack(UnitBase defender);
-        void Attack(Army defenderArmy);
-        void HitBack(UnitBase attacker);*/
+        void Attack(IUnit defender);
+        void Attack(Team defenderArmy);
+        void HitBack(IUnit attacker);
 
         bool IsAlive { get; }
 
         string GetInfoBasic();
-    }
+    }   
 }

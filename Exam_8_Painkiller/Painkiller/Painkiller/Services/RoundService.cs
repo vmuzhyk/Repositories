@@ -65,10 +65,10 @@ namespace Painkiller.Services
             {
                 DisplayFightDialog();
                 Console.WriteLine($"Your opponent is {ChosenOpponent}");
-                //TeamB.GetRandomAliveUnit().Attack(TeamA);
+                TeamA.GetRandomAliveUnit().Attack(TeamB.AliveUnits[ChosenOpponent]);
             }
             else
-                //TeamA.GetRandomAliveUnit().Attack(TeamB);
+                TeamB.GetRandomAliveUnit().Attack(TeamA.GetRandomAliveUnit());
 
             IsTeamATurn = !IsTeamATurn;
             Console.WriteLine();
@@ -88,6 +88,6 @@ namespace Painkiller.Services
                     return;
                 }
             }
-        }   
+        } 
     }
 }

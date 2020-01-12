@@ -35,5 +35,36 @@ namespace Painkiller.Models.Abstract
         {
             return $"{this.GetType().Name} {this.Name}";
         }
+
+        public virtual void Attack(Unit defender)
+        {
+            defender.RemoveHealth(this);
+        }
+
+        public void RemoveHealth(int damage)
+        {
+            CurrentHealth -= damage;
+            //Thread.Sleep(200);
+        }
+
+        public void RemoveHealth(Unit attacker)
+        {
+            RemoveHealth(attacker.Damage);
+            Console.WriteLine($" {GetInfoExtended()} after attack from {attacker.GetInfoBasic()}");
+            if (!IsAlive)
+                return;
+
+            HitBack(attacker);
+        }
+        public virtual void HitBack(Unit attacker)
+        {
+            attacker.ReceiveHitBack(this);
+        }
+
+        public virtual void ReceiveHitBack(Unit defender)
+        {
+            RemoveHealth(defender.Damage);
+            Console.WriteLine($" {GetInfoExtended()} after hit back from {defender.GetInfoBasic()}");
+        }
     }
 }
