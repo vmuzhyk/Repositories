@@ -24,14 +24,11 @@ namespace Painkiller.Services
 
         public void Begin()
         {
-            while (true)
-            {
-                
-                //while (TeamB.IsAllUnitsAlive && TeamA.IsAllUnitsAlive)
+                while (TeamB.IsAllUnitsAlive && TeamA.IsAllUnitsAlive)
                 HitStepByStep();
 
-                //DisplayWinner();
-            }
+                DisplayWinner();
+            
         }
 
         private bool IsInputValid(bool isInteger, int number)
