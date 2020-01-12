@@ -16,8 +16,9 @@ namespace Painkiller.Models.Abstract
         Team Team { get; }
 
         void Attack(IUnit defender);
-        void Attack(Team defenderArmy);
         void HitBack(IUnit attacker);
+        void ReceiveHitBack(IUnit defender);
+        void RemoveHealth(IUnit attacker);
 
         bool IsAlive { get; }
 

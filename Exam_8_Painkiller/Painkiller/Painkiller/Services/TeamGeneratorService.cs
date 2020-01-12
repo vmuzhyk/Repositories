@@ -23,7 +23,7 @@ namespace Painkiller.Services
             List<IUnit> allUnits = new List<IUnit>
             {
                 new Skeleton (80, 30, "Moomba", team),
-                new Monk (60, 25, "Joomba", team),
+                new Monk (60, 25, "Joomba", team, 50, 20),
                 new Necromant (90, 15, "Matoomba", team),
             };
             team.AllUnits = allUnits;
