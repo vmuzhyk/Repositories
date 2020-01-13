@@ -16,19 +16,22 @@ namespace Painkiller.Services
         private int ChosenOpponent { get; set; }
         public RoundService()
         {
-            TeamGeneratorService teamGenerator = new TeamGeneratorService();
-            TeamA = teamGenerator.GenerateTeamA();
-            TeamB = teamGenerator.GenerateTeamB();
-            IsTeamATurn = true;
         }
 
         public void Begin()
         {
+                CreateTwoTeams();
                 while (TeamB.IsAllUnitsAlive && TeamA.IsAllUnitsAlive)
                 HitStepByStep();
 
                 DisplayWinner();
-            
+        }
+        public void CreateTwoTeams()
+        {
+            TeamGeneratorService teamGenerator = new TeamGeneratorService();
+            TeamA = teamGenerator.GenerateTeamA();
+            TeamB = teamGenerator.GenerateTeamB();
+            IsTeamATurn = true;
         }
 
         private bool IsInputValid(bool isInteger, int number)
