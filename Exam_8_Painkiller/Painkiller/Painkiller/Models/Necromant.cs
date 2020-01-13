@@ -9,8 +9,14 @@ namespace Painkiller.Models
 {
     public class Necromant : Unit
     {
-        public Necromant (int maxHealth, int damage, string name, Team team) : base(maxHealth, damage, name, team)
+        public int CriticalChance { get; }
+        public Necromant (int maxHealth, int damage, string name, Team team, int criticalChance) : base(maxHealth, damage, name, team)
         {
+        }
+
+        public override void Attack(IUnit defender)
+        {
+            base.Attack(defender);
         }
     }
 }

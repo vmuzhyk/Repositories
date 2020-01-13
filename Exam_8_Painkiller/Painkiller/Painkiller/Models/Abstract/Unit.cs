@@ -66,5 +66,9 @@ namespace Painkiller.Models.Abstract
             RemoveHealth(defender.Damage);
             Console.WriteLine($" {GetInfoExtended()} after hit back from {defender.GetInfoBasic()}");
         }
+
+        public virtual void ReceiveInfluence()
+        {
+        }
     }
 }
