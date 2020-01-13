@@ -19,9 +19,11 @@ namespace Painkiller.Models.Abstract
         void HitBack(IUnit attacker);
         void ReceiveHitBack(IUnit defender);
         void RemoveHealth(IUnit attacker);
+        void RemoveHealth(int damage);
 
         bool IsAlive { get; }
 
         string GetInfoBasic();
+        string GetInfoExtended();
     }   
 }

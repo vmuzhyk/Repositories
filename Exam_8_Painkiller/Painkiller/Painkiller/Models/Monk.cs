@@ -20,23 +20,23 @@ namespace Painkiller.Models
             IsAxThrown = false;
         }
 
-        /*public override void Attack(IUnit defender)
+        public void AttackWithAx(IUnit defender)
+        {
+            var percent = new Random().Next(1, 101);
+            if (percent < CriticalChance)
+            {
+                defender.RemoveHealth(this.AxDamage);
+                Console.WriteLine($" {defender.GetInfoExtended()} after Ax attack from {this.GetInfoBasic()}");
+                IsAxThrown = true;
+            } else base.Attack(defender);
+
+        }
+
+        public override void Attack(IUnit defender)
         {
             if (IsAxThrown)
-                return;
-
-            var percent = new Random().Next(1, 101);
-            if (percent > CriticalChance)
-                return;
-            
-
-            
-            IsAxThrown = true;
-            Console.WriteLine($" {GetInfoExtended()} improved his attack to {Damage}");
-            
-            
-        }*/
-
-        
+                base.Attack(defender);
+            else AttackWithAx(defender);
+        }
     }
 }
