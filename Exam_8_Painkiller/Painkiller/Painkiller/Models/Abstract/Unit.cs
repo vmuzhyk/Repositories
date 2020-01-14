@@ -67,7 +67,11 @@ namespace Painkiller.Models.Abstract
             Console.WriteLine($" {GetInfoExtended()} after hit back from {defender.GetInfoBasic()}");
         }
 
-        public virtual void ReceiveInfluence()
+        public virtual void ReceiveInfluence(IUnit attacker)
+        {
+        }
+
+        public virtual void MakeInfluence(IUnit defender)
         {
         }
     }

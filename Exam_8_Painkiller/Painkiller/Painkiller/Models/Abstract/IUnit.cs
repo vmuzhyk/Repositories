@@ -25,5 +25,8 @@ namespace Painkiller.Models.Abstract
 
         string GetInfoBasic();
         string GetInfoExtended();
+        void ReceiveInfluence(IUnit attacker);
+
+        void MakeInfluence(IUnit defender);
     }   
 }
