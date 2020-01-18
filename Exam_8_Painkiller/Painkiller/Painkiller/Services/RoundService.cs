@@ -63,9 +63,13 @@ namespace Painkiller.Services
         {
             if (IsTeamATurn)
             {
-                DisplayFightDialog();
-                Console.WriteLine($"Your opponent is {ChosenOpponent}");
-                TeamA.GetRandomAliveUnit().Attack(TeamB.AliveUnits[ChosenOpponent]);
+                var player = TeamA.GetRandomAliveUnit();
+                if (!player.IsStunned)
+                {
+                    DisplayFightDialog();
+                    Console.WriteLine($"Your opponent is {ChosenOpponent}");
+                }
+                player.Attack(TeamB.AliveUnits[ChosenOpponent]);
             }
             else
                 TeamB.GetRandomAliveUnit().Attack(TeamA.GetRandomAliveUnit());

@@ -14,6 +14,8 @@ namespace Painkiller.Models.Abstract
         int Damage { get; set; }
 
         Team Team { get; }
+        bool IsStunned { get; set; }
+        bool WasStunned { get; set; }
 
         void Attack(IUnit defender);
         void HitBack(IUnit attacker);

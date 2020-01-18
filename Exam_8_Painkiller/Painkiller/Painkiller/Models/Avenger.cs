@@ -6,14 +6,20 @@ namespace Painkiller.Services
 {
     public class Avenger : Unit
     {
-        public bool IsStunned { get; set; }
         public Avenger(int maxHealth, int damage, string name, Team team) : base(maxHealth, damage, name, team)
         {
             IsStunned = false;
+            WasStunned = false;
         }
 
         public override void ReceiveInfluence(IUnit attacker)
         {
+            if (WasStunned)
+            {
+                WasStunned = false;
+                return;
+            }
+
             IsStunned = true;
             Console.WriteLine($" {this.GetInfoExtended()} stunned after attack from {attacker.GetInfoBasic()}");
         }
@@ -34,7 +40,8 @@ namespace Painkiller.Services
             else
             {
                 IsStunned = false;
-                Console.WriteLine($" {this.GetInfoExtended()} miss attack turn on {defender.GetInfoBasic()}");
+                WasStunned = true;
+                Console.WriteLine($" {this.GetInfoExtended()} miss attack turn");
             }
         }
     }

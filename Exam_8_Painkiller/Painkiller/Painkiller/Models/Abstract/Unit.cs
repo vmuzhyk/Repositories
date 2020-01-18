@@ -14,6 +14,8 @@ namespace Painkiller.Models.Abstract
         public int CurrentHealth { get; set; }
         public int MaxHealth { get; set; }
         public int Damage { get; set; }
+        public bool IsStunned { get; set; }
+        public bool WasStunned { get; set; }
 
         public bool IsAlive => CurrentHealth > 0; 
 
