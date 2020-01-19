@@ -14,17 +14,24 @@ namespace Painkiller.Services
         private Team TeamB { get; set; }
         private bool IsTeamATurn { get; set; }
         private int ChosenOpponent { get; set; }
+        private bool IsCommandExecuted { get; set; }
+        private bool IsExitDone { get; set; }
+
+        private const string CommandMenu = "MENU";
         public RoundService()
         {
         }
 
         public void Begin()
         {
-                CreateTwoTeams();
-                while (TeamB.IsAllUnitsAlive && TeamA.IsAllUnitsAlive)
+            CreateTwoTeams();
+            while (TeamB.IsAllUnitsAlive && TeamA.IsAllUnitsAlive && !IsExitDone)
                 HitStepByStep();
+            
+            if (IsExitDone)
+                return;
 
-                DisplayWinner();
+            DisplayWinner();
         }
         public void CreateTwoTeams()
         {
@@ -42,7 +49,7 @@ namespace Painkiller.Services
                 return false;
             }
 
-            if (number < 0 || number > TeamB.AliveUnits.Count - 1 )
+            if (number < 0 || number > TeamB.AliveUnits.Count - 1)
             {
                 Console.WriteLine($"Number should be between 0 and {TeamB.AliveUnits.Count - 1 }");
                 return false;
@@ -67,6 +74,10 @@ namespace Painkiller.Services
                 if (!player.IsStunned)
                 {
                     DisplayFightDialog();
+                    if (IsExitDone)
+                    {
+                        return;
+                    }
                     Console.WriteLine($"Your opponent is {ChosenOpponent}");
                 }
                 player.Attack(TeamB.AliveUnits[ChosenOpponent]);
@@ -82,16 +93,42 @@ namespace Painkiller.Services
         {
             while (true)
             {
-                Console.WriteLine($"Enter number beetwen 0 and {TeamB.AliveUnits.Count - 1}");
+                Console.WriteLine($"Enter number beetwen 0 and {TeamB.AliveUnits.Count - 1} or menu command");
                 var input = Console.ReadLine();
-                var isInteger = Int32.TryParse(input, out var number);
+                ExecuteCommand(input);
 
-                if (IsInputValid(isInteger, number))
+                if (IsCommandExecuted)
                 {
-                    ChosenOpponent = number;
+                    IsCommandExecuted = false;
                     return;
                 }
+
+                if (ValidateInput(input))
+                    return;
             }
-        } 
+        }
+
+        public bool ValidateInput(string input)
+        {
+            var isInteger = Int32.TryParse(input, out var number);
+            if (IsInputValid(isInteger, number))
+            {
+                ChosenOpponent = number;
+                return true;
+            }
+            return false;
+        }
+
+        private void ExecuteCommand(string command)
+        {
+            switch (command.ToUpper())
+            {
+                case CommandMenu:
+                    Console.WriteLine("You exit in main menu!");
+                    IsCommandExecuted = true;
+                    IsExitDone = true;
+                    break;
+            }
+        }
     }
 }

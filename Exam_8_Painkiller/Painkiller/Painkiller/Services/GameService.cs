@@ -212,6 +212,7 @@ namespace Painkiller.Services
             Console.WriteLine($"{CommandHelp.ToLower()} - display abailable commands");
             Console.WriteLine($"{CommandStart.ToLower()} - start game");
             Console.WriteLine($"{CommandLoad.ToLower()} - load saved game");
+            Console.WriteLine($"{CommandLoad.ToLower()} - continue game");
             Console.WriteLine($"{CommandSave.ToLower()} - save game");
             Console.WriteLine($"{CommandDisplay.ToLower()} - display game score");
         }
