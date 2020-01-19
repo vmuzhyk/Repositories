@@ -25,11 +25,19 @@ namespace Painkiller.Services
         public void Begin()
         {
             CreateTwoTeams();
+            Continue();
+        }
+
+        public void Continue()
+        {
             while (TeamB.IsAllUnitsAlive && TeamA.IsAllUnitsAlive && !IsExitDone)
                 HitStepByStep();
-            
+
             if (IsExitDone)
+            {
+                IsExitDone = false;
                 return;
+            }
 
             DisplayWinner();
         }

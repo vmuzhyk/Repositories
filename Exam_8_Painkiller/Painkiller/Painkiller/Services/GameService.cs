@@ -26,6 +26,7 @@ namespace Painkiller.Services
         private const string CommandStart = "START";
         private const string CommandLoad = "LOAD";
         private const string CommandSave = "SAVE";
+        private const string CommandContinue = "CONTINUE";
         private const string CommandDisplay = "DISPLAY";
         private const string CommandYes = "YES";
         private const string CommandNo = "NO";
@@ -202,6 +203,10 @@ namespace Painkiller.Services
                     Console.WriteLine("Your game was started!");
                     _roundService.Begin();
                     break;
+                case CommandContinue:
+                    Console.WriteLine("Your game was continued!");
+                    _roundService.Continue();
+                    break;
             }
         }
         private void PrintAvailableCommands()
@@ -212,7 +217,7 @@ namespace Painkiller.Services
             Console.WriteLine($"{CommandHelp.ToLower()} - display abailable commands");
             Console.WriteLine($"{CommandStart.ToLower()} - start game");
             Console.WriteLine($"{CommandLoad.ToLower()} - load saved game");
-            Console.WriteLine($"{CommandLoad.ToLower()} - continue game");
+            Console.WriteLine($"{CommandContinue.ToLower()} - continue game");
             Console.WriteLine($"{CommandSave.ToLower()} - save game");
             Console.WriteLine($"{CommandDisplay.ToLower()} - display game score");
         }
