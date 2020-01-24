@@ -9,7 +9,7 @@ namespace Painkiller.Services
         public Team GenerateTeamA()
         {
             Team team = new Team ("Players");
-            List<IUnit> allUnits = new List<IUnit>
+            List<Unit> allUnits = new List<Unit>
             {
                 new Avenger (300, 15, "Lily Doe", team),
                 new Avenger (300, 15, "John Doe", team),
@@ -21,7 +21,7 @@ namespace Painkiller.Services
         public Team GenerateTeamB()
         {
             Team team = new Team("Characters");
-            List<IUnit> allUnits = new List<IUnit>
+            List<Unit> allUnits = new List<Unit>
             {
                 new Skeleton (120, 30, "Moomba", team),
                 new Monk (140, 25, "Joomba", team, 50, 20),

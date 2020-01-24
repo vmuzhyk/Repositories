@@ -1,7 +1,9 @@
-﻿using Painkiller.Models.Abstract;
+﻿using Newtonsoft.Json;
+using Painkiller.Models.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,8 +12,11 @@ namespace Painkiller.Models
     public class Team
     {
         public string Name { get; }
-        public List<IUnit> AllUnits { get; set; }
-        public List<IUnit> AliveUnits { get => AllUnits.Where(unit => unit.IsAlive).ToList(); }
+
+        public List<Unit> AllUnits { get; set; }
+        [JsonIgnore]
+        public List<Unit> AliveUnits { get => AllUnits.Where(unit => unit.IsAlive).ToList(); }
+        [JsonIgnore]
         public bool IsAllUnitsAlive { get => AliveUnits.Count > 0; }
         public Team(string name)
         {

@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +51,7 @@
     <Compile Include="Models\Abstract\Unit.cs" />
     <Compile Include="Models\Monk.cs" />
     <Compile Include="Models\Necromant.cs" />
+    <Compile Include="Models\Save.cs" />
     <Compile Include="Models\Skeleton.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Program.cs" />
@@ -57,7 +59,6 @@
     <Compile Include="Models\Avenger.cs" />
     <Compile Include="Services\GameService.cs" />
     <Compile Include="Services\RoundService.cs" />
-    <Compile Include="Models\Save.cs" />
     <Compile Include="Services\SaveService.cs" />
     <Compile Include="Services\TeamGeneratorService.cs" />
   </ItemGroup>

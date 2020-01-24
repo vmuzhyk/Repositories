@@ -10,8 +10,8 @@ namespace Painkiller.Services
 {
     public class RoundService
     {
-        private Team TeamA { get; set; }
-        private Team TeamB { get; set; }
+        public Team TeamA { get; set; }
+        public Team TeamB { get; set; }
         private bool IsTeamATurn { get; set; }
         private int ChosenOpponent { get; set; }
         private bool IsCommandExecuted { get; set; }
