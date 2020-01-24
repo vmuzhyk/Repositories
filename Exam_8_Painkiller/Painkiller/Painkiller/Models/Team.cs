@@ -25,7 +25,7 @@ namespace Painkiller.Models
                 
         public void PrintAliveUnits()
         {
-            Console.WriteLine($" Team Name: {Name} win. Alive Units: { AliveUnits.Count}");
+            Console.WriteLine($" Team Name: {Name}. Alive Units: { AliveUnits.Count}");
             AliveUnits.ForEach(unit => Console.WriteLine($" {unit.GetInfoBasic()}, current health {unit.CurrentHealth}"));
         }
         public IUnit GetRandomAliveUnit()
@@ -34,6 +34,10 @@ namespace Painkiller.Models
             var randomUnit = random.Next(this.AliveUnits.Count);
             //Console.WriteLine(" " + random);
             return this.AliveUnits[randomUnit];
+        }
+        public void DisplayWinMessage()
+        {
+            Console.WriteLine($" Team Name: {Name} win.");
         }
     }
 }

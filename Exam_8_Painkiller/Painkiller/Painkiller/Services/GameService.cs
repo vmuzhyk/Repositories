@@ -192,7 +192,7 @@ namespace Painkiller.Services
                     PrintAvailableCommands();
                     break;
                 case CommandDisplay:
-                    //_roundService.DisplayScore();
+                    _roundService.DisplayScore();
                     break;
                 case CommandSave:
                     SaveScoreWithMessage();

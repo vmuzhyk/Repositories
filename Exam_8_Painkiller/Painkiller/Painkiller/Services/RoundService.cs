@@ -69,9 +69,16 @@ namespace Painkiller.Services
         private void DisplayWinner()
         {
             if (TeamA.IsAllUnitsAlive)
+            {
+                TeamA.DisplayWinMessage();
                 TeamA.PrintAliveUnits();
+            }
             else if (TeamB.IsAllUnitsAlive)
+            {
+                TeamB.DisplayWinMessage();
                 TeamB.PrintAliveUnits();
+            }
+                
         }
 
         private void HitStepByStep()
@@ -137,6 +144,13 @@ namespace Painkiller.Services
                     IsExitDone = true;
                     break;
             }
+        }
+
+        internal void DisplayScore()
+        {
+            TeamA.PrintAliveUnits();
+            Console.WriteLine();
+            TeamB.PrintAliveUnits();
         }
     }
 }
