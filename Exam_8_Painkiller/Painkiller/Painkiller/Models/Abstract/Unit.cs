@@ -19,7 +19,7 @@ namespace Painkiller.Models.Abstract
         public bool WasStunned { get; set; }
         public bool IsAlive => CurrentHealth > 0;
         [JsonIgnore]
-        public Team Team { get; }
+        public Team Team { get; set; }
         public Unit(int maxHealth, int damage, string name, Team team)
         {
             MaxHealth = maxHealth;

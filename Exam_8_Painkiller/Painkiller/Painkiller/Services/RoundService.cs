@@ -12,7 +12,7 @@ namespace Painkiller.Services
     {
         public Team TeamA { get; set; }
         public Team TeamB { get; set; }
-        private bool IsTeamATurn { get; set; }
+        public bool IsTeamATurn { get; set; }
         private int ChosenOpponent { get; set; }
         private bool IsCommandExecuted { get; set; }
         private bool IsExitDone { get; set; }
@@ -151,6 +151,15 @@ namespace Painkiller.Services
             TeamA.PrintAliveUnits();
             Console.WriteLine();
             TeamB.PrintAliveUnits();
+        }
+
+        public void Load(Team teamA, Team teamB, bool isTeamATurn)
+        {
+            TeamA = teamA;
+            TeamA.AssignTeam();
+            TeamB = teamB;
+            TeamB.AssignTeam();
+            IsTeamATurn = isTeamATurn;
         }
     }
 }

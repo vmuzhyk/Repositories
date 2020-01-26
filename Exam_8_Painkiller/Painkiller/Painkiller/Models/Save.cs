@@ -11,10 +11,12 @@ namespace Painkiller.Models
     {
         public Team TeamA {  get; set; }
         public Team TeamB { get; set; }
-        public Save(Team teamA, Team teamB)
+        public bool IsTeamATurn { get; set; }
+        public Save(Team teamA, Team teamB, bool isTeamATurn)
         {
             this.TeamA = teamA;
             this.TeamB = teamB;
+            this.IsTeamATurn = isTeamATurn;
         }
     }
 }

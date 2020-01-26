@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Painkiller.Models;
+using Painkiller.Models.Abstract;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -120,7 +121,7 @@ namespace Painkiller.Services
 
         private void SaveScore()
         {
-            Save save = new Save(_roundService.TeamA, _roundService.TeamB);
+            Save save = new Save(_roundService.TeamA, _roundService.TeamB, _roundService.IsTeamATurn);
             string json = JsonConvert.SerializeObject(save, Formatting.Indented);
 
             File.WriteAllText(src, json);
@@ -141,11 +142,11 @@ namespace Painkiller.Services
 
         private void LoadScore()
         {
-            //var save = LoadJson();
-           /* Calculation.Sum = save.Sum;
-            Calculation.Step = save.Step;*/
+            var save = LoadJson();
+            _roundService.Load(save.TeamA, save.TeamB, save.IsTeamATurn);
         }
 
+        
         private Save LoadJson()
         {
             using (StreamReader r = new StreamReader(src))

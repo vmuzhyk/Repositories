@@ -39,5 +39,12 @@ namespace Painkiller.Models
         {
             Console.WriteLine($" Team Name: {Name} win.");
         }
+        public void AssignTeam()
+        {
+            foreach (Unit unit in AllUnits)
+            {
+                unit.Team = this;
+            }
+        }
     }
 }
