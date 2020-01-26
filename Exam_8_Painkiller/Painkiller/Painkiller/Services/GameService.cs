@@ -13,6 +13,7 @@ namespace Painkiller.Services
     internal class GameService
     {
         private readonly RoundService _roundService;
+        
         public GameService()
         {
             _roundService = new RoundService();
@@ -69,8 +70,7 @@ namespace Painkiller.Services
 
         private void ResetProgress()
         {
-            /*Calculation.Sum = 0;
-            Calculation.Step = 0;*/
+            _roundService.CreateTwoTeams();
         }
 
         private void ResetProgressWithMessage()
@@ -92,12 +92,7 @@ namespace Painkiller.Services
 
         private bool IsAnyScoreSaved(Save save)
         {
-            /*if (save.Sum != 0 && save.Step != 0)
-            {
-                return true;
-            }*/
-
-            return false;
+            return save.IsAnyChange;
         }
 
         private void StartGame()
@@ -121,7 +116,7 @@ namespace Painkiller.Services
 
         private void SaveScore()
         {
-            Save save = new Save(_roundService.TeamA, _roundService.TeamB, _roundService.IsTeamATurn);
+            Save save = new Save(_roundService.TeamA, _roundService.TeamB, _roundService.IsTeamATurn, _roundService.IsAnyChange);
             string json = JsonConvert.SerializeObject(save, Formatting.Indented);
 
             File.WriteAllText(src, json);

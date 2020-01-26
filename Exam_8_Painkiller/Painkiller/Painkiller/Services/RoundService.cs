@@ -14,6 +14,7 @@ namespace Painkiller.Services
         public Team TeamB { get; set; }
         public bool IsTeamATurn { get; set; }
         private int ChosenOpponent { get; set; }
+        public bool IsAnyChange { get; set; }
         private bool IsCommandExecuted { get; set; }
         private bool IsExitDone { get; set; }
 
@@ -47,6 +48,7 @@ namespace Painkiller.Services
             TeamA = teamGenerator.GenerateTeamA();
             TeamB = teamGenerator.GenerateTeamB();
             IsTeamATurn = true;
+            IsAnyChange = false;
         }
 
         private bool IsInputValid(bool isInteger, int number)
@@ -102,8 +104,8 @@ namespace Painkiller.Services
 
             IsTeamATurn = !IsTeamATurn;
             Console.WriteLine();
-        }
-
+            IsAnyChange = true;
+            }
         public void DisplayFightDialog()
         {
             while (true)
