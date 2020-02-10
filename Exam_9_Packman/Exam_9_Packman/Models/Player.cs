@@ -9,11 +9,19 @@ namespace Exam_9_Packman.Models
 {
     class Player : IPlayer
     {
-        public string Name { get; }
+        public string Name { get; set; }
         public int CurrentHealth { get; set; }
         public int MaxHealth { get; set; }
         public int Score { get; set; }
-        public int CrerryCount { get; set; }
+        public int CherryCount { get; set; }
+
+        public Player(int maxHealth, int currentHealth, int score, int cherryCount)
+        {
+            MaxHealth = maxHealth;
+            CurrentHealth = currentHealth;
+            Score = score;
+            CherryCount = cherryCount;
+        }
 
     }
 }

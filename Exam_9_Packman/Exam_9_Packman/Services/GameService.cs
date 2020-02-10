@@ -194,7 +194,7 @@ namespace Exam_9_Packman.Services
                     break;
                 case CommandStart:
                     Console.WriteLine("Your game was started!");
-                    //_roundService.Begin();
+                    _roundService.Begin();
                     break;
                 case CommandContinue:
                     Console.WriteLine("Your game was continued!");

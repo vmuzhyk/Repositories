@@ -12,6 +12,6 @@ namespace Exam_9_Packman.Models.Abstract
         int CurrentHealth { get; set; }
         int MaxHealth { get; set; }
         int Score { get; set; }
-        int CrerryCount { get; set; }
+        int CherryCount { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exam_9_Packman.Models.Abstract
+namespace Exam_9_Packman.Models
 {
     public class Enemy
     {        
