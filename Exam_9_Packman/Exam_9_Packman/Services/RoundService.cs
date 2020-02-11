@@ -19,6 +19,7 @@ namespace Exam_9_Packman.Services
         public void Begin()
         {
             Player.Name = SetPlayersName();
+            Console.WriteLine($"Hi {Player.Name}!");
         }
 
         public string SetPlayersName()
