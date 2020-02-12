@@ -35,7 +35,7 @@ namespace Exam_9_Packman.Services
         private void DisplayWelcomeMessage()
         {
             Console.WriteLine();
-            Console.WriteLine("Welcome to Painkiller");
+            Console.WriteLine("Welcome to Packman");
             PrintAvailableCommands();
             Console.WriteLine();
         }

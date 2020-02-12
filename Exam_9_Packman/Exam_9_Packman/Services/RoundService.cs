@@ -1,4 +1,5 @@
-﻿using Exam_9_Packman.Models;
+﻿using Exam_9_Packman.Extentions;
+using Exam_9_Packman.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,11 @@ namespace Exam_9_Packman.Services
     class RoundService
     {
         public Player Player { get; set; }
-        public string ChoosenDirection { get; set; }
+        
+        private const string CommandUp = "w";
+        private const string CommandLeft = "a";
+        private const string CommandRight = "d";
+        private const string CommandDown = "s";
 
         public RoundService()
         {
@@ -21,6 +26,7 @@ namespace Exam_9_Packman.Services
         {
             Player.Name = SetPlayersName();
             Console.WriteLine($"Hi {Player.Name}!");
+            PrintAvailableMovements();
             DisplayMoveDialog();
         }
 
@@ -36,20 +42,20 @@ namespace Exam_9_Packman.Services
         {
             while (true)
             {
-                Console.WriteLine($"Enter one of numbers 4, 5, 6 or 8, please ");
+                Console.WriteLine($"Enter number of one of available movements please ");
                 var input = Console.ReadLine();
                 switch (input)
                 {
-                    case "4":
+                    case CommandUp:
                         Console.WriteLine("You move left");
                         break;
-                    case "5":
+                    case CommandLeft:
                         Console.WriteLine("You move down");
                         break;
-                    case "6":
+                    case CommandRight:
                         Console.WriteLine("You move right");
                         break;
-                    case "8":
+                    case CommandDown:
                         Console.WriteLine("You move up");
                         break;
                     default:
@@ -60,23 +66,36 @@ namespace Exam_9_Packman.Services
                     return;
             }
 
-            /*private bool IsInputValid(bool isInteger, int number)
-            {
-                if (!isInteger)
-                {
-                    Console.WriteLine("Number should be an integer value");
-                    return false;
-                }
+        }
 
-                if (number < 0 || number > TeamB.AliveUnits.Count - 1)
-                {
-                    Console.WriteLine($"Number should be between 0 and {TeamB.AliveUnits.Count - 1 }");
-                    return false;
-                }
+        public void AppearanceEachTurn()
+        {
+            var percent = RandomExtention.GenerateChance();
+            if (percent <= 12)
+                return;
 
-                return true;
-            }*/
+            if ((percent > 12) && (percent <= 24))
+                return;
 
+            if ((percent > 24) && (percent <= 50))
+                return;
+
+            if ((percent > 50) && (percent <= 100))
+                return;
+
+            /*Damage *= CriticalDamage;
+            IsAttackImproved = true;
+            Console.WriteLine($" {GetInfoExtended()} improved his attack to {Damage}");*/
+        }
+        
+        public void PrintAvailableMovements()
+        {
+            Console.WriteLine("Available movements:");
+            Console.WriteLine($"{CommandUp} - move up");
+            Console.WriteLine($"{CommandLeft} - move left");
+            Console.WriteLine($"{CommandRight} - move right");
+            Console.WriteLine($"{CommandDown} - move down");
+            
         }
     }
 }

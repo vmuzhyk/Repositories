@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Exam_9_Packman.Models.Abstract
 {
-    interface IFruit : IItems
+    public interface IItems
     {
-        int Coast { get; set; }
+        int PercentAppearance { get; set; }
     }
 }
