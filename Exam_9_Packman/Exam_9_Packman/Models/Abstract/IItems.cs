@@ -8,6 +8,6 @@ namespace Exam_9_Packman.Models.Abstract
 {
     public interface IItems
     {
-        int PercentAppearance { get; set; }
+      
     }
 }

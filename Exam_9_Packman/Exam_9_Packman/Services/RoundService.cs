@@ -1,5 +1,6 @@
 ﻿using Exam_9_Packman.Extentions;
 using Exam_9_Packman.Models;
+using Exam_9_Packman.Models.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,10 @@ namespace Exam_9_Packman.Services
         private const string CommandLeft = "a";
         private const string CommandRight = "d";
         private const string CommandDown = "s";
+        private const string DirectionUp = "above";
+        private const string DirectionLeft = "on the left-hand side";
+        private const string DirectionRight = "on the right-hand side";
+        private const string DirectionDown = "below";
 
         public RoundService()
         {
@@ -48,46 +53,73 @@ namespace Exam_9_Packman.Services
                 {
                     case CommandUp:
                         Console.WriteLine("You move left");
+                        AppearanceEachTurn();
                         break;
                     case CommandLeft:
                         Console.WriteLine("You move down");
+                        AppearanceEachTurn();
                         break;
                     case CommandRight:
                         Console.WriteLine("You move right");
+                        AppearanceEachTurn();
                         break;
                     case CommandDown:
                         Console.WriteLine("You move up");
+                        AppearanceEachTurn();
                         break;
                     default:
                         Console.WriteLine("You enter not valid number or not a number at all");
                         break;
                 }
-                if (Player.CurrentHealth == 0)
+
+
+                if ((Player.CurrentHealth == 0) || (Player.CherryCount == 3))
                     return;
             }
-
+        }
+                 
+        public void AppearanceEachTurn()
+        {
+            IItems item = AppearItem();
+            string direction = AppearanceDirections();
+            if (item != null)
+                Console.WriteLine($"{item.GetType().Name} was appeared {direction} from You!");
+            else
+                Console.WriteLine("Nothing was appeared!");
         }
 
-        public void AppearanceEachTurn()
+        public IItems AppearItem()
         {
             var percent = RandomExtention.GenerateChance();
             if (percent <= 12)
-                return;
+                return new Enemy(1);
 
             if ((percent > 12) && (percent <= 24))
-                return;
+                return new Cherry(1);
 
             if ((percent > 24) && (percent <= 50))
-                return;
+                return new Banana(10);
 
-            if ((percent > 50) && (percent <= 100))
-                return;
-
-            /*Damage *= CriticalDamage;
-            IsAttackImproved = true;
-            Console.WriteLine($" {GetInfoExtended()} improved his attack to {Damage}");*/
+            else 
+                return null;
         }
         
+        public string AppearanceDirections()
+        {
+            var percent = RandomExtention.GenerateChance();
+            if (percent <= 25)
+                return DirectionUp;
+
+            if ((percent > 25) && (percent <= 50))
+                return DirectionLeft;
+
+            if ((percent > 50) && (percent <= 75))
+                return DirectionRight;
+
+            else
+                return DirectionDown;
+        }
+
         public void PrintAvailableMovements()
         {
             Console.WriteLine("Available movements:");

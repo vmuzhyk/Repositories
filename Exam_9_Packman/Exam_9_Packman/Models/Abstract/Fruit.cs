@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace Exam_9_Packman.Models.Abstract
 {
-    public abstract class Fruit : IFruit
+    public abstract class Fruit : IItems
     {
         public int Coast { get; set; }
-        public int PercentAppearance { get; set; }
+        
 
-        public Fruit (int coast, int percentAppearance)
+        public Fruit (int coast)
         {
             Coast = coast;
-            PercentAppearance = percentAppearance;
         }
     }
 }

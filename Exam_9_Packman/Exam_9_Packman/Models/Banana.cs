@@ -9,9 +9,9 @@ namespace Exam_9_Packman.Models
 {
     public class Banana : Fruit
     {
-        public int Coast { get; set; }
-        public Banana(int coast, int percentAppearance) : base(coast, percentAppearance)
+        public Banana(int coast) : base(coast)
         {
+
         }
 
         
