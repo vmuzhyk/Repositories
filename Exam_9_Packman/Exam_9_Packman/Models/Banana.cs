@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 
 namespace Exam_9_Packman.Models
 {
-    public class Banana : Fruit
+    public class Banana : IItems
     {
-        public Banana(int coast) : base(coast)
+        public int Coast { get; set; }
+        public Banana(int coast)
         {
-
+            Coast = coast;
         }
 
-        
-        
-
-        
+        public void InteractionWithPlayer(Player player)
+        {
+            player.Score += Coast;
+        }
     }
 }

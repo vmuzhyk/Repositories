@@ -14,6 +14,11 @@ namespace Exam_9_Packman.Models
         {
             Damage = damage;
         }
+
+        public void InteractionWithPlayer(Player player)
+        {
+            player.CurrentHealth -= Damage;
+        }
     }
 
 }

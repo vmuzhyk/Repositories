@@ -13,6 +13,10 @@ namespace Exam_9_Packman.Services
     {
         public Player Player { get; set; }
         
+        public IItems ItemAppearedInCurrentTurn { get; set; }   //Item Appeared In Current Turn
+        public string AppearanceDirectionInCurrentTurn { get; set; } //Appearance Direction In Current Turn
+
+
         private const string CommandUp = "w";
         private const string CommandLeft = "a";
         private const string CommandRight = "d";
@@ -53,37 +57,37 @@ namespace Exam_9_Packman.Services
                 {
                     case CommandUp:
                         Console.WriteLine("You move left");
-                        AppearanceEachTurn();
                         break;
                     case CommandLeft:
                         Console.WriteLine("You move down");
-                        AppearanceEachTurn();
                         break;
                     case CommandRight:
                         Console.WriteLine("You move right");
-                        AppearanceEachTurn();
                         break;
                     case CommandDown:
                         Console.WriteLine("You move up");
-                        AppearanceEachTurn();
                         break;
                     default:
                         Console.WriteLine("You enter not valid number or not a number at all");
-                        break;
+                        continue;
                 }
+                AppearanceEachTurn();
+                if (ItemAppearedInCurrentTurn != null)
+                    ItemAppearedInCurrentTurn.InteractionWithPlayer(Player);
+                
+                
 
-
-                if ((Player.CurrentHealth == 0) || (Player.CherryCount == 3))
+                if ((Player.CurrentHealth == 0) || (Player.CherryCount == 5))
                     return;
             }
         }
                  
         public void AppearanceEachTurn()
         {
-            IItems item = AppearItem();
-            string direction = AppearanceDirections();
-            if (item != null)
-                Console.WriteLine($"{item.GetType().Name} was appeared {direction} from You!");
+            ItemAppearedInCurrentTurn = AppearItem();
+            AppearanceDirectionInCurrentTurn = AppearanceDirections();
+            if (ItemAppearedInCurrentTurn != null)
+                Console.WriteLine($"{ItemAppearedInCurrentTurn.GetType().Name} was appeared {AppearanceDirectionInCurrentTurn} from You!");
             else
                 Console.WriteLine("Nothing was appeared!");
         }
@@ -120,6 +124,7 @@ namespace Exam_9_Packman.Services
                 return DirectionDown;
         }
 
+
         public void PrintAvailableMovements()
         {
             Console.WriteLine("Available movements:");
@@ -127,7 +132,6 @@ namespace Exam_9_Packman.Services
             Console.WriteLine($"{CommandLeft} - move left");
             Console.WriteLine($"{CommandRight} - move right");
             Console.WriteLine($"{CommandDown} - move down");
-            
         }
     }
 }

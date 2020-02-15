@@ -1,4 +1,5 @@
 ﻿using Exam_9_Packman.Models.Abstract;
+using Exam_9_Packman.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Exam_9_Packman.Models
 {
-    class Player : IPlayer
+    public class Player : IPlayer
     {
         public string Name { get; set; }
         public int CurrentHealth { get; set; }
@@ -22,6 +23,5 @@ namespace Exam_9_Packman.Models
             Score = score;
             CherryCount = cherryCount;
         }
-
-    }
+    } 
 }

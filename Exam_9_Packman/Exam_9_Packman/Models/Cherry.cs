@@ -7,12 +7,17 @@ using System.Threading.Tasks;
 
 namespace Exam_9_Packman.Models
 {
-    public class Cherry : Fruit 
+    public class Cherry : IItems
     {
-        public Cherry (int coast) : base(coast)
+        public int Coast { get; set; }
+        public Cherry (int coast) 
         {
+            Coast = coast;
         }
-
+        public void InteractionWithPlayer(Player player)
+        {
+            player.CherryCount += Coast;
+        }
 
     }
 }

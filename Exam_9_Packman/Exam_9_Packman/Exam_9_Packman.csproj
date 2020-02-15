@@ -49,7 +49,6 @@
     <Compile Include="Models\Cherry.cs" />
     <Compile Include="Models\Enemy.cs" />
     <Compile Include="Models\Abstract\IPlayer.cs" />
-    <Compile Include="Models\Abstract\Fruit.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
