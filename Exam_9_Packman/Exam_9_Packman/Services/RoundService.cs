@@ -15,6 +15,7 @@ namespace Exam_9_Packman.Services
         
         public IItems ItemAppearedInCurrentTurn { get; set; }   //Item Appeared In Current Turn
         public string AppearanceDirectionInCurrentTurn { get; set; } //Appearance Direction In Current Turn
+        public string MovementDirection { get; set; }
 
 
         private const string CommandUp = "w";
@@ -56,26 +57,29 @@ namespace Exam_9_Packman.Services
                 switch (input)
                 {
                     case CommandUp:
-                        Console.WriteLine("You move left");
+                        Console.WriteLine("You move up");
                         break;
                     case CommandLeft:
-                        Console.WriteLine("You move down");
+                        Console.WriteLine("You move left");
                         break;
                     case CommandRight:
                         Console.WriteLine("You move right");
                         break;
                     case CommandDown:
-                        Console.WriteLine("You move up");
+                        Console.WriteLine("You move down");
                         break;
                     default:
                         Console.WriteLine("You enter not valid number or not a number at all");
                         continue;
                 }
+                
+                
+                    if (ItemAppearedInCurrentTurn != null)
+                        if (MovementDirection == input)
+                            ItemAppearedInCurrentTurn.InteractionWithPlayer(Player);
+                
+                
                 AppearanceEachTurn();
-                if (ItemAppearedInCurrentTurn != null)
-                    ItemAppearedInCurrentTurn.InteractionWithPlayer(Player);
-                
-                
 
                 if ((Player.CurrentHealth == 0) || (Player.CherryCount == 5))
                     return;
@@ -112,16 +116,26 @@ namespace Exam_9_Packman.Services
         {
             var percent = RandomExtention.GenerateChance();
             if (percent <= 25)
+            {
+                MovementDirection = CommandUp;
                 return DirectionUp;
+            }
 
-            if ((percent > 25) && (percent <= 50))
+            else if ((percent > 25) && (percent <= 50))
+            {
+                MovementDirection = CommandLeft;
                 return DirectionLeft;
-
-            if ((percent > 50) && (percent <= 75))
+            }
+            else if ((percent > 50) && (percent <= 75))
+            {
+                MovementDirection = CommandRight;
                 return DirectionRight;
-
+            }
             else
+            {
+                MovementDirection = CommandDown;
                 return DirectionDown;
+            }
         }
 
 

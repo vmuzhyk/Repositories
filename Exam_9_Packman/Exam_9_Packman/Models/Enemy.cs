@@ -18,6 +18,7 @@ namespace Exam_9_Packman.Models
         public void InteractionWithPlayer(Player player)
         {
             player.CurrentHealth -= Damage;
+            Console.WriteLine($"Player met the Enemy. Now Player's health is {player.CurrentHealth}");
         }
     }
 

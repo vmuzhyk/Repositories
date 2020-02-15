@@ -17,6 +17,7 @@ namespace Exam_9_Packman.Models
         public void InteractionWithPlayer(Player player)
         {
             player.CherryCount += Coast;
+            Console.WriteLine($"Player get Cherry. Now Player's cherrycount is {player.CherryCount}");
         }
 
     }

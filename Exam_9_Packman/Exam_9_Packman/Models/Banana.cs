@@ -18,6 +18,7 @@ namespace Exam_9_Packman.Models
         public void InteractionWithPlayer(Player player)
         {
             player.Score += Coast;
+            Console.WriteLine($"Player get Banana. Now Player's score is {player.Score}");
         }
     }
 }
