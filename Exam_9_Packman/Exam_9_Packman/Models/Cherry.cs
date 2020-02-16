@@ -19,6 +19,8 @@ namespace Exam_9_Packman.Models
             player.CherryCount += Coast;
             Console.WriteLine($"Player get Cherry. Now Player's cherrycount is {player.CherryCount}");
         }
-
+        public void CalcProbabilityToInteract(Player player)
+        {
+        }
     }
 }

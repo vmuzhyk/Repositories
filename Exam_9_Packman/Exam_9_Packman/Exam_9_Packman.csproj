@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extentions\RandomExtention.cs" />
     <Compile Include="Models\Abstract\IItems.cs" />
     <Compile Include="Models\Banana.cs" />
     <Compile Include="Models\Cherry.cs" />

@@ -1,5 +1,4 @@
-﻿using Exam_9_Packman.Extentions;
-using Exam_9_Packman.Models;
+﻿using Exam_9_Packman.Models;
 using Exam_9_Packman.Models.Abstract;
 using System;
 using System.Collections.Generic;
@@ -12,7 +11,8 @@ namespace Exam_9_Packman.Services
     class RoundService
     {
         public Player Player { get; set; }
-        
+
+        public Random _random;
         public IItems ItemAppearedInCurrentTurn { get; set; }   //Item Appeared In Current Turn
         public string AppearanceDirectionInCurrentTurn { get; set; } //Appearance Direction In Current Turn
         public string MovementDirection { get; set; }
@@ -30,6 +30,7 @@ namespace Exam_9_Packman.Services
         public RoundService()
         {
              Player = new Player(3, 3, 0, 0);
+            _random = new Random();
         }
 
         public void Begin()
@@ -72,13 +73,13 @@ namespace Exam_9_Packman.Services
                         Console.WriteLine("You enter not valid number or not a number at all");
                         continue;
                 }
-                
-                
-                    if (ItemAppearedInCurrentTurn != null)
-                        if (MovementDirection == input)
-                            ItemAppearedInCurrentTurn.InteractionWithPlayer(Player);
-                
-                
+
+                if (ItemAppearedInCurrentTurn != null)
+                    if (MovementDirection == input)
+                        ItemAppearedInCurrentTurn.InteractionWithPlayer(Player);
+                    else ItemAppearedInCurrentTurn.CalcProbabilityToInteract(Player);
+
+
                 AppearanceEachTurn();
 
                 if ((Player.CurrentHealth == 0) || (Player.CherryCount == 5))
@@ -98,9 +99,9 @@ namespace Exam_9_Packman.Services
 
         public IItems AppearItem()
         {
-            var percent = RandomExtention.GenerateChance();
+            var percent = _random.Next(1, 101);
             if (percent <= 12)
-                return new Enemy(1);
+                return new Enemy(1, 20);
 
             if ((percent > 12) && (percent <= 24))
                 return new Cherry(1);
@@ -114,7 +115,7 @@ namespace Exam_9_Packman.Services
         
         public string AppearanceDirections()
         {
-            var percent = RandomExtention.GenerateChance();
+            var percent = _random.Next(1, 101);
             if (percent <= 25)
             {
                 MovementDirection = CommandUp;
@@ -137,7 +138,6 @@ namespace Exam_9_Packman.Services
                 return DirectionDown;
             }
         }
-
 
         public void PrintAvailableMovements()
         {

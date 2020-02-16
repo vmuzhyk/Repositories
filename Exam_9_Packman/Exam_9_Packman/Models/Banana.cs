@@ -20,5 +20,9 @@ namespace Exam_9_Packman.Models
             player.Score += Coast;
             Console.WriteLine($"Player get Banana. Now Player's score is {player.Score}");
         }
+
+        public void CalcProbabilityToInteract(Player player)
+        {
+        }
     }
 }
