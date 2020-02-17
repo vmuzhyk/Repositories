@@ -12,6 +12,9 @@ namespace Exam_9_Packman.Services
     {
         public Player Player { get; set; }
 
+        public List<Player> Scores { get; set; }
+        public List<Player> SortedScores { get; set; }
+
         public Random _random;
         public IItems ItemAppearedInCurrentTurn { get; set; }   //Item Appeared In Current Turn
         public string AppearanceDirectionInCurrentTurn { get; set; } //Appearance Direction In Current Turn
@@ -29,7 +32,8 @@ namespace Exam_9_Packman.Services
 
         public RoundService()
         {
-             Player = new Player(3, 3, 0, 0);
+            Player = new Player(3, 3, 0, 0);
+            Scores = new List<Player>();
             _random = new Random();
         }
 
@@ -39,6 +43,8 @@ namespace Exam_9_Packman.Services
             Console.WriteLine($"Hi {Player.Name}!");
             PrintAvailableMovements();
             DisplayMoveDialog();
+            Scores.Add(Player);
+            SortedScores = Scores.OrderByDescending(o => o.Score).ToList();
         }
 
         public string SetPlayersName()
@@ -47,6 +53,7 @@ namespace Exam_9_Packman.Services
             Console.Write("Enter your name: ");
             var input = Console.ReadLine();
             return input;
+            
         }
 
         public void DisplayMoveDialog()
@@ -86,7 +93,9 @@ namespace Exam_9_Packman.Services
                     return;
             }
         }
-                 
+
+       
+
         public void AppearanceEachTurn()
         {
             ItemAppearedInCurrentTurn = AppearItem();

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Exam_9_Packman.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,7 +46,7 @@ namespace Exam_9_Packman.Services
         {
             CheckFile();
             ValidateNewGame();
-            SaveDialog();
+            //SaveDialog();
         }
 
         private void ValidateNewGame()
@@ -77,10 +80,10 @@ namespace Exam_9_Packman.Services
 
         private void CheckFile()
         {
-            /*ValidateSaves();
-            var save = LoadJson();
+            ValidateSaves();
+            LoadScore();
 
-            if (IsAnyScoreSaved(save))
+            /*if (IsAnyScoreSaved(save))
             {
                 StartGame();
             }*/
@@ -91,7 +94,7 @@ namespace Exam_9_Packman.Services
             return save.IsAnyChange;
         }*/
 
-        private void StartGame()
+        /*private void StartGame()
         {
             while (true)
             {
@@ -108,37 +111,39 @@ namespace Exam_9_Packman.Services
                         continue;
                 }
             }
-        }
+        }*/
 
-        private void SaveScore()
+        private void SaveScore(List<Player> players)
         {
-            /*Save save = new Save(_roundService.TeamA, _roundService.TeamB, _roundService.IsTeamATurn, _roundService.IsAnyChange);
+            Save save = new Save(players);
             string json = JsonConvert.SerializeObject(save, Formatting.Indented);
 
-            File.WriteAllText(src, json);*/
+            File.WriteAllText(src, json);
         }
+
         private void SaveScoreWithMessage()
         {
-            SaveScore();
+            SaveScore(_roundService.SortedScores);
             Console.WriteLine("Score is saved");
         }
 
         private void ValidateSaves()
         {
-           /* if (!File.Exists(src))
+            if (!File.Exists(src))
             {
                 File.Create(src).Dispose();
-            }*/
+                SaveScore(new List<Player>());
+            }
         }
 
         private void LoadScore()
         {
-           /* var save = LoadJson();
-            _roundService.Load(save.TeamA, save.TeamB, save.IsTeamATurn);*/
+            var save = LoadJson();
+            _roundService.Scores = save.Scores;
         }
 
 
-        /*private Save LoadJson()
+        private Save LoadJson()
         {
             using (StreamReader r = new StreamReader(src))
             {
@@ -147,9 +152,9 @@ namespace Exam_9_Packman.Services
                 return save;
             }
 
-        }*/
+        }
 
-        private void SaveDialog()
+        /*private void SaveDialog()
         {
             while (true)
             {
@@ -167,7 +172,7 @@ namespace Exam_9_Packman.Services
                         continue;
                 }
             }
-        }
+        }*/
 
         private void ExecuteCommand(string command)
         {
@@ -195,6 +200,7 @@ namespace Exam_9_Packman.Services
                 case CommandStart:
                     Console.WriteLine("Your game was started!");
                     _roundService.Begin();
+                    SaveScoreWithMessage();
                     break;
                 case CommandContinue:
                     Console.WriteLine("Your game was continued!");

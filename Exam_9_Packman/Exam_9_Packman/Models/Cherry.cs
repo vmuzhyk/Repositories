@@ -10,7 +10,7 @@ namespace Exam_9_Packman.Models
     public class Cherry : IItems
     {
         public int Coast { get; set; }
-        public Cherry (int coast) 
+        public Cherry(int coast)
         {
             Coast = coast;
         }
