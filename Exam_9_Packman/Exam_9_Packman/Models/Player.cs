@@ -1,11 +1,5 @@
 ﻿using Exam_9_Packman.Models.Abstract;
 using Newtonsoft.Json;
-using Exam_9_Packman.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exam_9_Packman.Models
 {
@@ -27,5 +21,5 @@ namespace Exam_9_Packman.Models
             Score = score;
             CherryCount = cherryCount;
         }
-    } 
+    }
 }

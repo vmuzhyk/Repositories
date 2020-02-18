@@ -3,9 +3,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exam_9_Packman.Services
 {
@@ -23,15 +20,9 @@ namespace Exam_9_Packman.Services
 
 
         private const string CommandExit = "EXIT";
-        private const string CommandReset = "RESET";
         private const string CommandHelp = "HELP";
         private const string CommandStart = "START";
-        private const string CommandLoad = "LOAD";
-        private const string CommandSave = "SAVE";
-        private const string CommandContinue = "CONTINUE";
         private const string CommandDisplay = "DISPLAY";
-        private const string CommandYes = "YES";
-        private const string CommandNo = "NO";
         private const string src = @"saves.json";
 
 
@@ -46,7 +37,6 @@ namespace Exam_9_Packman.Services
         {
             CheckFile();
             ValidateNewGame();
-            //SaveDialog();
         }
 
         private void ValidateNewGame()
@@ -67,51 +57,12 @@ namespace Exam_9_Packman.Services
             return input;
         }
 
-        private void ResetProgress()
-        {
-            //_roundService.CreateTwoTeams();
-        }
-
-        private void ResetProgressWithMessage()
-        {
-            ResetProgress();
-            Console.WriteLine("Progress is cleared");
-        }
-
         private void CheckFile()
         {
             ValidateSaves();
             LoadScore();
-
-            /*if (IsAnyScoreSaved(save))
-            {
-                StartGame();
-            }*/
         }
 
-        /*private bool IsAnyScoreSaved(Save save)
-        {
-            return save.IsAnyChange;
-        }*/
-
-        /*private void StartGame()
-        {
-            while (true)
-            {
-                Console.WriteLine("Press \"reset\", if you want to start new game or press \"load\" if you want to continue privious game!");
-                switch (Console.ReadLine().ToUpper())
-                {
-                    case CommandReset:
-                        ResetProgressWithMessage();
-                        return;
-                    case CommandLoad:
-                        LoadScore();
-                        return;
-                    default:
-                        continue;
-                }
-            }
-        }*/
 
         private void SaveScore(List<Player> players)
         {
@@ -142,7 +93,6 @@ namespace Exam_9_Packman.Services
             _roundService.Scores = save.Scores;
         }
 
-
         private Save LoadJson()
         {
             using (StreamReader r = new StreamReader(src))
@@ -154,26 +104,6 @@ namespace Exam_9_Packman.Services
 
         }
 
-        /*private void SaveDialog()
-        {
-            while (true)
-            {
-                Console.WriteLine("Do you want to save the game? [Yes/No]:");
-                switch (Console.ReadLine().ToUpper())
-                {
-                    case CommandYes:
-                        SaveScoreWithMessage();
-                        return;
-                    case CommandNo:
-                        ResetProgress();
-                        SaveScore();
-                        return;
-                    default:
-                        continue;
-                }
-            }
-        }*/
-
         private void ExecuteCommand(string command)
         {
             switch (command.ToUpper())
@@ -182,42 +112,26 @@ namespace Exam_9_Packman.Services
                     IsOver = true;
                     Console.WriteLine("The game is finished");
                     break;
-                case CommandReset:
-                    ResetProgressWithMessage();
-                    break;
                 case CommandHelp:
                     PrintAvailableCommands();
                     break;
                 case CommandDisplay:
-                    //_roundService.DisplayScore();
-                    break;
-                case CommandSave:
-                    SaveScoreWithMessage();
-                    break;
-                case CommandLoad:
-                    LoadScore();
+                    _roundService.DisplayScore();
                     break;
                 case CommandStart:
                     Console.WriteLine("Your game was started!");
                     _roundService.Begin();
                     SaveScoreWithMessage();
                     break;
-                case CommandContinue:
-                    Console.WriteLine("Your game was continued!");
-                    //_roundService.Continue();
-                    break;
             }
         }
+
         private void PrintAvailableCommands()
         {
             Console.WriteLine("Available commands:");
             Console.WriteLine($"{CommandExit.ToLower()} - finish the game");
-            Console.WriteLine($"{CommandReset.ToLower()} - reset the progress");
             Console.WriteLine($"{CommandHelp.ToLower()} - display abailable commands");
             Console.WriteLine($"{CommandStart.ToLower()} - start game");
-            Console.WriteLine($"{CommandLoad.ToLower()} - load saved game");
-            Console.WriteLine($"{CommandContinue.ToLower()} - continue game");
-            Console.WriteLine($"{CommandSave.ToLower()} - save game");
             Console.WriteLine($"{CommandDisplay.ToLower()} - display game score");
         }
     }

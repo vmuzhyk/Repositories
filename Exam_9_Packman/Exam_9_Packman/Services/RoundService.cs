@@ -3,8 +3,6 @@ using Exam_9_Packman.Models.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exam_9_Packman.Services
 {
@@ -45,6 +43,7 @@ namespace Exam_9_Packman.Services
             DisplayMoveDialog();
             Scores.Add(Player);
             SortedScores = Scores.OrderByDescending(o => o.Score).Take(10).ToList();
+            DisplayScore();
 
         }
 
@@ -54,7 +53,7 @@ namespace Exam_9_Packman.Services
             Console.Write("Enter your name: ");
             var input = Console.ReadLine();
             return input;
-            
+
         }
 
         public void DisplayMoveDialog()
@@ -95,7 +94,7 @@ namespace Exam_9_Packman.Services
             }
         }
 
-       
+
 
         public void AppearanceEachTurn()
         {
@@ -119,10 +118,10 @@ namespace Exam_9_Packman.Services
             if ((percent > 24) && (percent <= 50))
                 return new Banana(10);
 
-            else 
+            else
                 return null;
         }
-        
+
         public string AppearanceDirections()
         {
             var percent = _random.Next(1, 101);
@@ -147,6 +146,12 @@ namespace Exam_9_Packman.Services
                 MovementDirection = CommandDown;
                 return DirectionDown;
             }
+        }
+
+        public void DisplayScore()
+        {
+            Console.WriteLine("Leaderboard:");
+            SortedScores.ForEach(member => Console.WriteLine($" Name {member.Name}, score {member.Score}"));
         }
 
         public void PrintAvailableMovements()
