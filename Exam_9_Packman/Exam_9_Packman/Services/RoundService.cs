@@ -44,7 +44,8 @@ namespace Exam_9_Packman.Services
             PrintAvailableMovements();
             DisplayMoveDialog();
             Scores.Add(Player);
-            SortedScores = Scores.OrderByDescending(o => o.Score).ToList();
+            SortedScores = Scores.OrderByDescending(o => o.Score).Take(10).ToList();
+
         }
 
         public string SetPlayersName()
