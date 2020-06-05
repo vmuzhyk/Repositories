@@ -15,7 +15,8 @@ namespace Exams_10_Chaos_League.Services
         }
         internal void Begin()
         {
-            
+
+            _roundService.Begin();
         }
     }
 }
