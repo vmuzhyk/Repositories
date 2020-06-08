@@ -12,5 +12,10 @@ namespace Exams_10_Chaos_League.Models
         public Bomber(int maxHealth, int damage) : base(maxHealth, damage)
         {
         }
+
+        public override string ToString()
+        {
+            return $"B({CurrentHealth}) ";
+        }
     }
 }

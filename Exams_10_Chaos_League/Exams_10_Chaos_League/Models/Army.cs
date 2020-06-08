@@ -21,7 +21,18 @@ namespace Exams_10_Chaos_League.Models
             {
                new Cruiser(100),
                new Cruiser(100)
-            }; 
+            };
         }
+
+        public override string ToString()
+        {
+            var army = $"{Name} Army \n";
+            foreach (var cruiser in Cruisers)
+            {
+                army += $"{cruiser} \n";
+            }
+            return army;
+        }
+
     }
 }

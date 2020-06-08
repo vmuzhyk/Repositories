@@ -25,17 +25,17 @@ namespace Exams_10_Chaos_League.Models
                 new Interceptor(4, 4),
                 new Interceptor(4, 4)
             };
-            DisplayFleet();
-
         }
-
-        public void DisplayFleet()
+        public override string ToString()
         {
+            var cruiser = $"Cruiser({CurrentHealth})\t";
             foreach (var aircraft in Fleet)
             {
-                Console.WriteLine(aircraft.GetType().Name);
+                cruiser += aircraft;
             }
+            return cruiser;
         }
 
+        
     }
 }

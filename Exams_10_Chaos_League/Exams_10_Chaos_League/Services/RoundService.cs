@@ -23,11 +23,14 @@ namespace Exams_10_Chaos_League.Services
         }
         internal void Begin()
         {
-
+            DisplayFightField(); 
         }
         public void DisplayFightField()
         {
-
+            foreach (var army in Teams)
+            {
+                Console.WriteLine(army); ;
+            }
         }
     }
 }
