@@ -29,13 +29,8 @@ namespace Exams_10_Chaos_League.Models
         public override string ToString()
         {
             var cruiser = $"Cruiser({CurrentHealth})\t";
-            foreach (var aircraft in Fleet)
-            {
-                cruiser += aircraft;
-            }
+            Fleet.ForEach(aircraft => cruiser += aircraft);
             return cruiser;
         }
-
-        
     }
 }

@@ -27,12 +27,8 @@ namespace Exams_10_Chaos_League.Models
         public override string ToString()
         {
             var army = $"{Name} Army \n";
-            foreach (var cruiser in Cruisers)
-            {
-                army += $"{cruiser} \n";
-            }
+            Cruisers.ForEach(cruiser => army += $"{cruiser} \n");
             return army;
         }
-
     }
 }

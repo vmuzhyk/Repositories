@@ -27,10 +27,7 @@ namespace Exams_10_Chaos_League.Services
         }
         public void DisplayFightField()
         {
-            foreach (var army in Teams)
-            {
-                Console.WriteLine(army); ;
-            }
+            Teams.ForEach(army => Console.WriteLine(army));
         }
     }
 }
