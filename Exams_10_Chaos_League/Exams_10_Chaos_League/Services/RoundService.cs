@@ -2,18 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exams_10_Chaos_League.Services
 {
     public class RoundService
     {
-        public List<Army> Teams { get; set; }
- 
+        public List<Army> Armies { get; set; }
+        public List<Army> AllFightArmies { get => Armies.Where(army => !army.IsMadeTurn).ToList();}
+        
         public RoundService()
         {
-            Teams = new List<Army>
+            Armies = new List<Army>
             {
                 new Army("Humans"),
                 new Army("Necromants"),
@@ -23,11 +22,34 @@ namespace Exams_10_Chaos_League.Services
         }
         internal void Begin()
         {
-            DisplayFightField(); 
+            DisplayFightField();
+            while (AllFightArmies.Count != 0)
+                AttackArmyByArmy();
+
+            DisplayWinner();
         }
+
+        private void DisplayWinner()
+        {
+            
+        }
+
         public void DisplayFightField()
         {
-            Teams.ForEach(army => Console.WriteLine(army));
+            Armies.ForEach(army => Console.WriteLine(army));
+        }
+
+        public Army GetRandomArmy()
+        {
+            var random = new Random().Next(AllFightArmies.Count);
+            //Console.WriteLine(" " + random);
+            return AllFightArmies[random];
+        }
+        private void AttackArmyByArmy()
+        {
+            var army = GetRandomArmy();
+            army.IsMadeTurn = true;
+            Console.WriteLine(army.Name);
         }
     }
 }

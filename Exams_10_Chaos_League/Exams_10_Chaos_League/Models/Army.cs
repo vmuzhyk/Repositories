@@ -1,9 +1,5 @@
-﻿using Exams_10_Chaos_League.Models.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 
 namespace Exams_10_Chaos_League.Models
 {
@@ -12,7 +8,7 @@ namespace Exams_10_Chaos_League.Models
         public List<Cruiser> Cruisers { get; set; }
 
         public string Name { get; set; }
-        public bool IsTeamMakeTurn { get; set; }
+        public bool IsMadeTurn { get; set; }
 
         public Army(string name)
         {
