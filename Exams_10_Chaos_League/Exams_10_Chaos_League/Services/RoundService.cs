@@ -10,6 +10,7 @@ namespace Exams_10_Chaos_League.Services
         public List<Army> Armies { get; set; }
         public List<Army> AllFightArmies { get => Armies.Where(army => !army.IsMadeTurn).ToList();}
         
+
         public RoundService()
         {
             Armies = new List<Army>
@@ -48,6 +49,7 @@ namespace Exams_10_Chaos_League.Services
         private void AttackArmyByArmy()
         {
             var army = GetRandomArmy();
+            //here must be method of chosen 5 items from army
             army.IsMadeTurn = true;
             Console.WriteLine(army.Name);
         }
