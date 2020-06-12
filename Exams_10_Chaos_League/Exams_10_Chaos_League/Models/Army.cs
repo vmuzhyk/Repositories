@@ -1,4 +1,5 @@
 ﻿using Exams_10_Chaos_League.Models.Abstract;
+using Exams_10_Chaos_League.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace Exams_10_Chaos_League.Models
 
         public string Name { get; set; }
         public bool IsMadeTurn { get; set; }
+        
 
         public Army(string name)
         {
@@ -33,11 +35,10 @@ namespace Exams_10_Chaos_League.Models
             return army;
         }
 
-        public List<Aircraft> GetRandomFiveUnits(int count)
+        public List<Aircraft> GetSquad(int count)
         {
-            Random random = new Random();
             var result = Cruisers.SelectMany(cruiser => cruiser.Fleet)
-            .OrderBy(x => random.Next())
+            .OrderBy(x => RandomService.MakeRandom())
             .Take(count)
             .ToList();
 

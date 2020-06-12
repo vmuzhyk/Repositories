@@ -17,7 +17,12 @@ namespace Exams_10_Chaos_League.Services
             {
                 new Army("Humans"),
                 new Army("Necromants"),
-                new Army("Pretorians")
+                new Army("Pretorians"),
+                new Army("Orcs"),
+                new Army("Elfs"),
+                new Army("Demons"),
+                new Army("Barbarians"),
+                new Army("Dwarfs")
             };
 
         }
@@ -42,16 +47,19 @@ namespace Exams_10_Chaos_League.Services
 
         public Army GetRandomArmy()
         {
-            var random = new Random().Next(AllFightArmies.Count);
+            var random = RandomService.Get(AllFightArmies.Count);
             //Console.WriteLine(" " + random);
             return AllFightArmies[random];
         }
         private void AttackArmyByArmy()
         {
             var army = GetRandomArmy();
-            //here must be method of chosen 5 items from army
             army.IsMadeTurn = true;
-            Console.WriteLine(army.Name);
+            Console.Write($"{army.Name.PadRight(15)}");
+            var squad = army.GetSquad(5);
+            squad.ForEach(unit => Console.Write($" {unit}"));
+            Console.WriteLine();
+
         }
     }
 }
