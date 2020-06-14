@@ -23,5 +23,6 @@ namespace Exams_10_Chaos_League.Services
         {
             return _random.Next(count);
         }
+ 
     }
 }

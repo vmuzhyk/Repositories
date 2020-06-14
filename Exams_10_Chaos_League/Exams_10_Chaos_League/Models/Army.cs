@@ -15,7 +15,8 @@ namespace Exams_10_Chaos_League.Models
 
         public string Name { get; set; }
         public bool IsMadeTurn { get; set; }
-        
+        public bool IsChoosen { get; set; }
+
 
         public Army(string name)
         {
