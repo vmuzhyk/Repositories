@@ -23,8 +23,8 @@ namespace Exams_10_Chaos_League.Models
             Name = name;
             Cruisers = new List<Cruiser>
             {
-               new Cruiser(100),
-               new Cruiser(100)
+               new Cruiser(100, this),
+               new Cruiser(100, this)
             };
         }
 
