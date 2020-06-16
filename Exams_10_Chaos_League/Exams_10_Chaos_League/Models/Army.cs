@@ -9,7 +9,6 @@ namespace Exams_10_Chaos_League.Models
     public class Army
     {
         public List<Cruiser> Cruisers { get; set; }
-
         public List<Cruiser> AllAliveCruisers { get => Cruisers.Where(cruiser => cruiser.IsAlive).ToList(); }
         public bool IsAllCruisersAlive { get => AllAliveCruisers.Count > 0; }
 
@@ -32,13 +31,13 @@ namespace Exams_10_Chaos_League.Models
         public override string ToString()
         {
             var army = $"{Name} Army \n";
-            Cruisers.ForEach(cruiser => army += $"{cruiser} \n");
+            AllAliveCruisers.ForEach(cruiser => army += $"{cruiser} \n");
             return army;
         }
 
         public List<Aircraft> GetSquad(int count)
         {
-            var result = Cruisers.SelectMany(cruiser => cruiser.Fleet)
+            var result = AllAliveCruisers.SelectMany(cruiser => cruiser.AllAliveAircraft)
             .OrderBy(x => RandomService.MakeRandom())
             .Take(count)
             .ToList();

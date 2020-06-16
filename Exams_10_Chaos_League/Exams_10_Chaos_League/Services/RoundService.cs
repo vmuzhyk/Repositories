@@ -9,8 +9,9 @@ namespace Exams_10_Chaos_League.Services
     public class RoundService
     {
         public List<Army> Armies { get; set; }
-        public List<Army> AllFightArmies { get => Armies.Where(army => !army.IsMadeTurn).ToList();}
-        public List<Army> AllAvailableArmyEnemies { get => Armies.Where(army => !army.IsChoosen).ToList(); }
+        private List<Army> AliveArmies { get => Armies.Where(army => army.IsAllCruisersAlive).ToList();}
+        private List<Army> AllFightArmies { get => AliveArmies.Where(army => !army.IsMadeTurn).ToList();}
+        private List<Army> AllAvailableArmyEnemies { get => AliveArmies.Where(army => !army.IsChoosen).ToList(); }
 
         public RoundService()
         {
@@ -30,8 +31,13 @@ namespace Exams_10_Chaos_League.Services
         internal void Begin()
         {
             DisplayFightField();
-            while (AllFightArmies.Count != 0)
-                AttackArmyByArmy();
+            while (AliveArmies.Count > 1)
+            {
+                while (AllFightArmies.Count != 0)
+                    AttackArmyByArmy();
+
+                AliveArmies.ForEach(army => army.IsMadeTurn = false);
+            }
 
 
             DisplayWinner();
@@ -90,7 +96,7 @@ namespace Exams_10_Chaos_League.Services
                 Console.Write($"{unit} attaked ");
                 if (unit is Bomber) {
                     var enemyArmy = GetRandomArmyEnemy();
-                    var enemycruiser = Armies.SelectMany(army => army.Cruisers)
+                    var enemycruiser = AliveArmies.SelectMany(army => army.AllAliveCruisers)
                     .OrderBy(x => RandomService.MakeRandom()).First();
                     enemycruiser.RemoveHealth(unit.Damage);
                     Console.WriteLine($"{enemyArmy.Name} Cruiser ({enemycruiser.CurrentHealth})"); 
