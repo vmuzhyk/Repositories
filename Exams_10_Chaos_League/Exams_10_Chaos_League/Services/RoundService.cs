@@ -9,8 +9,8 @@ namespace Exams_10_Chaos_League.Services
     public class RoundService
     {
         public List<Army> Armies { get; set; }
-        private List<Army> AliveArmies { get => Armies.Where(army => army.IsAllCruisersAlive).ToList();}
-        private List<Army> AllFightArmies { get => AliveArmies.Where(army => !army.IsMadeTurn).ToList();}
+        private List<Army> AliveArmies { get => Armies.Where(army => army.IsAllCruisersAlive).ToList(); }
+        private List<Army> AllFightArmies { get => AliveArmies.Where(army => !army.IsMadeTurn).ToList(); }
         private List<Army> AllAvailableArmyEnemies { get => AliveArmies.Where(army => !army.IsChoosen).ToList(); }
 
         public RoundService()
@@ -19,12 +19,12 @@ namespace Exams_10_Chaos_League.Services
             {
                 new Army("Humans"),
                 new Army("Necromants"),
-                new Army("Pretorians"),
+                /*new Army("Pretorians"),
                 new Army("Orcs"),
                 new Army("Elfs"),
                 new Army("Demons"),
                 new Army("Barbarians"),
-                new Army("Dwarfs")
+                new Army("Dwarfs")*/
             };
 
         }
@@ -39,13 +39,12 @@ namespace Exams_10_Chaos_League.Services
                 AliveArmies.ForEach(army => army.IsMadeTurn = false);
             }
 
-
             DisplayWinner();
         }
 
         private void DisplayWinner()
         {
-            
+            Console.WriteLine("Ку-ку!!!");
         }
 
         public void DisplayFightField()
@@ -75,37 +74,42 @@ namespace Exams_10_Chaos_League.Services
             army.IsChoosen = false;
         }
 
-        /*public void PrintSquad(Army army, List<Aircraft> squad)
-        {
-            Console.Write($"{army.Name.PadRight(15)}");
-            squad.ForEach(unit => Console.Write($" {unit}"));
-            Console.WriteLine();
-        }*/
-
-        public Aircraft GetRandomEnemy()
-        {
-            var enemyArmy = GetRandomArmyEnemy();
-            var enemyUnit = enemyArmy.GetSquad(1);
-            return enemyUnit.First();
-        }
 
         public void AttackRandomEnemy(List<Aircraft> squad)
         {
-            squad.ForEach(unit => 
+            squad.ForEach(unit =>
             {
                 Console.Write($"{unit} attaked ");
-                if (unit is Bomber) {
-                    var enemyArmy = GetRandomArmyEnemy();
-                    var enemycruiser = AliveArmies.SelectMany(army => army.AllAliveCruisers)
+                if (unit is Bomber)
+                {
+                    var enemycruiser = AllAvailableArmyEnemies.SelectMany(army => army.AllAliveCruisers)
                     .OrderBy(x => RandomService.MakeRandom()).First();
-                    enemycruiser.RemoveHealth(unit.Damage);
-                    Console.WriteLine($"{enemyArmy.Name} Cruiser ({enemycruiser.CurrentHealth})"); 
+                    if (enemycruiser != null)
+                    {
+                        enemycruiser.RemoveHealth(unit.Damage);
+                        Console.WriteLine($"{enemycruiser.Army.Name} Cruiser ({enemycruiser.CurrentHealth})");
+                    }
+                    else return;
                 }
                 else
                 {
-                    var enemy = GetRandomEnemy();
-                    enemy.RemoveHealth(unit.Damage);
-                    Console.WriteLine($"{enemy.Parent.Army.Name} {enemy}");
+                    var enemyArmy = GetRandomArmyEnemy();
+                    if (enemyArmy != null)
+                    {
+                        var enemyUnit = enemyArmy.GetSquad(1).FirstOrDefault();
+                        if (enemyUnit != null)
+                        {
+                            enemyUnit.RemoveHealth(unit.Damage);
+                            Console.WriteLine($"{enemyUnit.ParentCruiser.Army.Name} {enemyUnit}");
+                        }
+                        else
+                        {
+                            var enemycruiser = enemyArmy.AllAliveCruisers.OrderBy(x => RandomService.MakeRandom()).First();
+                            enemycruiser.RemoveHealth(unit.Damage);
+                            Console.WriteLine($"{enemycruiser.Army.Name} {enemycruiser}");
+                        }
+                    }
+                    else return;
                 }
             });
 
