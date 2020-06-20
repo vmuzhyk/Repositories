@@ -1,4 +1,6 @@
-﻿namespace Exams_10_Chaos_League.Models.Abstract
+﻿using System.Threading;
+
+namespace Exams_10_Chaos_League.Models.Abstract
 {
     public abstract class Unit
     {
