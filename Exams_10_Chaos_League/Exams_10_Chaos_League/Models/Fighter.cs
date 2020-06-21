@@ -20,7 +20,7 @@ namespace Exams_10_Chaos_League.Models
         public override void AttackEnemy(Army enemyArmy)
         {
             base.AttackEnemy(enemyArmy);
-            var enemyUnit = enemyArmy.AllAliveCruisers.SelectMany(cruiser => cruiser.AllAliveAircraft).OrderBy(x => RandomService.MakeRandom()).FirstOrDefault();
+            var enemyUnit = enemyArmy.AllAliveCruisers.SelectMany(cruiser => cruiser.AllAliveAircraft).OrderBy(x => RandomService.Get()).FirstOrDefault();
             if (enemyUnit != null)
             {
                 enemyUnit.RemoveHealth(this.Damage);

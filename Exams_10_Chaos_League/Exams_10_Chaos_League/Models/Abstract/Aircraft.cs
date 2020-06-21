@@ -7,7 +7,7 @@ namespace Exams_10_Chaos_League.Models.Abstract
 {
     public abstract class Aircraft : Unit
     {
-        public int Damage { get; set; }
+        public int Damage { get; }
         public Cruiser ParentCruiser { get; }
         public Aircraft(int maxHealth, int damage, Cruiser parentCruiser) : base(maxHealth)
         {
@@ -21,9 +21,9 @@ namespace Exams_10_Chaos_League.Models.Abstract
             Console.Write($"{this} attaked ");
         }
 
-        public virtual void AttackEnemy(List<Cruiser> enemyCruisers)
+        public override void AttackEnemy(List<Cruiser> enemyCruisers)
         {
-            var enemycruiser = enemyCruisers.OrderBy(x => RandomService.MakeRandom()).First();
+            var enemycruiser = enemyCruisers.OrderBy(x => RandomService.Get()).First();
             enemycruiser.RemoveHealth(this.Damage);
             Console.WriteLine($"{enemycruiser.Army.Name} Cruiser ({enemycruiser.CurrentHealth})");
         }

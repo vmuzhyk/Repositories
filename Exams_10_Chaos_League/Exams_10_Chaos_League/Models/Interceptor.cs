@@ -30,7 +30,7 @@ namespace Exams_10_Chaos_League.Models
                 .SelectMany(cruiser => cruiser.AllAliveAircraft)
                 .OrderBy(x => x.CurrentHealth / x.MaxHealth * 100)
                 .ThenByDescending(x => x.MaxHealth)
-                .ThenBy(x => RandomService.MakeRandom())
+                .ThenBy(x => RandomService.Get())
                 .FirstOrDefault();
 
 

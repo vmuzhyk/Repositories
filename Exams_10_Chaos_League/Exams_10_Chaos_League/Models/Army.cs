@@ -22,8 +22,8 @@ namespace Exams_10_Chaos_League.Models
             Name = name;
             Cruisers = new List<Cruiser>
             {
-               new Cruiser(100, this),
-               new Cruiser(100, this)
+               new Cruiser(100, 2, this, 20, 36),
+               new Cruiser(100, 2, this, 20, 36)
             };
         }
 
@@ -40,7 +40,7 @@ namespace Exams_10_Chaos_League.Models
             var aircraftUnits = AllAliveCruisers.SelectMany(cruiser => cruiser.AllAliveAircraft).Cast<Unit>();
             var cruisersUnit = AllAliveCruisers.Cast<Unit>();
             var squad = aircraftUnits.Concat(cruisersUnit)
-            .OrderBy(x => RandomService.MakeRandom())
+            .OrderBy(x => RandomService.Get())
             .Take(count)
             .ToList();
             

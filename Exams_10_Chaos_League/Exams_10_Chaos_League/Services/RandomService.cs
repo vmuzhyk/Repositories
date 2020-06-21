@@ -14,7 +14,7 @@ namespace Exams_10_Chaos_League.Services
         {
             _random = new Random();
         }
-        public static int MakeRandom()
+        public static int Get()
         {
             return _random.Next();
         }
@@ -22,6 +22,11 @@ namespace Exams_10_Chaos_League.Services
         public static int Get(int count)
         {
             return _random.Next(count);
+        }
+
+        public static int Get(int min, int max)
+        {
+            return _random.Next(min, max);
         }
  
     }
