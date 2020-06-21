@@ -16,6 +16,13 @@ namespace Exams_10_Chaos_League.Models
             return $"I({CurrentHealth}) ";
         }
 
+        public override void AttackEnemy(List<Cruiser> enemyCruisers)
+        {
+            var enemycruiser = enemyCruisers.OrderBy(x => x.CurrentHealth).First();
+            enemycruiser.RemoveHealth(this.Damage);
+            Console.WriteLine($"{enemycruiser.Army.Name} Cruiser ({enemycruiser.CurrentHealth})");
+        }
+
         public override void AttackEnemy(Army enemyArmy)
         {
             base.AttackEnemy(enemyArmy);
@@ -25,8 +32,8 @@ namespace Exams_10_Chaos_League.Models
                 .ThenByDescending(x => x.MaxHealth)
                 .ThenBy(x => RandomService.MakeRandom())
                 .FirstOrDefault();
-                
-                
+
+
             if (enemyUnit != null)
             {
                 enemyUnit.RemoveHealth(this.Damage);
