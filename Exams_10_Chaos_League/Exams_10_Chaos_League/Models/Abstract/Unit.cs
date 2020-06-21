@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 
 namespace Exams_10_Chaos_League.Models.Abstract
 {
@@ -6,6 +7,7 @@ namespace Exams_10_Chaos_League.Models.Abstract
     {
         public int CurrentHealth { get; set; }
         public int MaxHealth { get; set; }
+        
         public bool IsAlive => CurrentHealth > 0;
         
         public Unit(int maxHealth)
@@ -17,6 +19,11 @@ namespace Exams_10_Chaos_League.Models.Abstract
         {
             CurrentHealth -= damage;
             //Thread.Sleep(200);
+        }
+
+        public virtual void AttackEnemy(Army enemyArmy)
+        {
+            
         }
     }
 }

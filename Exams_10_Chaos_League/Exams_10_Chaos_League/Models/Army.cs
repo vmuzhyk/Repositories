@@ -35,14 +35,18 @@ namespace Exams_10_Chaos_League.Models
             return army;
         }
 
-        public List<Aircraft> GetSquad(int count)
+        public List<Unit> GetSquad(int count)
         {
-            var result = AllAliveCruisers.SelectMany(cruiser => cruiser.AllAliveAircraft)
+            var aircraftUnits = AllAliveCruisers.SelectMany(cruiser => cruiser.AllAliveAircraft).Cast<Unit>();
+            var cruisersUnit = AllAliveCruisers.Cast<Unit>();
+            var squad = aircraftUnits.Concat(cruisersUnit)
             .OrderBy(x => RandomService.MakeRandom())
             .Take(count)
             .ToList();
-
-            return result;
+            
+            return squad;
         }
+
+       
     }
 }

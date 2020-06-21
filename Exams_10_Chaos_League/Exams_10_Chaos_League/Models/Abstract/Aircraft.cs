@@ -16,7 +16,7 @@ namespace Exams_10_Chaos_League.Models.Abstract
 
         }
 
-        public virtual void AttackEnemy(Army enemyArmy)
+        public override void AttackEnemy(Army enemyArmy)
         {
             Console.Write($"{this} attaked ");
         }

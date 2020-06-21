@@ -76,7 +76,7 @@ namespace Exams_10_Chaos_League.Services
         }
 
 
-        public void AttackRandomEnemy(List<Aircraft> squad)
+        public void AttackRandomEnemy(List<Unit> squad)
         {
             squad.ForEach(unit =>
             {
