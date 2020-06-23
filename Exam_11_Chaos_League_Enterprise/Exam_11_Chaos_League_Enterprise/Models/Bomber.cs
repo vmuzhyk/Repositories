@@ -9,5 +9,8 @@ namespace Exam_11_Chaos_League_Enterprise.Models
 {
     public class Bomber : Aircraft
     {
+        public Bomber(int maxHealt, int damage) : base(maxHealt, damage)
+        {
+        }
     }
 }

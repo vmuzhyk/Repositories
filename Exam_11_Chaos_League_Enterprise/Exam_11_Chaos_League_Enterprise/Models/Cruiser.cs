@@ -9,5 +9,8 @@ namespace Exam_11_Chaos_League_Enterprise.Models
 {
     public class Cruiser : Unit
     {
+        public Cruiser(int maxHealt, int damage) : base(maxHealt, damage)
+        {
+        }
     }
 }

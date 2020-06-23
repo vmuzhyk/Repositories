@@ -8,5 +8,8 @@ namespace Exam_11_Chaos_League_Enterprise.Models.Abstract
 {
     public class Aircraft : Unit
     {
+        public Aircraft(int maxHealt, int damage) : base(maxHealt, damage)
+        {
+        }
     }
 }
