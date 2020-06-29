@@ -14,7 +14,7 @@ namespace Exam_11_Chaos_League_Enterprise.Models
         }
         public override string ToString()
         {
-            return $"I({this.CurrentHealth})";
+            return $"I({CurrentHealth})";
         }
     }
 }

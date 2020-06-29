@@ -2,16 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exam_11_Chaos_League_Enterprise.Services
 {
     public class RoundService
     {
-        List<Army> Armies { get; set; }
+        private List<Army> Armies { get; set; }
+        private List<Army> AliveArmies => Armies.Where(army => army.AllAliveCruisers.Count > 0).ToList();
+        private List<Army> AvailableArmies => AliveArmies.Where(army => !army.IsChosen).ToList();
+        private List<Army> ArmiesMadeturn => AliveArmies.Where(army => !army.IsMadeTurn).ToList();
 
-        
+
         public RoundService()
         {
             Armies = new List<Army>()
@@ -30,6 +31,21 @@ namespace Exam_11_Chaos_League_Enterprise.Services
         public void Begin()
         {
             PrintFightField();
+            while (AliveArmies.Count > 1)
+            {
+                AttackArmyStepByStep();
+            }
+            DisplayWinner();
+        }
+
+        private void DisplayWinner()
+        {
+            
+        }
+
+        private void AttackArmyStepByStep()
+        {
+
         }
 
         private void PrintFightField()

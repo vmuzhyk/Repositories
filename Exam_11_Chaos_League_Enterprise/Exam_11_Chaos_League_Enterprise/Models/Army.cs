@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exam_11_Chaos_League_Enterprise.Models
 {
     public class Army
     {
         public string Name { get; }
+        public bool IsMadeTurn { get; set; }
+        public bool IsChosen { get; set; }
         public List<Cruiser> Cruisers { get; set; }
         public List<Cruiser> AllAliveCruisers => Cruisers.Where(x => x.IsAlive).ToList();
-        
+
+
         public Army(string name)
         {
             Name = name;
@@ -24,7 +24,7 @@ namespace Exam_11_Chaos_League_Enterprise.Models
 
         public override string ToString()
         {
-            var army = $"{this.Name} army\n";
+            string army = $"{Name} army\n";
             AllAliveCruisers.ForEach(cruiser => army += cruiser + "\n");
             return army;
         }
