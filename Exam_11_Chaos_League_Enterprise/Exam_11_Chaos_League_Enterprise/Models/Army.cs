@@ -24,8 +24,9 @@ namespace Exam_11_Chaos_League_Enterprise.Models
 
         public override string ToString()
         {
-            return $"{this.Name} army\n" +
-                $"{this.Cruisers.ForEach()}";
+            var army = $"{this.Name} army\n";
+            AllAliveCruisers.ForEach(cruiser => army += cruiser + "\n");
+            return army;
         }
     }
 }
