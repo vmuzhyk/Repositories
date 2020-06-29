@@ -12,5 +12,9 @@ namespace Exam_11_Chaos_League_Enterprise.Models
         public Interceptor(int maxHealt, int damage) : base(maxHealt, damage)
         {
         }
+        public override string ToString()
+        {
+            return $"I ({this.CurrentHealth})";
+        }
     }
 }

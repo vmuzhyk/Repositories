@@ -10,6 +10,7 @@ namespace Exam_11_Chaos_League_Enterprise.Models
     {
         public string Name { get; }
         public List<Cruiser> Cruisers { get; set; }
+        public List<Cruiser> AllAliveCruisers => Cruisers.Where(x => x.IsAlive).ToList();
         
         public Army(string name)
         {
@@ -19,6 +20,12 @@ namespace Exam_11_Chaos_League_Enterprise.Models
                 new Cruiser(100, 2),
                 new Cruiser(100, 2)
             };
+        }
+
+        public override string ToString()
+        {
+            return $"{this.Name} army\n" +
+                $"{this.Cruisers.ForEach()}";
         }
     }
 }

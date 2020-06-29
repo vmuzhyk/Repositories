@@ -10,6 +10,7 @@ namespace Exam_11_Chaos_League_Enterprise.Services
     public class RoundService
     {
         List<Army> Armies { get; set; }
+
         
         public RoundService()
         {
@@ -26,9 +27,14 @@ namespace Exam_11_Chaos_League_Enterprise.Services
             };
         }
 
-        internal void Begin()
+        public void Begin()
         {
-            
+            PrintFightField();
+        }
+
+        private void PrintFightField()
+        {
+            Armies.ForEach(army => Console.WriteLine(army));
         }
     }
 }

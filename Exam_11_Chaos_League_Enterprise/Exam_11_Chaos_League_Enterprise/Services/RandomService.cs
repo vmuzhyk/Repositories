@@ -8,5 +8,6 @@ namespace Exam_11_Chaos_League_Enterprise.Services
 {
     public static class RandomService
     {
+
     }
 }

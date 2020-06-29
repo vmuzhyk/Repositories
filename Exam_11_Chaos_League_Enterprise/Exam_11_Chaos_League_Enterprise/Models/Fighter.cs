@@ -12,5 +12,10 @@ namespace Exam_11_Chaos_League_Enterprise.Models
         public Fighter(int maxHealt, int damage) : base(maxHealt, damage)
         {
         }
+
+        public override string ToString()
+        {
+            return $"F ({this.CurrentHealth})";
+        }
     }
 }
