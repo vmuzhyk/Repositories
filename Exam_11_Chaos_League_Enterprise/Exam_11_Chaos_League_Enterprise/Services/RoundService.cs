@@ -9,8 +9,8 @@ namespace Exam_11_Chaos_League_Enterprise.Services
     {
         private List<Army> Armies { get; set; }
         private List<Army> AliveArmies => Armies.Where(army => army.AllAliveCruisers.Count > 0).ToList();
-        private List<Army> AvailableArmies => AliveArmies.Where(army => !army.IsChosen).ToList();
         private List<Army> ArmiesMadeturn => AliveArmies.Where(army => !army.IsMadeTurn).ToList();
+        private List<Army> AvailableArmies => AliveArmies.Where(army => !army.IsChosen).ToList();
 
 
         public RoundService()
@@ -45,7 +45,7 @@ namespace Exam_11_Chaos_League_Enterprise.Services
 
         private void AttackArmyStepByStep()
         {
-
+            
         }
 
         private void PrintFightField()

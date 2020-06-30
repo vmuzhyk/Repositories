@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Exam_11_Chaos_League_Enterprise.Models.Abstract;
+using Exam_11_Chaos_League_Enterprise.Services;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Exam_11_Chaos_League_Enterprise.Models
@@ -27,6 +29,14 @@ namespace Exam_11_Chaos_League_Enterprise.Models
             string army = $"{Name} army\n";
             AllAliveCruisers.ForEach(cruiser => army += cruiser + "\n");
             return army;
+        }
+
+        public List<Unit> GetSquad()
+        {
+            var legion = AllAliveCruisers.SelectMany(cruiser => cruiser.AllAliveUnits).ToList();
+            var squad = legion.OrderBy(unit => RandomService.Get()).Take(5).ToList();
+
+            return null;
         }
     }
 }
