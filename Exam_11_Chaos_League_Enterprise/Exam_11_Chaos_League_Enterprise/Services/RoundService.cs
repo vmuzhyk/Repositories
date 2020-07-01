@@ -9,7 +9,7 @@ namespace Exam_11_Chaos_League_Enterprise.Services
     {
         private List<Army> Armies { get; set; }
         private List<Army> AliveArmies => Armies.Where(army => army.AllAliveCruisers.Count > 0).ToList();
-        private List<Army> ArmiesMadeturn => AliveArmies.Where(army => !army.IsMadeTurn).ToList();
+        private List<Army> ArmiesWaitTurn => AliveArmies.Where(army => !army.IsMadeTurn).ToList();
         private List<Army> AvailableArmies => AliveArmies.Where(army => !army.IsChosen).ToList();
 
 
@@ -45,7 +45,23 @@ namespace Exam_11_Chaos_League_Enterprise.Services
 
         private void AttackArmyStepByStep()
         {
-            
+            var army = GetRandomArmy();
+            army.IsChosen = true;
+            var enemyArmy = GetEnemyArmy();
+
+
+        }
+
+        public Army GetEnemyArmy()
+        {
+            var enemyArmy = AvailableArmies.OrderBy(army => RandomService.Get()).FirstOrDefault();
+            return enemyArmy;
+        }
+
+        public Army GetRandomArmy()
+        {
+            var randomArmy = ArmiesWaitTurn.OrderBy(army => RandomService.Get()).FirstOrDefault();
+            return randomArmy;
         }
 
         private void PrintFightField()

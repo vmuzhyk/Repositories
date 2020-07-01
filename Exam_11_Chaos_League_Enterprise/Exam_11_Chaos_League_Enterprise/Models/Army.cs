@@ -34,9 +34,8 @@ namespace Exam_11_Chaos_League_Enterprise.Models
         public List<Unit> GetSquad()
         {
             var legion = AllAliveCruisers.SelectMany(cruiser => cruiser.AllAliveUnits).ToList();
-            var squad = legion.OrderBy(unit => RandomService.Get()).Take(5).ToList();
-
-            return null;
+            var squad = legion.Cast<Unit>().OrderBy(unit => RandomService.Get()).Take(5).ToList();
+            return squad;
         }
     }
 }
