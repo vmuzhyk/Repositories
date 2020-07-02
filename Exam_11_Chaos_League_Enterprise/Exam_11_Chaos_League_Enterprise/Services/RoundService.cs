@@ -33,23 +33,32 @@ namespace Exam_11_Chaos_League_Enterprise.Services
             PrintFightField();
             while (AliveArmies.Count > 1)
             {
-                AttackArmyStepByStep();
+                while (ArmiesWaitTurn.Count > 0)
+                {
+                    AttackArmyStepByStep();
+                }
+                NextTurn();
             }
             DisplayWinner();
         }
-
+        private void PrintFightField()
+        {
+            Armies.ForEach(army => Console.WriteLine(army));
+        }
         private void DisplayWinner()
         {
             
         }
-
+        
         private void AttackArmyStepByStep()
         {
             var army = GetRandomArmy();
             army.IsChosen = true;
-            var enemyArmy = GetEnemyArmy();
-
-
+            var squad = army.GetSquad();
+            army.IsMadeTurn = true;
+            AttackEnemy();
+            Console.WriteLine(army.Name);
+            army.IsChosen = false;
         }
 
         public Army GetEnemyArmy()
@@ -63,10 +72,15 @@ namespace Exam_11_Chaos_League_Enterprise.Services
             var randomArmy = ArmiesWaitTurn.OrderBy(army => RandomService.Get()).FirstOrDefault();
             return randomArmy;
         }
-
-        private void PrintFightField()
+        public void NextTurn()
         {
-            Armies.ForEach(army => Console.WriteLine(army));
+            AliveArmies.ForEach(army => army.IsMadeTurn = false);
         }
+
+        public void AttackEnemy()
+        {
+
+        }
+        
     }
 }

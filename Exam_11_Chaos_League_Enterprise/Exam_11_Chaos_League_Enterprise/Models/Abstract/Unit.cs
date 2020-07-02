@@ -20,5 +20,10 @@ namespace Exam_11_Chaos_League_Enterprise.Models.Abstract
             Damage = damage;
 
         }
+
+        public void RemoveHealth(Unit enemy)
+        {
+            CurrentHealth -= enemy.Damage;
+        }
     }
 }
