@@ -1,4 +1,5 @@
 ﻿using Exam_11_Chaos_League_Enterprise.Models;
+using Exam_11_Chaos_League_Enterprise.Models.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace Exam_11_Chaos_League_Enterprise.Services
             army.IsChosen = true;
             var squad = army.GetSquad();
             army.IsMadeTurn = true;
-            AttackEnemy();
+            AttackEnemy(squad);
             Console.WriteLine(army.Name);
             army.IsChosen = false;
         }
@@ -65,6 +66,15 @@ namespace Exam_11_Chaos_League_Enterprise.Services
         {
             var enemyArmy = AvailableArmies.OrderBy(army => RandomService.Get()).FirstOrDefault();
             return enemyArmy;
+        }
+
+        public Unit GetEnemy()
+        {
+            var enemyarmy = GetEnemyArmy();
+            var legion = enemyarmy.AllAliveCruisers.SelectMany(cruiser => cruiser.AllAliveUnits).ToList();
+            var enemy = legion.Cast<Unit>().OrderBy(unit => RandomService.Get()).FirstOrDefault();
+            return enemy;
+            
         }
 
         public Army GetRandomArmy()
@@ -77,9 +87,13 @@ namespace Exam_11_Chaos_League_Enterprise.Services
             AliveArmies.ForEach(army => army.IsMadeTurn = false);
         }
 
-        public void AttackEnemy()
+        public void AttackEnemy(List<Unit> squad)
         {
-
+            squad.ForEach(unit => 
+            {
+                var enemy = GetEnemy();
+                enemy.AttackOpponent(unit);
+            });
         }
         
     }

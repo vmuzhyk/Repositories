@@ -25,5 +25,10 @@ namespace Exam_11_Chaos_League_Enterprise.Models.Abstract
         {
             CurrentHealth -= enemy.Damage;
         }
+
+        internal virtual void AttackOpponent(Unit unit)
+        {
+            
+        }
     }
 }
