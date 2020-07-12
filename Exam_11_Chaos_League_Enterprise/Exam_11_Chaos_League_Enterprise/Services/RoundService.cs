@@ -20,12 +20,12 @@ namespace Exam_11_Chaos_League_Enterprise.Services
             {
                 new Army("Humans"),
                 new Army("Necromants"),
-                new Army("Pretorians"),
+                /*new Army("Pretorians"),
                 new Army("Orcs"),
                 new Army("Elfs"),
                 new Army("Demons"),
                 new Army("Barbarians"),
-                new Army("Dwarfs")
+                new Army("Dwarfs")*/
             };
         }
 
@@ -81,8 +81,11 @@ namespace Exam_11_Chaos_League_Enterprise.Services
         {
             squad.ForEach(unit => 
             {
-                var enemyarmy = GetRandomEnemyArmy();
-                unit.AttackEnemy(enemyarmy);
+                if (AvailableArmies.Count != 0)
+                {
+                    var enemyarmy = GetRandomEnemyArmy();
+                    unit.AttackEnemy(enemyarmy);
+                }
             });
         }
         

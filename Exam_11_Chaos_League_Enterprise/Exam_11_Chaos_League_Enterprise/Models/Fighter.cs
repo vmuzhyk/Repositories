@@ -24,15 +24,16 @@ namespace Exam_11_Chaos_League_Enterprise.Models
             base.AttackEnemy(enemyarmy);
             var legion = enemyarmy.AllAliveCruisers.SelectMany(cruiser => cruiser.AllAliveUnits).ToList();
             var enemy = legion.OrderBy(unit => RandomService.Get()).FirstOrDefault();
-            if (ParentCruiser.AllAliveUnits.Count > 0)
+            if (ParentCruiser.AllAliveUnits.Count != null)
             {
                 enemy.RemoveHealth(this.Damage);
+                Console.Write($"{ParentCruiser.Army.Name} {enemy} \n");
             }
             else
             {
                 AttackEnemy(enemyarmy.AllAliveCruisers);
             }
-            Console.Write($"{ParentCruiser.Army.Name} {enemy} \n");
+            
         }
     }
 }
