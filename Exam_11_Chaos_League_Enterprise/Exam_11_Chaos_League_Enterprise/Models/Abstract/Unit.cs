@@ -21,14 +21,19 @@ namespace Exam_11_Chaos_League_Enterprise.Models.Abstract
 
         }
 
-        public void RemoveHealth(Unit enemy)
+        public void RemoveHealth(int damage)
         {
-            CurrentHealth -= enemy.Damage;
+            CurrentHealth -= damage;
         }
 
-        internal virtual void AttackOpponent(Unit unit)
+        internal virtual void AttackEnemy(Army enemyarmy)
         {
             
+        }
+
+        internal virtual void AttackEnemy(List<Cruiser> cruisers)
+        {
+
         }
     }
 }

@@ -34,10 +34,9 @@ namespace Exam_11_Chaos_League_Enterprise.Services
             PrintFightField();
             while (AliveArmies.Count > 1)
             {
-                while (ArmiesWaitTurn.Count > 0)
-                {
+                while (ArmiesWaitTurn.Count != 0)
                     AttackArmyStepByStep();
-                }
+                
                 NextTurn();
             }
             DisplayWinner();
@@ -55,44 +54,35 @@ namespace Exam_11_Chaos_League_Enterprise.Services
         {
             var army = GetRandomArmy();
             army.IsChosen = true;
-            var squad = army.GetSquad();
+            var squad = army.GetSquad(5);
             army.IsMadeTurn = true;
-            AttackEnemy(squad);
-            Console.WriteLine(army.Name);
+            Console.WriteLine($"\n{army.Name}");
+            AttackRandomEnemy(squad);
             army.IsChosen = false;
         }
 
-        public Army GetEnemyArmy()
+        public Army GetRandomEnemyArmy()
         {
-            var enemyArmy = AvailableArmies.OrderBy(army => RandomService.Get()).FirstOrDefault();
-            return enemyArmy;
-        }
-
-        public Unit GetEnemy()
-        {
-            var enemyarmy = GetEnemyArmy();
-            var legion = enemyarmy.AllAliveCruisers.SelectMany(cruiser => cruiser.AllAliveUnits).ToList();
-            var enemy = legion.Cast<Unit>().OrderBy(unit => RandomService.Get()).FirstOrDefault();
-            return enemy;
-            
+            var random = RandomService.Get(AvailableArmies.Count);
+            return AvailableArmies[random];
         }
 
         public Army GetRandomArmy()
         {
-            var randomArmy = ArmiesWaitTurn.OrderBy(army => RandomService.Get()).FirstOrDefault();
-            return randomArmy;
+            var random = RandomService.Get(ArmiesWaitTurn.Count);
+            return ArmiesWaitTurn[random];
         }
         public void NextTurn()
         {
             AliveArmies.ForEach(army => army.IsMadeTurn = false);
         }
 
-        public void AttackEnemy(List<Unit> squad)
+        public void AttackRandomEnemy(List<Unit> squad)
         {
             squad.ForEach(unit => 
             {
-                var enemy = GetEnemy();
-                enemy.AttackOpponent(unit);
+                var enemyarmy = GetRandomEnemyArmy();
+                unit.AttackEnemy(enemyarmy);
             });
         }
         

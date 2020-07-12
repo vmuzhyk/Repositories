@@ -19,8 +19,8 @@ namespace Exam_11_Chaos_League_Enterprise.Models
             Name = name;
             Cruisers = new List<Cruiser>()
             {
-                new Cruiser(100, 2),
-                new Cruiser(100, 2)
+                new Cruiser(100, 2, this),
+                new Cruiser(100, 2, this)
             };
         }
 
@@ -31,10 +31,10 @@ namespace Exam_11_Chaos_League_Enterprise.Models
             return army;
         }
 
-        public List<Unit> GetSquad()
+        public List<Unit> GetSquad(int count)
         {
             var legion = AllAliveCruisers.SelectMany(cruiser => cruiser.AllAliveUnits).ToList();
-            var squad = AllAliveCruisers.Cast<Unit>().Concat(legion.Cast<Unit>()).OrderBy(unit => RandomService.Get()).Take(5).ToList();
+            var squad = AllAliveCruisers.Concat(legion.Cast<Unit>()).OrderBy(unit => RandomService.Get()).Take(count).ToList();
             return squad;
         }
     }

@@ -16,8 +16,12 @@ namespace Exam_11_Chaos_League_Enterprise.Services
 
         public static int Get()
         {
-            int index = random.Next();
-            return index;
+            return random.Next();
+        }
+
+        public static int Get(int count)
+        {
+            return random.Next(count);
         }
     }
 }
