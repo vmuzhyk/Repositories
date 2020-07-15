@@ -23,5 +23,10 @@ namespace Exam_11_Chaos_League_Enterprise.Services
         {
             return random.Next(count);
         }
+
+        public static int Get(int x, int y)
+        {
+            return random.Next(x, y);
+        }
     }
 }

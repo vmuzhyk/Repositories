@@ -20,12 +20,12 @@ namespace Exam_11_Chaos_League_Enterprise.Services
             {
                 new Army("Humans"),
                 new Army("Necromants"),
-                /*new Army("Pretorians"),
+                new Army("Pretorians"),
                 new Army("Orcs"),
                 new Army("Elfs"),
                 new Army("Demons"),
                 new Army("Barbarians"),
-                new Army("Dwarfs")*/
+                new Army("Dwarfs")
             };
         }
 
@@ -47,7 +47,8 @@ namespace Exam_11_Chaos_League_Enterprise.Services
         }
         private void DisplayWinner()
         {
-            
+            Console.WriteLine($"\nWE HAVE A WINNER!!!");
+            Console.WriteLine(AliveArmies.First());
         }
         
         private void AttackArmyStepByStep()

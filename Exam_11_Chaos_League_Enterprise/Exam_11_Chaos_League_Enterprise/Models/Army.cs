@@ -19,8 +19,8 @@ namespace Exam_11_Chaos_League_Enterprise.Models
             Name = name;
             Cruisers = new List<Cruiser>()
             {
-                new Cruiser(100, 2, this),
-                new Cruiser(100, 2, this)
+                new Cruiser(100, 2, this, 2),
+                new Cruiser(100, 2, this, 2)
             };
         }
 
