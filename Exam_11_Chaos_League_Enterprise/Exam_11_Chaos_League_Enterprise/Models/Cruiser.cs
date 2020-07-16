@@ -52,12 +52,20 @@ namespace Exam_11_Chaos_League_Enterprise.Models
             var enemysquad = legion.OrderByDescending(unit => unit.CurrentHealth / unit.MaxHealth * 100).ThenBy(unit => RandomService.Get()).Take(5).ToList();
             if (enemysquad.Count != 0)
             {
-                enemysquad.ForEach
+                var randChoose = RandomService.Get(0, 2);
+                if(randChoose == 0)
+                {
+                    enemysquad.ForEach
                     (enemy =>
                     {
                         enemy.RemoveHealth(this.CanonDamage);
                         Console.Write($"Cruiser ({this.CurrentHealth}) attacked  {enemyarmy.Name} {enemy} \n");
                     });
+                }
+                else
+                {
+                    AttackEnemy(enemyarmy.AllAliveCruisers);
+                }
             }
             else
             {

@@ -26,7 +26,7 @@ namespace Exam_11_Chaos_League_Enterprise.Models
             if (enemy != null)
             {
                 enemy.RemoveHealth(this.Damage);
-                Console.Write($"{ParentCruiser.Army.Name} {enemy} \n");
+                Console.Write($"{enemyarmy.Name} {enemy} \n");
             }
             else
             {

@@ -9,9 +9,6 @@ namespace Exam_11_Chaos_League_Enterprise.Models.Abstract
 {
     public class Aircraft : Unit
     {
-        private int maxHealt;
-        private int damage;
-
         public Cruiser ParentCruiser { get; }
         public Aircraft(int maxHealt, int damage, Cruiser parentcruiser ) : base(maxHealt, damage)
         {
