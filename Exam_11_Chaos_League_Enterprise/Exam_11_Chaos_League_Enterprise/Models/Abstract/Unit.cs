@@ -26,14 +26,9 @@ namespace Exam_11_Chaos_League_Enterprise.Models.Abstract
             CurrentHealth -= damage;
         }
 
-        internal virtual void AttackEnemy(Army enemyarmy)
-        {
-            
-        }
+        internal abstract void AttackEnemy(Army enemyarmy);
 
-        internal virtual void AttackEnemy(List<Cruiser> cruisers)
-        {
-
-        }
+        internal abstract void AttackEnemy(List<Cruiser> cruisers);
+        
     }
 }

@@ -11,7 +11,7 @@ namespace Exam_11_Chaos_League_Enterprise
     {
         static void Main(string[] args)
         {
-            new GameService().Start();
+            new RoundService().Begin();
             Console.ReadKey();
         }
     }
