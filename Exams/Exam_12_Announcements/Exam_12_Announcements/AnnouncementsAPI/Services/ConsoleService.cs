@@ -23,7 +23,7 @@ namespace AnnouncementsAPI.Services
         private const string CommandLoad = "LOAD";
         private const string CommandSave = "SAVE";
         private const string CommandContinue = "CONTINUE";
-        private const string CommandDisplay = "DISPLAY";
+        private const string CommandAdd = "ADD";
         private const string CommandYes = "YES";
         private const string CommandNo = "NO";
         private const string src = @"saves.json";
@@ -64,13 +64,12 @@ namespace AnnouncementsAPI.Services
                     break;
                 case CommandClear:
                     Console.Clear();
-                    //ResetProgressWithMessage();
                     break;
                 case CommandHelp:
                     PrintAvaielableCommands();
                     break;
-                case CommandDisplay:
-                    //_roundService.DisplayScore();
+                case CommandAdd:
+                    _editorService.AddAnnouncement();
                     break;
                 case CommandSave:
                     //SaveScoreWithMessage();
@@ -80,7 +79,7 @@ namespace AnnouncementsAPI.Services
                     break;
                 case CommandStart:
                     Console.WriteLine("Your game was started!");
-                    _editorService.Begin();
+                    //_editorService.Begin();
                     break;
                 case CommandContinue:
                     Console.WriteLine("Your game was continued!");
@@ -94,11 +93,11 @@ namespace AnnouncementsAPI.Services
             Console.WriteLine($"{CommandExit.ToLower()} - leave editor");
             Console.WriteLine($"{CommandClear.ToLower()} - clear console");
             Console.WriteLine($"{CommandHelp.ToLower()} - display abailable commands");
+            Console.WriteLine($"{CommandAdd.ToLower()} - add announcement");
             Console.WriteLine($"{CommandStart.ToLower()} - start working with editor");
             Console.WriteLine($"{CommandLoad.ToLower()} - load saved game");
             Console.WriteLine($"{CommandContinue.ToLower()} - continue game");
             Console.WriteLine($"{CommandSave.ToLower()} - save game");
-            Console.WriteLine($"{CommandDisplay.ToLower()} - display game score");
         }
     }
 }

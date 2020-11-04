@@ -10,5 +10,12 @@ namespace AnnouncementsApp.Domain
         public string Tittle { get; set; }
         public string Description { get; set; }
         public DateTime DateAdded { get; set; }
+
+        public Announcement(string title, string description, DateTime dateAdded)
+        {
+            Tittle = title;
+            Description = description;
+            DateAdded = dateAdded;
+        }
     }
 }
