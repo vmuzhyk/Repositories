@@ -8,20 +8,44 @@ namespace AnnouncementsAPI.Services
 {
     class EditorService
     {
+        public string InputTittle { get; set; }
+        public string InputDescription { get; set; }
         public AnnouncementContext _context = new AnnouncementContext();
 
         
         public void AddAnnouncement()
         {
-            EnsureCreatingDatabase();
-            var announcement = new Announcement ( "Dinner", "Tasty dinner", DateTime.Now);
+            GetInputOfAnnouncement();
+            var announcement = new Announcement ( InputTittle, InputDescription);
             _context.Announcements.Add(announcement);
             _context.SaveChanges();
         }
 
-        public void EnsureCreatingDatabase()
+        private void GetInputOfAnnouncement()
+        {
+            Console.WriteLine();
+            Console.Write("Enter tittle of announcement: ");
+            var inputTittle = Console.ReadLine();
+            InputTittle = inputTittle;
+            Console.WriteLine();
+            Console.Write("Enter description of announcement: ");
+            var inputDescription = Console.ReadLine();
+            InputDescription = inputDescription;
+        }
+
+        public void EditAnnouncement()
+        {
+            FindAnnouncement();
+        }
+
+        private void FindAnnouncement()
+        {
+            
+        }
+
+        /*public void EnsureCreatingDatabase()
         {
             _context.Database.EnsureCreated();
-        }
+        }*/
     }
 }

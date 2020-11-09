@@ -11,11 +11,15 @@ namespace AnnouncementsApp.Domain
         public string Description { get; set; }
         public DateTime DateAdded { get; set; }
 
-        public Announcement(string title, string description, DateTime dateAdded)
+        public Announcement()
+        {
+
+        }
+        public Announcement(string title, string description)
         {
             Tittle = title;
             Description = description;
-            DateAdded = dateAdded;
+            DateAdded = DateTime.Now;
         }
     }
 }

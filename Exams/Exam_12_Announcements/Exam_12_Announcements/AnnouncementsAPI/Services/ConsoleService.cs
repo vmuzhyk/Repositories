@@ -21,7 +21,7 @@ namespace AnnouncementsAPI.Services
         private const string CommandHelp = "HELP";
         private const string CommandStart = "START";
         private const string CommandLoad = "LOAD";
-        private const string CommandSave = "SAVE";
+        private const string CommandEdit = "EDIT";
         private const string CommandContinue = "CONTINUE";
         private const string CommandAdd = "ADD";
         private const string CommandYes = "YES";
@@ -71,8 +71,8 @@ namespace AnnouncementsAPI.Services
                 case CommandAdd:
                     _editorService.AddAnnouncement();
                     break;
-                case CommandSave:
-                    //SaveScoreWithMessage();
+                case CommandEdit:
+                    _editorService.EditAnnouncement();
                     break;
                 case CommandLoad:
                     //LoadScore();
@@ -97,7 +97,7 @@ namespace AnnouncementsAPI.Services
             Console.WriteLine($"{CommandStart.ToLower()} - start working with editor");
             Console.WriteLine($"{CommandLoad.ToLower()} - load saved game");
             Console.WriteLine($"{CommandContinue.ToLower()} - continue game");
-            Console.WriteLine($"{CommandSave.ToLower()} - save game");
+            Console.WriteLine($"{CommandEdit.ToLower()} - edit announcement");
         }
     }
 }

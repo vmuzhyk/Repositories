@@ -8,7 +8,6 @@ namespace AnnouncementsAPI
         static void Main(string[] args)
         {
             new ConsoleService().Begin();
-            Console.ReadKey();
         }
     }
 }
