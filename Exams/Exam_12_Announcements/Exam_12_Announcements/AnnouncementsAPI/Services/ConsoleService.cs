@@ -75,7 +75,7 @@ namespace AnnouncementsAPI.Services
                     _editorService.EditAnnouncement();
                     break;
                 case CommandLoad:
-                    //LoadScore();
+                    _editorService.LoadListOfAnnouncement();
                     break;
                 case CommandStart:
                     Console.WriteLine("Your game was started!");

@@ -2,6 +2,7 @@
 using AnnouncementsApp.Domain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AnnouncementsAPI.Services
@@ -41,6 +42,20 @@ namespace AnnouncementsAPI.Services
         private void FindAnnouncement()
         {
             
+        }
+
+        internal void LoadListOfAnnouncement()
+        {
+            
+                var announcements = _context.Announcements.ToList();
+            foreach (var announcement in announcements)
+            {
+                Console.WriteLine($" {announcement.Id}   {announcement.Tittle}\n" +
+                                        $"     {announcement.Description}    {announcement.DateAdded}");
+                Console.WriteLine();
+            }
+
+
         }
 
         /*public void EnsureCreatingDatabase()
