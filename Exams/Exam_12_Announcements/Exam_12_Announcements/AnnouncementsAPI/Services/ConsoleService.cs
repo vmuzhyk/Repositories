@@ -19,8 +19,8 @@ namespace AnnouncementsAPI.Services
         private const string CommandExit = "EXIT";
         private const string CommandClear = "CLEAR";
         private const string CommandHelp = "HELP";
-        private const string CommandStart = "START";
-        private const string CommandLoad = "LOAD";
+        private const string CommandDelete = "DELETE";
+        private const string CommandList = "LIST";
         private const string CommandEdit = "EDIT";
         private const string CommandContinue = "CONTINUE";
         private const string CommandAdd = "ADD";
@@ -74,12 +74,11 @@ namespace AnnouncementsAPI.Services
                 case CommandEdit:
                     _editorService.EditAnnouncement();
                     break;
-                case CommandLoad:
+                case CommandList:
                     _editorService.LoadListOfAnnouncement();
                     break;
-                case CommandStart:
-                    Console.WriteLine("Your game was started!");
-                    //_editorService.Begin();
+                case CommandDelete:
+                    _editorService.DeleteAnnoucement();
                     break;
                 case CommandContinue:
                     Console.WriteLine("Your game was continued!");
@@ -94,8 +93,8 @@ namespace AnnouncementsAPI.Services
             Console.WriteLine($"{CommandClear.ToLower()} - clear console");
             Console.WriteLine($"{CommandHelp.ToLower()} - display abailable commands");
             Console.WriteLine($"{CommandAdd.ToLower()} - add announcement");
-            Console.WriteLine($"{CommandStart.ToLower()} - start working with editor");
-            Console.WriteLine($"{CommandLoad.ToLower()} - load saved game");
+            Console.WriteLine($"{CommandDelete.ToLower()} - delete announcement");
+            Console.WriteLine($"{CommandList.ToLower()} - load list of announcements");
             Console.WriteLine($"{CommandContinue.ToLower()} - continue game");
             Console.WriteLine($"{CommandEdit.ToLower()} - edit announcement");
         }

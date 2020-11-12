@@ -11,6 +11,7 @@ namespace AnnouncementsAPI.Services
     {
         public string InputTittle { get; set; }
         public string InputDescription { get; set; }
+        
         public AnnouncementContext _context = new AnnouncementContext();
 
         
@@ -47,16 +48,62 @@ namespace AnnouncementsAPI.Services
         internal void LoadListOfAnnouncement()
         {
             
-                var announcements = _context.Announcements.ToList();
+            var announcements = _context.Announcements.ToList();
             foreach (var announcement in announcements)
             {
                 Console.WriteLine($" {announcement.Id}   {announcement.Tittle}\n" +
                                         $"     {announcement.Description}    {announcement.DateAdded}");
                 Console.WriteLine();
             }
-
-
         }
+
+        internal void DeleteAnnoucement()
+        {
+            var id = 0;
+            var inputId = RequstInputToDelete();
+            var isInteger = Int32.TryParse(inputId, out id);
+            
+            while(!IsInputValid(isInteger, id))
+            {
+                inputId = RequstInputToDelete();
+                isInteger = Int32.TryParse(inputId, out id);
+            }
+                
+
+            var announcement = _context.Announcements.FirstOrDefault(a => a.Id == id);
+            _context.Announcements.Remove(announcement);
+            _context.SaveChanges();
+        }
+
+        private string RequstInputToDelete()
+        {
+            Console.WriteLine();
+            Console.WriteLine($"There are {_context.Announcements.Count()} of announcements!");
+            Console.Write($"Choose Id of announcement, which you want to delete: ");
+            var inputId = Console.ReadLine();
+            return inputId;
+        }
+
+        private bool IsInputValid(bool isInteger, int id)
+        {
+
+            if (!isInteger)
+            {
+                Console.WriteLine("Number should be an integer value");
+                return false;
+            }
+
+            if (!_context.Announcements.Any(i => i.Id == id))
+            {
+                Console.WriteLine($"The Id doesn't exists please try again");
+                return false;
+            }
+
+            return true;
+        }
+
+
+
 
         /*public void EnsureCreatingDatabase()
         {
